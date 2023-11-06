@@ -1,3 +1,4 @@
+import KakaoMap from "@/components/Map";
 import * as styles from "@/components/styles/Search.styles";
 
 export default function SearchHome() {
@@ -21,7 +22,10 @@ export default function SearchHome() {
         </styles.HeartBox>
       </styles.MiddleBox>
       <styles.MainBox>
-        <styles.MapBox></styles.MapBox>
+        <styles.MapBox>
+          {/** 건국대학교 위치로 설정 (TODO: 추후에 변경 필요) */}
+          <KakaoMap latitude={37.5407625} longitude={127.0740428} />
+        </styles.MapBox>
         <styles.ListsBox>
           <styles.ListBox>
             <styles.TypeImgBox></styles.TypeImgBox>

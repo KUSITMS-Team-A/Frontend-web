@@ -30,7 +30,10 @@ export const MainBox = styled.div`
   display: flex;
 `;
 
-export const MapBox = styled.div``;
+export const MapBox = styled.div`
+  width: 428px;
+  height: 402px;
+`;
 
 export const ListsBox = styled.div``;
 
