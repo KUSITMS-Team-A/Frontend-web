@@ -4,7 +4,7 @@
 
 ## Authors
 
-- [@rimoosoo](https://github.com/Rimoosoo)
+- [@rimoosoo](https://github.com/Ethan_kerryFather)
 - [@SujinKim1127](https://github.com/SujinKim1127)
 
   
