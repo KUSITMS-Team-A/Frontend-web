@@ -27,7 +27,7 @@ const Header = () => {
             <Link href="/about">제안서작성</Link>
           </li>
           <li>
-            <Link href="/contact">제휴가게</Link>
+            <Link href="/apply">제휴가게</Link>
           </li>
         </ul>
       </DefaultMenu>
