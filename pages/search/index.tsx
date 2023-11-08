@@ -49,25 +49,13 @@ export default function SearchHome() {
           />
         </styles.MapBox>
         <styles.ListsBox>
-          <styles.ListBox>
-            <styles.TypeImgBox></styles.TypeImgBox>
-            <styles.InfoContainerBox>
-              <styles.InfoTopBox>
-                <styles.NameBox>릴즈</styles.NameBox>
-                <styles.StoreTypeBox>음식점</styles.StoreTypeBox>
-                {/** TODO: warning 여부에 따라 보이도록
-                 * <styles.WarningBox></styles.WarningBox>
-                 */}
-                <styles.StoreHeartBox></styles.StoreHeartBox>
-              </styles.InfoTopBox>
-              <styles.StoreInfoBox>아메리칸</styles.StoreInfoBox>
-              <styles.StoreBottomBox>
-                <styles.StoreLocationBox>서울특별시</styles.StoreLocationBox>
-                <styles.StoreDistanceBox>176m</styles.StoreDistanceBox>
-              </styles.StoreBottomBox>
-              <styles.DownBtnBox></styles.DownBtnBox>
-            </styles.InfoContainerBox>
-          </styles.ListBox>
+          <Storelist
+            title="릴즈"
+            type="음식점"
+            description="아메리칸"
+            place="서울특별시"
+            distance={176}
+          />
         </styles.ListsBox>
       </styles.MainBox>
     </styles.Container>
