@@ -21,7 +21,7 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <li>
-            <Link href="/">가게찾기</Link>
+            <Link href="/search">가게찾기</Link>
           </li>
           <li>
             <Link href="/about">제안서작성</Link>
