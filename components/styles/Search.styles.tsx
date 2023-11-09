@@ -1,19 +1,67 @@
 import { COLORS } from "@/styles/colors";
 import styled from "@emotion/styled";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  width: 919px;
+`;
 
-export const TitleBox = styled.div``;
+export const TitleBox = styled.div`
+  color: var(--, #1c1c1e);
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 16.53px; /* 63.577% */
+  letter-spacing: -1.56px;
+`;
 
 export const MiddleBox = styled.div`
   display: flex;
+  margin-top: 64px;
+  margin-bottom: 37px;
+  width: 929px;
 `;
 
 export const FiltersBox = styled.div`
   display: flex;
+  font-size: 13.984px;
+  font-style: normal;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  align-items: center;
 `;
 
-export const FilterComponentBox = styled.div``;
+export const FilterAllText = styled.div<{ type: boolean }>`
+  color: ${(props) => (props.type ? COLORS.blue : "black")};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 69px;
+  cursor: pointer;
+`;
+
+export const FilterComponentBox = styled.div`
+  width: 87px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+`;
+
+export const FilterIconBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const FilterText = styled.div<{ type: boolean }>`
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+  color: ${(props) => (props.type ? "black" : "#C6C6C6")};
+`;
+
 export const FilterEndBox = styled.div`
   margin-left: auto;
   display: flex;
@@ -69,9 +117,22 @@ export const HeartBox = styled.div`
   margin-left: 15px;
 `;
 
-export const HeartIconBox = styled.div``;
+export const HeartIconBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const HeartTextBox = styled.div``;
+export const HeartTextBox = styled.div`
+  color: #000;
+  font-size: 13.984px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  display: flex;
+  align-items: center;
+  margin-left: 7px;
+`;
 
 export const MainBox = styled.div`
   display: flex;
