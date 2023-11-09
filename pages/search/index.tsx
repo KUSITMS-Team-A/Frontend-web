@@ -10,6 +10,7 @@ import Storelist from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
 import Image from "next/image";
 import SearchIcon from "@/assets/svg/Search.svg";
+import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import { useState } from "react";
 
 export default function SearchHome() {
@@ -31,10 +32,7 @@ export default function SearchHome() {
           <styles.FilterComponentBox>기타</styles.FilterComponentBox>
         </styles.FiltersBox>
         {/** TODO: 누르면 expand로 변경되도록 */}
-        <styles.HeartBox>
-          <styles.HeartIconBox></styles.HeartIconBox>
-          <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
-        </styles.HeartBox>
+        <styles.FilterEndBox>
           {isSearch ? (
             <styles.SearchExpandBox>
               <styles.SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
@@ -47,6 +45,13 @@ export default function SearchHome() {
               <Image src={SearchIcon} alt="search icon" />
             </styles.SearchBox>
           )}
+          <styles.HeartBox>
+            <styles.HeartIconBox>
+              <Image src={EmptyHeart} alt="emptyHeart" />
+            </styles.HeartIconBox>
+            <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
+          </styles.HeartBox>
+        </styles.FilterEndBox>
       </styles.MiddleBox>
       <styles.MainBox>
         <styles.MapBox>

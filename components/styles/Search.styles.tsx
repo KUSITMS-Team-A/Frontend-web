@@ -14,6 +14,11 @@ export const FiltersBox = styled.div`
 `;
 
 export const FilterComponentBox = styled.div``;
+export const FilterEndBox = styled.div`
+  margin-left: auto;
+  display: flex;
+`;
+
 export const SearchBox = styled.div`
   display: flex;
   width: 42px;
@@ -60,6 +65,8 @@ export const SearchIconBox = styled.div`
 
 export const HeartBox = styled.div`
   display: flex;
+  align-items: center;
+  margin-left: 15px;
 `;
 
 export const HeartIconBox = styled.div``;
