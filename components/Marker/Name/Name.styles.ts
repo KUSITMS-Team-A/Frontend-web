@@ -6,16 +6,16 @@ const typeStyles: { [key: string]: { border?: string } } = {
     border: `1px solid ${COLORS.green}`,
   },
   Cafe: {
-    border: `1px solid ${COLORS.green}`,
+    border: `1px solid ${COLORS.yellow}`,
   },
   Beauty: {
-    border: `1px solid ${COLORS.green}`,
+    border: `1px solid ${COLORS.black}`,
   },
   Culture: {
     border: `1px solid ${COLORS.blue}`,
   },
   Etc: {
-    border: `1px solid ${COLORS.green}`,
+    border: `1px solid ${COLORS.purple}`,
   },
 };
 

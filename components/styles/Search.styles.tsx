@@ -22,7 +22,7 @@ export const MiddleBox = styled.div`
   display: flex;
   margin-top: 64px;
   margin-bottom: 37px;
-  width: 929px;
+  width: 919px;
 `;
 
 export const FiltersBox = styled.div`
