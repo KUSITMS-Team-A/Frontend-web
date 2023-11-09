@@ -8,8 +8,16 @@ import CultureNameMarker from "@/components/Marker/Name/Culture";
 import FoodNameMarker from "@/components/Marker/Name/Food";
 import Storelist from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
+import Image from "next/image";
+import SearchIcon from "@/assets/svg/Search.svg";
+import { useState } from "react";
 
 export default function SearchHome() {
+  const [isSearch, setIsSearch] = useState(false);
+
+  const handleOnClickSearch = () => {
+    setIsSearch(!isSearch);
+  };
   return (
     <styles.Container>
       <styles.TitleBox>가게 찾기</styles.TitleBox>
@@ -23,11 +31,22 @@ export default function SearchHome() {
           <styles.FilterComponentBox>기타</styles.FilterComponentBox>
         </styles.FiltersBox>
         {/** TODO: 누르면 expand로 변경되도록 */}
-        <styles.SearchBox></styles.SearchBox>
         <styles.HeartBox>
           <styles.HeartIconBox></styles.HeartIconBox>
           <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
         </styles.HeartBox>
+          {isSearch ? (
+            <styles.SearchExpandBox>
+              <styles.SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
+              <styles.SearchIconBox>
+                <Image src={SearchIcon} alt="search icon" />
+              </styles.SearchIconBox>
+            </styles.SearchExpandBox>
+          ) : (
+            <styles.SearchBox onClick={handleOnClickSearch}>
+              <Image src={SearchIcon} alt="search icon" />
+            </styles.SearchBox>
+          )}
       </styles.MiddleBox>
       <styles.MainBox>
         <styles.MapBox>

@@ -14,10 +14,49 @@ export const FiltersBox = styled.div`
 `;
 
 export const FilterComponentBox = styled.div``;
+export const SearchBox = styled.div`
+  display: flex;
+  width: 42px;
+  height: 42px;
+  padding: 9px 8px;
+  align-items: center;
+  gap: 20px;
+  border-radius: 30px;
+  background: #f7f7f7;
+`;
 
-export const SearchBox = styled.div``;
+export const SearchExpandBox = styled.div`
+  width: 305px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 21px;
+  background: #f7f7f7;
+  padding: 9px 8px;
+  display: flex;
+`;
 
-export const SearchExpandBox = styled.div``;
+export const SearchInput = styled.input`
+  font-size: 13.984px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  background-color: transparent;
+  border: none;
+  margin-left: 8px;
+  width: 100%;
+  outline: none;
+
+  ::placeholder {
+    color: #afafaf;
+  }
+`;
+
+export const SearchIconBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+`;
 
 export const HeartBox = styled.div`
   display: flex;
