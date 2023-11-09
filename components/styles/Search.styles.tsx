@@ -162,6 +162,7 @@ export const ListsBox = styled.div`
 `;
 
 export const ListBox = styled.div`
+  margin-top: 30px;
   display: flex;
   width: 448px;
   padding-bottom: 9px;
