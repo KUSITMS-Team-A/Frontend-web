@@ -144,7 +144,21 @@ export const MapBox = styled.div`
 `;
 
 export const ListsBox = styled.div`
-  margin-left: 56px;
+  margin-left: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 20px;
+  height: 400px;
+  ::-webkit-scrollbar {
+    width: 2px;
+    border-radius: 2px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #a6a6a6;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
 `;
 
 export const ListBox = styled.div`
