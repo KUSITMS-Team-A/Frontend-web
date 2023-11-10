@@ -148,7 +148,7 @@ export const ListsBox = styled.div`
   overflow-y: auto;
   overflow-x: hidden;
   padding-right: 20px;
-  height: 400px;
+  height: 440px;
   ::-webkit-scrollbar {
     width: 2px;
     border-radius: 2px;
@@ -167,6 +167,18 @@ export const ListBox = styled.div`
   width: 448px;
   padding-bottom: 9px;
   border-bottom: 1px solid var(--g0, #f4f4f4);
+`;
+
+export const ListTopBox = styled.div`
+  margin-top: 30px;
+  display: flex;
+  width: 448px;
+`;
+
+export const ListBottomBox = styled.div`
+  border-bottom: 1px solid var(--g0, #f4f4f4);
+  padding-bottom: 9px;
+  margin-left: 24px;
 `;
 
 export const TypeImgBox = styled.div`
