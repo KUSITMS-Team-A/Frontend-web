@@ -10,7 +10,7 @@ import Storelist from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
 import Image from "next/image";
 import SearchIcon from "@/assets/svg/Search.svg";
-import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
+import FullHeart from "@/assets/svg/FullHeart.svg";
 import { ReactNode, useState } from "react";
 import { SizeTypeImg } from "@/utils/TypeImg";
 import uCafe from "@/assets/svg/unselect/uCafe.svg";
@@ -115,7 +115,7 @@ export default function SearchHome() {
           )}
           <styles.HeartBox>
             <styles.HeartIconBox>
-              <Image src={EmptyHeart} alt="emptyHeart" />
+              <Image src={FullHeart} alt="FullHeart" />
             </styles.HeartIconBox>
             <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
           </styles.HeartBox>
@@ -151,6 +151,20 @@ export default function SearchHome() {
           <Storelist
             title="릴즈"
             type="카페"
+            description="아메리칸"
+            place="서울특별시"
+            distance={176}
+          />
+          <Storelist
+            title="릴즈"
+            type="문화"
+            description="아메리칸"
+            place="서울특별시"
+            distance={176}
+          />
+          <Storelist
+            title="릴즈"
+            type="기타"
             description="아메리칸"
             place="서울특별시"
             distance={176}
