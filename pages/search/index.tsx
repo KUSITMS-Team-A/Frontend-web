@@ -4,8 +4,6 @@ import CafeMarker from "@/components/Marker/Icon/Cafe";
 import CultureMarker from "@/components/Marker/Icon/Culture";
 import EtcMarker from "@/components/Marker/Icon/Etc";
 import FoodMarker from "@/components/Marker/Icon/Food";
-import CultureNameMarker from "@/components/Marker/Name/Culture";
-import FoodNameMarker from "@/components/Marker/Name/Food";
 import Storelist from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
 import Image from "next/image";
@@ -13,6 +11,8 @@ import FullHeart from "@/assets/svg/FullHeart.svg";
 import { useState } from "react";
 import Filter from "@/components/organisms/Filter";
 import SearchInput from "@/components/SearchInput";
+import NameMarker from "@/components/Marker/Name/NameMarker";
+import Food from "@/assets/svg/Food.svg";
 
 export default function SearchHome() {
   const [isSearch, setIsSearch] = useState(false);
@@ -46,8 +46,14 @@ export default function SearchHome() {
                 <BeautyMarker lat={37.5437625} lng={127.0740428} />
                 <CultureMarker lat={37.5407625} lng={127.0720428} />
                 <EtcMarker lat={37.5407625} lng={127.0670428} />
-                <FoodNameMarker lat={37.5437625} lng={127.0670428} />
-                <CultureNameMarker lat={37.5438625} lng={127.0640428} />
+                <NameMarker
+                  lat={37.5437625}
+                  lng={127.0670428}
+                  type="Food"
+                  icon={Food}
+                  title="릴즈"
+                  markerType="음식"
+                />
               </>
             }
           />
