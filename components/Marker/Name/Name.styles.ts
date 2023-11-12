@@ -20,7 +20,7 @@ const typeStyles: { [key: string]: { border?: string } } = {
 };
 
 export const MarkerContainer = styled.div<{ type: string }>`
-  border: ${(props) => typeStyles[props.type].border};
+  border: ${(props) => typeStyles[props.type]?.border};
   border-radius: 16.5px;
   display: flex;
   background-color: white;
