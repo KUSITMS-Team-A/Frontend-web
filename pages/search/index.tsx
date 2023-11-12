@@ -36,27 +36,21 @@ export default function SearchHome() {
       <styles.MainBox>
         <styles.MapBox>
           {/** 건국대학교 위치로 설정 (TODO: 추후에 변경 필요) */}
-          <KakaoMap
-            latitude={37.5407625}
-            longitude={127.0740428}
-            children={
-              <>
-                <FoodMarker lat={37.5407625} lng={127.0790428} />
-                <CafeMarker lat={37.5380625} lng={127.0700328} />
-                <BeautyMarker lat={37.5437625} lng={127.0740428} />
-                <CultureMarker lat={37.5407625} lng={127.0720428} />
-                <EtcMarker lat={37.5407625} lng={127.0670428} />
-                <NameMarker
-                  lat={37.5437625}
-                  lng={127.0670428}
-                  type="Food"
-                  icon={Food}
-                  title="릴즈"
-                  markerType="음식"
-                />
-              </>
-            }
-          />
+          <KakaoMap latitude={37.5407625} longitude={127.0740428}>
+            <FoodMarker lat={37.5407625} lng={127.0790428} />
+            <CafeMarker lat={37.5380625} lng={127.0700328} />
+            <BeautyMarker lat={37.5437625} lng={127.0740428} />
+            <CultureMarker lat={37.5407625} lng={127.0720428} />
+            <EtcMarker lat={37.5407625} lng={127.0670428} />
+            <NameMarker
+              lat={37.5437625}
+              lng={127.0670428}
+              type="Food"
+              icon={Food}
+              title="릴즈"
+              markerType="음식"
+            />
+          </KakaoMap>
         </styles.MapBox>
         <styles.ListsBox>
           <Storelist
