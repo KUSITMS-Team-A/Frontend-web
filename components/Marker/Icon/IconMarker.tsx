@@ -2,17 +2,19 @@ import Food from "@/assets/svg/Food.svg";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
 import Image from "next/image";
 
-export interface Position {
+interface NameMarkerProps {
   lat: number;
   lng: number;
+  type: string;
+  icon: string;
 }
 
-const FoodMarker = ({ lat, lng }: Position) => {
+const IconMarker = ({ lat, lng, type, icon }: NameMarkerProps) => {
   return (
     <CustomOverlayMap position={{ lat: lat, lng: lng }}>
-      <Image src={Food} alt="food marker" width={30} height={30} />
+      <Image src={icon} alt={`${type} marker`} width={30} height={30} />
     </CustomOverlayMap>
   );
 };
 
-export default FoodMarker;
+export default IconMarker;

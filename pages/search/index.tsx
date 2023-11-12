@@ -1,9 +1,4 @@
 import KakaoMap from "@/components/Map";
-import BeautyMarker from "@/components/Marker/Icon/Beauty";
-import CafeMarker from "@/components/Marker/Icon/Cafe";
-import CultureMarker from "@/components/Marker/Icon/Culture";
-import EtcMarker from "@/components/Marker/Icon/Etc";
-import FoodMarker from "@/components/Marker/Icon/Food";
 import Storelist from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
 import Image from "next/image";
@@ -13,6 +8,11 @@ import Filter from "@/components/organisms/Filter";
 import SearchInput from "@/components/SearchInput";
 import NameMarker from "@/components/Marker/Name/NameMarker";
 import Food from "@/assets/svg/Food.svg";
+import Cafe from "@/assets/svg/Cafe.svg";
+import Culture from "@/assets/svg/Culture.svg";
+import Etc from "@/assets/svg/Etc.svg";
+import Beauty from "@/assets/svg/Beauty.svg";
+import IconMarker from "@/components/Marker/Icon/IconMarker";
 
 export default function SearchHome() {
   const [isSearch, setIsSearch] = useState(false);
@@ -37,11 +37,36 @@ export default function SearchHome() {
         <styles.MapBox>
           {/** 건국대학교 위치로 설정 (TODO: 추후에 변경 필요) */}
           <KakaoMap latitude={37.5407625} longitude={127.0740428}>
-            <FoodMarker lat={37.5407625} lng={127.0790428} />
-            <CafeMarker lat={37.5380625} lng={127.0700328} />
-            <BeautyMarker lat={37.5437625} lng={127.0740428} />
-            <CultureMarker lat={37.5407625} lng={127.0720428} />
-            <EtcMarker lat={37.5407625} lng={127.0670428} />
+            <IconMarker
+              lat={37.5407625}
+              lng={127.0790428}
+              type="Food"
+              icon={Food}
+            />
+            <IconMarker
+              lat={37.5380625}
+              lng={127.0700328}
+              type="Beauty"
+              icon={Beauty}
+            />
+            <IconMarker
+              lat={37.5437625}
+              lng={127.0740428}
+              type="Cafe"
+              icon={Cafe}
+            />
+            <IconMarker
+              lat={37.5407625}
+              lng={127.0720428}
+              type="Etc"
+              icon={Etc}
+            />
+            <IconMarker
+              lat={37.5407625}
+              lng={127.0670428}
+              type="Culture"
+              icon={Culture}
+            />
             <NameMarker
               lat={37.5437625}
               lng={127.0670428}
