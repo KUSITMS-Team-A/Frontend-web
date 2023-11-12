@@ -7,6 +7,8 @@ import FullHeart from "@/assets/svg/FullHeart.svg";
 import { useState } from "react";
 import { SizeTypeImg } from "@/utils/TypeImg";
 import StoreInfo from "./StoreInfo";
+import { useRecoilState } from "recoil";
+import { NewClickStore } from "@/states/Store";
 
 interface SProps {
   type: "음식점" | "카페" | "문화" | "미용" | "기타";
@@ -14,19 +16,50 @@ interface SProps {
   description: string;
   place: string;
   distance: number;
+  lat: number;
+  lng: number;
 }
 
 const typeStyles = SizeTypeImg(68);
 
-const Storelist = ({ type, title, place, distance, description }: SProps) => {
+const Storelist = ({
+  type,
+  title,
+  place,
+  distance,
+  description,
+  lat,
+  lng,
+}: SProps) => {
   const [isClick, setIsClick] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [clickStore, setClickStore] = useRecoilState(NewClickStore);
+
   const handleOnClickHeart = () => {
     setIsClick(!isClick);
   };
 
   const handleOnClickOpen = () => {
-    setIsOpen(!isOpen);
+    if (!clickStore.isClick) {
+      setIsOpen(!isOpen);
+      setClickStore({
+        isClick: !isOpen,
+        name: title,
+        type: type,
+        lat: lat,
+        lng: lng,
+      });
+    }
+    if (clickStore.name === title) {
+      setIsOpen(false);
+      setClickStore({
+        isClick: !isOpen,
+        name: title,
+        type: type,
+        lat: lat,
+        lng: lng,
+      });
+    }
   };
 
   return (
@@ -59,7 +92,10 @@ const Storelist = ({ type, title, place, distance, description }: SProps) => {
         {isOpen ? <StoreInfo /> : ""}
 
         <styles.InfoContainerBox>
-          <styles.DownBtnBox onClick={handleOnClickOpen}>
+          <styles.DownBtnBox
+            isDown={clickStore.name === title || !clickStore.isClick}
+            onClick={handleOnClickOpen}
+          >
             {isOpen ? (
               <Image
                 style={{ marginTop: "35px" }}

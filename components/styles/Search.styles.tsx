@@ -264,9 +264,9 @@ export const StoreDistanceBox = styled.div`
   margin-left: auto;
 `;
 
-export const DownBtnBox = styled.div`
+export const DownBtnBox = styled.div<{ isDown: boolean }>`
   margin-top: 5px;
   display: flex;
   justify-content: center;
-  cursor: pointer;
+  cursor: ${(props) => (props.isDown ? "pointer" : "default")};
 `;
