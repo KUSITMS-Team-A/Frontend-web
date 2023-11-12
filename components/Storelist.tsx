@@ -49,11 +49,10 @@ const Storelist = ({
         lat: lat,
         lng: lng,
       });
-    }
-    if (clickStore.name === title) {
+    } else if (clickStore.name === title) {
       setIsOpen(false);
       setClickStore({
-        isClick: !isOpen,
+        isClick: false,
         name: title,
         type: type,
         lat: lat,
@@ -70,9 +69,6 @@ const Storelist = ({
           <styles.InfoTopBox>
             <styles.NameBox>{title}</styles.NameBox>
             <styles.StoreTypeBox>{type}</styles.StoreTypeBox>
-            {/** TODO: warning 여부에 따라 보이도록
-             * <styles.WarningBox></styles.WarningBox>
-             */}
             <styles.StoreHeartBox onClick={handleOnClickHeart}>
               {isClick ? (
                 <Image src={FullHeart} alt="FullHeart" />
