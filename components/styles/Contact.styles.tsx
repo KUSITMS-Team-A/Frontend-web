@@ -90,21 +90,60 @@ export const WhiteBtnBox = styled.div`
   letter-spacing: -0.839px;
 `;
 
-export const MainBox = styled.div``;
+export const MainBox = styled.div`
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-gap: 18px 18px;
+`;
 
-export const StoreContainer = styled.div``;
+export const StoreContainer = styled.div`
+  width: 216px;
+  height: 216px;
+  border-radius: 10px;
+  background: var(--g0, #f4f4f4);
+  backdrop-filter: blur(2px);
+  padding: 17px;
+`;
 
-export const StoreTopBox = styled.div``;
+export const StoreTopBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const StoreIconBox = styled.div``;
+export const StoreIconBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
-export const StoreTypeBox = styled.div``;
+export const StoreTypeBox = styled.div`
+  color: var(--g2, #aeaeb2);
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.264px; /* 120.399% */
+  letter-spacing: -0.96px;
 
-export const DashBoardIcon = styled.div``;
+  margin-left: 6px;
+`;
 
-export const StoreNameBox = styled.div``;
+export const DashBoardIcon = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+`;
 
-export const BenefitBox = styled.div``;
+export const StoreNameBox = styled.div`
+  margin-top: 41px;
+  display: flex;
+  justify-content: center;
+`;
+
+export const BenefitBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 13px;
+`;
 
 export const ConditionBox = styled.div``;
 
