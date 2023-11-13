@@ -49,15 +49,46 @@ export const BlackButtonBox = styled.div`
   letter-spacing: -1.1px;
 `;
 
-export const MiddleBox = styled.div``;
+export const MiddleBox = styled.div`
+  margin-top: 23px;
+  display: flex;
+  align-items: center;
+`;
 
 export const FilterBox = styled.div``;
 
-export const SearchBox = styled.div``;
+export const SearchBox = styled.div`
+  margin-left: auto;
+  display: flex;
+  width: 42px;
+  height: 42px;
+  padding: 9px 8px;
+  align-items: center;
+  gap: 20px;
+  border-radius: 30px;
+  background: #f7f7f7;
+  margin-right: 16px;
+`;
 
-export const ButtonBox = styled.div``;
+export const ButtonBox = styled.div`
+  display: flex;
+`;
 
-export const WhiteBtnBox = styled.div``;
+export const WhiteBtnBox = styled.div`
+  display: flex;
+  width: 90px;
+  height: 33px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 1px solid var(--g1, #c6c6c6);
+  color: var(--, #1c1c1e);
+  font-size: 13.984px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+`;
 
 export const MainBox = styled.div``;
 

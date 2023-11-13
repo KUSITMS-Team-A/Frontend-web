@@ -1,5 +1,8 @@
 import SearchInput from "@/components/SearchInput";
+import Filter from "@/components/organisms/Filter";
 import * as styles from "@/components/styles/Contact.styles";
+import SearchIcon from "@/assets/svg/Search.svg";
+import Image from "next/image";
 
 export default function Contact() {
   return (
@@ -14,11 +17,17 @@ export default function Contact() {
         <styles.BlackButtonBox>정산관리</styles.BlackButtonBox>
       </styles.TopBox>
       <styles.MiddleBox>
-        <styles.FilterBox></styles.FilterBox>
-        <styles.SearchBox></styles.SearchBox>
+        <styles.FilterBox>
+          <Filter AllCount={43} />
+        </styles.FilterBox>
+        <styles.SearchBox>
+          <Image src={SearchIcon} alt="search icon" />
+        </styles.SearchBox>
         <styles.ButtonBox>
           <styles.WhiteBtnBox>삭제하기</styles.WhiteBtnBox>
-          <styles.WhiteBtnBox>등록하기</styles.WhiteBtnBox>
+          <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
+            등록하기
+          </styles.WhiteBtnBox>
         </styles.ButtonBox>
       </styles.MiddleBox>
       <styles.MainBox>
