@@ -53,11 +53,15 @@ const NameMarker = ({
     console.log(clickStore.type);
   }, [clickStore.name]);
 
-  return clickStore.type !== "" ? (
+  return (
     <CustomOverlayMap position={{ lat: lat, lng: lng }}>
       <styles.MarkerContainer type={typeEngtoKor(type)}>
         <styles.MarkerIconBox>
-          <Image src={icon} alt={`${title} marker`} width={29} height={29} />
+          {clickStore.isClick ? (
+            " ✅"
+          ) : (
+            <Image src={icon} alt={`${title} marker`} width={29} height={29} />
+          )}
         </styles.MarkerIconBox>
         <styles.MarkerInfoBox>
           <styles.MarkerTitleBox>{title}</styles.MarkerTitleBox>
@@ -65,7 +69,7 @@ const NameMarker = ({
         </styles.MarkerInfoBox>
       </styles.MarkerContainer>
     </CustomOverlayMap>
-  ) : null;
+  );
 };
 
 export default NameMarker;

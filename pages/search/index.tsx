@@ -95,7 +95,7 @@ export default function SearchHome() {
                 <NameMarker
                   lat={37.5437625}
                   lng={127.0670428}
-                  type="Food"
+                  type="음식점"
                   icon={Food}
                   title="릴즈"
                   markerType="음식"
