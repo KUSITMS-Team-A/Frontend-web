@@ -49,5 +49,5 @@ const PageLayout = styled.div`
 const MainContent = styled.main`
   flex: 1;
   padding: 20px;
-  background-color: gray;
+  background-color: white;
 `;
