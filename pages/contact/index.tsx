@@ -51,7 +51,7 @@ export default function Contact() {
           <Image src={SearchIcon} alt="search icon" />
         </styles.SearchBox>
         <styles.ButtonBox>
-          <styles.WhiteBtnBox>삭제하기</styles.WhiteBtnBox>
+          <styles.RemoveBtn>삭제하기</styles.RemoveBtn>
           <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
             등록하기
           </styles.WhiteBtnBox>
