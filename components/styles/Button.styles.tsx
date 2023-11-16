@@ -19,4 +19,5 @@ export const Button = styled.div<ButtonProps>`
   font-size: 13.984px;
   line-height: 19.264px; /* 137.751% */
   letter-spacing: -0.839px;
+  cursor: pointer;
 `;
