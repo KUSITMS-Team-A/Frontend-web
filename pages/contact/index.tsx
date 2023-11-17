@@ -10,7 +10,7 @@ import Culture from "@/assets/svg/Culture.svg";
 import Etc from "@/assets/svg/Etc.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
 import DashBoard from "@/assets/svg/SmallDashBoardIcon.svg";
-import Modal from "@/components/organisms/Modal";
+import Modal from "@/components/organisms/Modal/Modal";
 import CloseIcon from "@/assets/svg/Close.svg";
 
 export default function Contact() {

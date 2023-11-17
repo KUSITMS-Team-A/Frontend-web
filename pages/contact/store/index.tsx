@@ -17,7 +17,7 @@ import Cafe from "@/assets/svg/Cafe.svg";
 import Culture from "@/assets/svg/Culture.svg";
 import Etc from "@/assets/svg/Etc.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
-import StampModal from "@/components/organisms/StampModal";
+import StampModal from "@/components/organisms/Modal/StampModal";
 
 const ContactStore = () => {
   const [isStampModal, setIsStampModal] = useState<boolean>(false);

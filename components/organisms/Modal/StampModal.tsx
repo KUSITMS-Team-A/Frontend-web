@@ -3,7 +3,7 @@ import Modal from "./Modal";
 import styled from "@emotion/styled";
 import Image from "next/image";
 import CloseIcon from "@/assets/svg/Close.svg";
-import Button from "./Button";
+import Button from "../Button";
 import { COLORS } from "@/styles/colors";
 
 interface Props {
