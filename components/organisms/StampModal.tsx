@@ -69,6 +69,7 @@ const StampModal = ({ setIsStampModal }: Props) => {
             <CheckIconBox>{/** TODO: svg 적용하기 */}</CheckIconBox>
             <CheckTextBox>n명 달성 시 종료</CheckTextBox>
           </ConditionBox>
+          <PersonBox></PersonBox>
           <ConditionBox>
             <CheckIconBox>{/** TODO: svg 적용하기 */}</CheckIconBox>
             <CheckTextBox>제한 인원 X</CheckTextBox>
@@ -155,6 +156,14 @@ const CheckTextBox = styled.div`
   font-weight: 400;
   line-height: 19.264px; /* 120.399% */
   letter-spacing: -1.12px;
+`;
+
+const PersonBox = styled.div`
+  border-radius: 6px;
+  background: #f7f7f7;
+  width: 331px;
+  height: 36px;
+  margin: 6px auto 20px;
 `;
 
 export default StampModal;
