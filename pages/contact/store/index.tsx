@@ -18,12 +18,17 @@ import Culture from "@/assets/svg/Culture.svg";
 import Etc from "@/assets/svg/Etc.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
 import StampModal from "@/components/organisms/Modal/StampModal";
+import FinishModal from "@/components/organisms/Modal/FinishModal";
 
 const ContactStore = () => {
   const [isStampModal, setIsStampModal] = useState<boolean>(false);
-
+  const [isFinishModal, setIsFinishModal] = useState<boolean>(false);
   const handleOnClickStamp = () => {
     setIsStampModal(!isStampModal);
+  };
+
+  const handleOnClickFinish = () => {
+    setIsFinishModal(!isFinishModal);
   };
 
   const typeStyles = SizeTypeImg(68);
@@ -40,6 +45,7 @@ const ContactStore = () => {
           />
           <div style={{ marginLeft: "101px" }}>
             <GrayButton
+              onClick={handleOnClickFinish}
               label="제휴 종료"
               width={111}
               color={`${COLORS.blue}`}
@@ -151,6 +157,15 @@ const ContactStore = () => {
         </styled.MainBox>
       </styled.Container>
       {isStampModal ? <StampModal setIsStampModal={setIsStampModal} /> : ""}
+      {isFinishModal ? (
+        <FinishModal
+          title={"모노돈까스"}
+          type="음식점"
+          setIsFinishModal={setIsFinishModal}
+        />
+      ) : (
+        ""
+      )}
     </>
   );
 };
