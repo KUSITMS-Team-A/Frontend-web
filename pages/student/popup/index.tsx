@@ -17,7 +17,9 @@ const PopUp = () => {
           <styles.PopupContainer>
             <styles.NumberBox>01</styles.NumberBox>
             <styles.PopupTitle>오늘만할인</styles.PopupTitle>
-            <styles.PopupPeriod>2주간/실시간</styles.PopupPeriod>
+            <div style={{ margin: "auto", width: "103px" }}>
+              <styles.PopupPeriod>2주간/실시간</styles.PopupPeriod>
+            </div>
           </styles.PopupContainer>
         </styles.PopUpsContainer>
       </styles.ContentBox>
