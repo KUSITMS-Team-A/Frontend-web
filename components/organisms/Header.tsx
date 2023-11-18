@@ -1,15 +1,18 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
-
+import { useModal } from "../hooks/useModal";
+import LoginModal from "./Modal";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 
 const Header = () => {
   const router = useRouter();
+  const { openModal } = useModal();
 
   return (
     <HeaderFrame>
+      <LoginModal></LoginModal>
       <Logo
         onClick={() => {
           router.push("/");
@@ -21,7 +24,13 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-          <UpperMenuItem onClick={() => {}}>로그인</UpperMenuItem>
+          <UpperMenuItem
+            onClick={() => {
+              openModal();
+            }}
+          >
+            로그인
+          </UpperMenuItem>
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
