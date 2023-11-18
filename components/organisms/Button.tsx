@@ -14,7 +14,7 @@ const ButtonBox = styled.div<{
   width: number;
 }>`
   width: ${(props) => (props.width ? `${props.width}px` : "193px")};
-  height: 39px;
+  padding: 13px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
