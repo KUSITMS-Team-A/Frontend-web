@@ -1,15 +1,18 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
-
+import { useModal } from "../hooks/useModal";
+import LoginModal from "./Modal";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 
 const Header = () => {
   const router = useRouter();
+  const { openModal } = useModal();
 
   return (
     <HeaderFrame>
+      <LoginModal></LoginModal>
       <Logo
         onClick={() => {
           router.push("/");
@@ -21,7 +24,13 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-          <UpperMenuItem onClick={() => {}}>로그인</UpperMenuItem>
+          <UpperMenuItem
+            onClick={() => {
+              openModal();
+            }}
+          >
+            로그인
+          </UpperMenuItem>
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
@@ -43,6 +52,10 @@ const Header = () => {
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">학생관리</Link>
+            <SubDropdownMenu>
+              <SubDropdownMenuItem>팝업관리</SubDropdownMenuItem>
+              <SubDropdownMenuItem>쿠폰관리</SubDropdownMenuItem>
+            </SubDropdownMenu>
           </LowerMenuItem>
         </ul>
       </DefaultMenu>
@@ -82,6 +95,31 @@ const DefaultMenu = styled.header`
     gap: 20px; // li 간의 간격
 
     font-size: 1.5rem;
+  }
+`;
+
+const SubDropdownMenu = styled.div`
+  position: absolute;
+  bottom: -3rem;
+
+  visibility: hidden;
+
+  display: flex;
+  flex-flow: column nowrap;
+`;
+const SubDropdownMenuItem = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+
+  font-size: 0.7rem;
+  width: 100px;
+  height: 1.5rem;
+  &:hover {
+    background-color: gray;
+    color: white;
   }
 `;
 
