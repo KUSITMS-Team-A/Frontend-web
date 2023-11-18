@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
-
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 
@@ -28,6 +28,9 @@ const Header = () => {
           <UpperMenuItem>
             <Link href="/contact">마이페이지</Link>
           </UpperMenuItem>
+          <UpperMenuItem>
+            <NotificationsNoneOutlinedIcon />
+          </UpperMenuItem>
         </ul>
       </UserMenu>
       <DefaultMenu>
@@ -44,8 +47,12 @@ const Header = () => {
           <LowerMenuItem>
             <Link href="/">학생관리</Link>
             <SubDropdownMenu>
-              <SubDropdownMenuItem>팝업관리</SubDropdownMenuItem>
-              <SubDropdownMenuItem>쿠폰관리</SubDropdownMenuItem>
+              <SubDropdownMenuItem>
+                <Link href="/student/popup">팝업관리</Link>
+              </SubDropdownMenuItem>
+              <SubDropdownMenuItem>
+                <Link href="/student/coupon">쿠폰관리</Link>
+              </SubDropdownMenuItem>
             </SubDropdownMenu>
           </LowerMenuItem>
         </ul>
