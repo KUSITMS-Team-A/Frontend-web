@@ -47,4 +47,5 @@ const PageLayout = styled.div`
 
 const MainContent = styled.main`
   flex: 1;
+
 `;

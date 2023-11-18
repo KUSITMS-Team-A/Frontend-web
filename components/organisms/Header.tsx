@@ -35,6 +35,7 @@ const Header = () => {
       </UserMenu>
       <DefaultMenu>
         <ul>
+
           <LowerMenuItem>
             <Link href="/">대시보드</Link>
           </LowerMenuItem>
@@ -55,6 +56,7 @@ const Header = () => {
               </SubDropdownMenuItem>
             </SubDropdownMenu>
           </LowerMenuItem>
+
         </ul>
       </DefaultMenu>
     </HeaderFrame>
