@@ -43,11 +43,9 @@ const PageLayout = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: red;
 `;
 
 const MainContent = styled.main`
   flex: 1;
-  padding: 20px;
-  background-color: white;
+
 `;
