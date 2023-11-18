@@ -156,15 +156,13 @@ const ContactStore = () => {
           </styled.InfoBox>
         </styled.MainBox>
       </styled.Container>
-      {isStampModal ? <StampModal setIsStampModal={setIsStampModal} /> : ""}
-      {isFinishModal ? (
+      {isStampModal && <StampModal setIsStampModal={setIsStampModal} />}
+      {isFinishModal && (
         <FinishModal
           title={"모노돈까스"}
           type="음식점"
           setIsFinishModal={setIsFinishModal}
         />
-      ) : (
-        ""
       )}
     </>
   );

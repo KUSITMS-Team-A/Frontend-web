@@ -65,7 +65,7 @@ const Filter = ({ AllCount = -1 }: FProps) => {
   return (
     <styles.FiltersBox>
       <styles.FilterAllText type={isAll} onClick={handleOnClickAll}>
-        전체{AllCount === -1 ? "" : `(${AllCount})`}
+        전체{AllCount !== -1 && `(${AllCount})`}
       </styles.FilterAllText>
       {filterName.map((el, idx) => {
         return (

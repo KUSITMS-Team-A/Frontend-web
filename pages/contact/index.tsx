@@ -109,7 +109,7 @@ export default function Contact() {
           </styles.StoreContainer>
         </styles.MainBox>
       </styles.Container>
-      {isSearchModalOpen ? (
+      {isSearchModalOpen && (
         <Modal>
           <styles.ModalContainer>
             <div style={{ display: "flex" }}>
@@ -150,8 +150,6 @@ export default function Contact() {
             </styles.ModalListsBox>
           </styles.ModalContainer>
         </Modal>
-      ) : (
-        ""
       )}
     </>
   );
