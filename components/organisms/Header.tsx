@@ -1,18 +1,15 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import React from "react";
-import { useModal } from "../hooks/useModal";
-import LoginModal from "./Modal";
+import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 
 const Header = () => {
   const router = useRouter();
-  const { openModal } = useModal();
 
   return (
     <HeaderFrame>
-      <LoginModal></LoginModal>
       <Logo
         onClick={() => {
           router.push("/");
@@ -24,18 +21,15 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-          <UpperMenuItem
-            onClick={() => {
-              openModal();
-            }}
-          >
-            로그인
-          </UpperMenuItem>
+          <UpperMenuItem onClick={() => {}}>로그인</UpperMenuItem>
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
             <Link href="/contact">마이페이지</Link>
+          </UpperMenuItem>
+          <UpperMenuItem>
+            <NotificationsNoneOutlinedIcon />
           </UpperMenuItem>
         </ul>
       </UserMenu>
@@ -53,8 +47,12 @@ const Header = () => {
           <LowerMenuItem>
             <Link href="/">학생관리</Link>
             <SubDropdownMenu>
-              <SubDropdownMenuItem>팝업관리</SubDropdownMenuItem>
-              <SubDropdownMenuItem>쿠폰관리</SubDropdownMenuItem>
+              <SubDropdownMenuItem>
+                <Link href="/student/popup">팝업관리</Link>
+              </SubDropdownMenuItem>
+              <SubDropdownMenuItem>
+                <Link href="/student/coupon">쿠폰관리</Link>
+              </SubDropdownMenuItem>
             </SubDropdownMenu>
           </LowerMenuItem>
         </ul>
