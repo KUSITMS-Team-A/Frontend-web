@@ -3,28 +3,49 @@ import Culture from "@/assets/svg/Culture.svg";
 import Etc from "@/assets/svg/Etc.svg";
 import Food from "@/assets/svg/Food.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
-import Image from "next/image";
 
-export const SizeTypeImg = (size: number) => {
+import LCafe from "@/assets/svg/Big/Cafe.svg";
+import LCulture from "@/assets/svg/Big/Culture.svg";
+import LEtc from "@/assets/svg/Big/Etc.svg";
+import LFood from "@/assets/svg/Big/Food.svg";
+import LBeauty from "@/assets/svg/Big/Beauty.svg";
+
+export const SizeTypeImg25 = () => {
   return {
     음식점: {
-      value: <Image src={Food} alt="food marker" width={size} height={size} />,
+      value: <Food alt="food marker" />,
     },
     카페: {
-      value: <Image src={Cafe} alt="cafe marker" width={size} height={size} />,
+      value: <Cafe alt="cafe marker" />,
     },
     미용: {
-      value: (
-        <Image src={Beauty} alt="Beauty marker" width={size} height={size} />
-      ),
+      value: <Beauty alt="Beauty marker" />,
     },
     문화: {
-      value: (
-        <Image src={Culture} alt="Culture marker" width={size} height={size} />
-      ),
+      value: <Culture alt="Culture marker" />,
     },
     기타: {
-      value: <Image src={Etc} alt="Etc marker" width={size} height={size} />,
+      value: <Etc alt="Etc marker" />,
+    },
+  };
+};
+
+export const SizeTypeImg68 = () => {
+  return {
+    음식점: {
+      value: <LFood alt="food marker" />,
+    },
+    카페: {
+      value: <LCafe alt="cafe marker" />,
+    },
+    미용: {
+      value: <LBeauty alt="Beauty marker" />,
+    },
+    문화: {
+      value: <LCulture alt="Culture marker" />,
+    },
+    기타: {
+      value: <LEtc alt="Etc marker" />,
     },
   };
 };

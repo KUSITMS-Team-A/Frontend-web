@@ -1,11 +1,11 @@
 import * as styles from "@/components/styles/Search.styles";
-import uCafe from "@/assets/svg/unselect/uCafe.svg";
-import uCulture from "@/assets/svg/unselect/uCulture.svg";
-import uEtc from "@/assets/svg/unselect/uEtc.svg";
-import uFood from "@/assets/svg/unselect/uFood.svg";
-import uBeauty from "@/assets/svg/unselect/uBeauty.svg";
+import UCafe from "@/assets/svg/unselect/uCafe.svg";
+import UCulture from "@/assets/svg/unselect/uCulture.svg";
+import UEtc from "@/assets/svg/unselect/uEtc.svg";
+import UFood from "@/assets/svg/unselect/uFood.svg";
+import UBeauty from "@/assets/svg/unselect/uBeauty.svg";
 import Image from "next/image";
-import { SizeTypeImg } from "@/utils/TypeImg";
+import { SizeTypeImg25 } from "@/utils/TypeImg";
 import { ReactNode, useState } from "react";
 
 interface FProps {
@@ -44,23 +44,23 @@ const Filter = ({ AllCount = -1 }: FProps) => {
 
   const typeStyles: { [key: string]: { value: ReactNode } } = {
     음식점: {
-      value: <Image src={uFood} alt="food marker" width={30} height={30} />,
+      value: <UFood alt="food marker" width={30} height={30} />,
     },
     카페: {
-      value: <Image src={uCafe} alt="cafe marker" width={30} height={30} />,
+      value: <UCafe alt="cafe marker" width={30} height={30} />,
     },
     미용: {
-      value: <Image src={uBeauty} alt="Beauty marker" width={30} height={30} />,
+      value: <UBeauty alt="Beauty marker" width={30} height={30} />,
     },
     문화: {
-      value: (
-        <Image src={uCulture} alt="Culture marker" width={30} height={30} />
-      ),
+      value: <UCulture alt="Culture marker" width={30} height={30} />,
     },
     기타: {
-      value: <Image src={uEtc} alt="Etc marker" width={30} height={30} />,
+      value: <UEtc alt="Etc marker" width={30} height={30} />,
     },
   };
+
+  const typeIcon25 = SizeTypeImg25();
 
   return (
     <styles.FiltersBox>
@@ -74,9 +74,7 @@ const Filter = ({ AllCount = -1 }: FProps) => {
             onClick={() => handleOnClickFilter(idx)}
           >
             <styles.FilterIconBox>
-              {filterState[idx]
-                ? SizeTypeImg(30)[el].value
-                : typeStyles[el].value}
+              {filterState[idx] ? typeIcon25[el].value : typeStyles[el].value}
             </styles.FilterIconBox>
             <styles.FilterText type={filterState[idx]}>{el}</styles.FilterText>
           </styles.FilterComponentBox>

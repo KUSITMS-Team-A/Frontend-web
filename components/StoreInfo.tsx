@@ -31,7 +31,7 @@ const StoreInfo = () => {
         <EditBox>
           <EditTxt>수정하기</EditTxt>
           <EditIconBox>
-            <Image src={EditIcon} alt="edit icon" width={10} height={10} />
+            <EditIcon alt="edit icon" width={10} height={10} />
           </EditIconBox>
         </EditBox>
       </ContactBox>

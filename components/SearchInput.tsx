@@ -19,12 +19,12 @@ const SearchInput = ({ isSearch, setIsSearch }: SIProps) => {
         <styles.SearchExpandBox>
           <styles.SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
           <styles.SearchIconBox>
-            <Image src={SearchIcon} alt="search icon" />
+            <SearchIcon alt="search icon" />
           </styles.SearchIconBox>
         </styles.SearchExpandBox>
       ) : (
         <styles.SearchBox onClick={handleOnClickSearch}>
-          <Image src={SearchIcon} alt="search icon" />
+          <SearchIcon alt="search icon" />
         </styles.SearchBox>
       )}
     </>

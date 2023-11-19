@@ -1,16 +1,15 @@
 import * as styles from "@/components/styles/Search.styles";
-import Image from "next/image";
 import DownArrow from "@/assets/svg/DownArrow.svg";
 import UpArrow from "@/assets/svg/UpArrow.svg";
 import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import FullHeart from "@/assets/svg/FullHeart.svg";
 import { useState } from "react";
-import { SizeTypeImg } from "@/utils/TypeImg";
+import { SizeTypeImg25, SizeTypeImg68 } from "@/utils/TypeImg";
 import StoreInfo from "./StoreInfo";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 
-interface SProps {
+export interface SProps {
   type: "음식점" | "카페" | "문화" | "미용" | "기타";
   title: string;
   description: string;
@@ -20,7 +19,7 @@ interface SProps {
   lng: number;
 }
 
-const typeStyles = SizeTypeImg(68);
+const typeStyles = SizeTypeImg68();
 
 const Storelist = ({
   type,
@@ -71,9 +70,9 @@ const Storelist = ({
             <styles.StoreTypeBox>{type}</styles.StoreTypeBox>
             <styles.StoreHeartBox onClick={handleOnClickHeart}>
               {isClick ? (
-                <Image src={FullHeart} alt="FullHeart" />
+                <FullHeart alt="FullHeart" />
               ) : (
-                <Image src={EmptyHeart} alt="emptyHeart" />
+                <EmptyHeart alt="emptyHeart" />
               )}
             </styles.StoreHeartBox>
           </styles.InfoTopBox>
@@ -93,20 +92,14 @@ const Storelist = ({
             onClick={handleOnClickOpen}
           >
             {isOpen ? (
-              <Image
+              <UpArrow
                 style={{ marginTop: "35px" }}
-                src={UpArrow}
                 alt="up arrow button"
                 width={20}
                 height={20}
               />
             ) : (
-              <Image
-                src={DownArrow}
-                alt="down arrow button"
-                width={20}
-                height={20}
-              />
+              <DownArrow alt="down arrow button" width={20} height={20} />
             )}
           </styles.DownBtnBox>
         </styles.InfoContainerBox>
