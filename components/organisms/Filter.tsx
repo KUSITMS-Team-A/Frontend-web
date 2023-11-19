@@ -8,7 +8,11 @@ import Image from "next/image";
 import { SizeTypeImg } from "@/utils/TypeImg";
 import { ReactNode, useState } from "react";
 
-const Filter = () => {
+interface FProps {
+  AllCount?: number;
+}
+
+const Filter = ({ AllCount = -1 }: FProps) => {
   const [isAll, setIsAll] = useState(true);
   const [filterState, setFilterState] = useState([
     false,
@@ -61,11 +65,14 @@ const Filter = () => {
   return (
     <styles.FiltersBox>
       <styles.FilterAllText type={isAll} onClick={handleOnClickAll}>
-        전체
+        전체{AllCount !== -1 && `(${AllCount})`}
       </styles.FilterAllText>
       {filterName.map((el, idx) => {
         return (
-          <styles.FilterComponentBox onClick={() => handleOnClickFilter(idx)}>
+          <styles.FilterComponentBox
+            key={el}
+            onClick={() => handleOnClickFilter(idx)}
+          >
             <styles.FilterIconBox>
               {filterState[idx]
                 ? SizeTypeImg(30)[el].value

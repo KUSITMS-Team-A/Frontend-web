@@ -85,7 +85,7 @@ const Storelist = ({
         </styles.InfoContainerBox>
       </styles.ListTopBox>
       <styles.ListBottomBox>
-        {isOpen ? <StoreInfo /> : ""}
+        {isOpen && <StoreInfo />}
 
         <styles.InfoContainerBox>
           <styles.DownBtnBox
