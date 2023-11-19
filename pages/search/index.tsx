@@ -1,9 +1,8 @@
 import KakaoMap from "@/components/Map";
-import Storelist from "@/components/Storelist";
+import Storelist, { SProps } from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
-import Image from "next/image";
 import FullHeart from "@/assets/svg/FullHeart.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Filter from "@/components/organisms/Filter";
 import SearchInput from "@/components/SearchInput";
 import NameMarker from "@/components/Marker/Name/NameMarker";
@@ -15,21 +14,31 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 import IconMarker from "@/components/Marker/Icon/IconMarker";
+import { getStoreBase } from "../api/StoreAPI";
+import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
+  const [data, setData] = useState<StoreMapListInfo[]>();
   const [isSearch, setIsSearch] = useState(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
   const typeEngtoKor = (name: string) => {
     const kor = ["음식점", "카페", "문화", "미용", "기타"];
-    return kor[eng.indexOf(name)];
+    return kor[eng.indexOf(name)] as SProps["type"];
   };
 
   const returnSVG = (name: string) => {
     const arr = [Food, Cafe, Culture, Beauty, Etc];
     return arr[eng.indexOf(name)];
   };
+
+  useEffect(() => {
+    const baseData = getStoreBase();
+    baseData.then((res) => {
+      setData(res.stores);
+    });
+  }, []);
 
   return (
     <styles.Container>
@@ -41,7 +50,7 @@ export default function SearchHome() {
           <SearchInput isSearch={isSearch} setIsSearch={setIsSearch} />
           <styles.HeartBox>
             <styles.HeartIconBox>
-              <Image src={FullHeart} alt="FullHeart" />
+              <FullHeart alt="FullHeart" />
             </styles.HeartIconBox>
             <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
           </styles.HeartBox>
@@ -105,33 +114,20 @@ export default function SearchHome() {
           </KakaoMap>
         </styles.MapBox>
         <styles.ListsBox>
-          <Storelist
-            title="릴즈"
-            type="음식점"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5407625}
-            lng={127.0790428}
-          />
-          <Storelist
-            title="566"
-            type="음식점"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5380625}
-            lng={127.0700328}
-          />
-          <Storelist
-            title="rfhf"
-            type="카페"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5380625}
-            lng={127.0700328}
-          />
+          {data?.map((el) => {
+            return (
+              <Storelist
+                key={el.storeId}
+                title={el.storeName}
+                type={typeEngtoKor(el.category)}
+                description={el.description}
+                place={el.address}
+                distance={Math.floor(el.distance)}
+                lat={37}
+                lng={127}
+              />
+            );
+          })}
         </styles.ListsBox>
       </styles.MainBox>
     </styles.Container>
