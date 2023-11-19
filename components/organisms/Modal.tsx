@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Button, Checkbox, TextField, keyframes } from "@mui/material";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { modalState } from "../atoms/modalState";
 import { useModal } from "../hooks/useModal";
 import Logo from "@/components/atoms/Logo.svg";
 import ModalCloseButton from "@/components/atoms/ModalCloseBtn.svg";
 import { login } from "@/pages/api/login";
+import { initialState } from "@/state/user/user";
 
 interface ModalProps {
   children?: React.ReactNode;
@@ -19,6 +20,7 @@ const LoginModal: React.FC<ModalProps> = () => {
 
   const [email, setEmail] = useState<string>();
   const [password, setPassword] = useState<string>();
+  const setLoginedUserState = useSetRecoilState(initialState);
 
   const handleLogin = async (email: string, password: string) => {
     try {
@@ -26,6 +28,10 @@ const LoginModal: React.FC<ModalProps> = () => {
       console.log(email, password);
       const result = await login({ email: email, password: password });
       console.log(result);
+      setLoginedUserState((prev) => ({
+        ...prev,
+        token: result.accessToken,
+      }));
     } catch (error) {
       console.error(error);
     }

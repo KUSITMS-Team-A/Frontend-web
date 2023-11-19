@@ -15,12 +15,12 @@
     "@mui/icons-material": "^5.14.18",
     "@mui/material": "^5.14.18",
     "@svgr/webpack": "^8.1.0",
-    "aws-sdk": "^2.1499.0",
     "axios": "^1.5.1",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "recoil": "^0.7.7"
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0"
   },
   "devDependencies": {
     "@types/node": "latest",

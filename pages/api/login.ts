@@ -25,8 +25,10 @@ export const login = async ({ email, password }: LoginProps) => {
     const loginEndpoint = process.env.NEXT_PUBLIC_LOGIN_ENDPOINT;
     const response = await apiBase.post(loginEndpoint, { email, password });
 
-    console.log("로그인 성공:", response.data);
-    return response.data;
+    const accessToken = response.headers.authorization;
+    console.log("로그인 성공:", accessToken);
+
+    return { data: response.data, accessToken };
   } catch (error) {
     console.error("로그인 오류:", error);
     throw error;
