@@ -204,6 +204,7 @@ export const NameBox = styled.div`
   letter-spacing: -1.26px;
   display: flex;
   align-items: center;
+  max-width: 245px;
 `;
 
 export const StoreTypeBox = styled.div`
