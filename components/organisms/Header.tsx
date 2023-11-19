@@ -4,10 +4,11 @@ import React from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
+import { useModal } from "../hooks/useModal";
 
 const Header = () => {
   const router = useRouter();
-
+  const { openModal } = useModal();
   return (
     <HeaderFrame>
       <Logo
@@ -21,7 +22,13 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-          <UpperMenuItem onClick={() => {}}>로그인</UpperMenuItem>
+          <UpperMenuItem
+            onClick={() => {
+              openModal();
+            }}
+          >
+            로그인
+          </UpperMenuItem>
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
@@ -36,13 +43,13 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <LowerMenuItem>
-            <Link href="/">대시보드</Link>
+            <Link href="/dashboard">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">가게찾기</Link>
           </LowerMenuItem>
           <LowerMenuItem>
-            <Link href="/apply">제휴가게</Link>
+            <Link href="/">제휴가게</Link>
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">학생관리</Link>

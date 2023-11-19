@@ -5,6 +5,7 @@ import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
+import LoginModal from "@/components/organisms/Modal";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Global styles={globalStyles} />
         <PageLayout>
           <Header />
+          <LoginModal />
           <MainContent>
             <Component {...pageProps} />
           </MainContent>

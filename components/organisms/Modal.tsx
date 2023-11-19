@@ -11,12 +11,12 @@ interface ModalProps {
   children?: React.ReactNode;
 }
 
-const LoginModal: React.FC<ModalProps> = ({ children }) => {
+const LoginModal: React.FC<ModalProps> = () => {
   const [isOpen, setIsOpen] = useRecoilState(modalState);
+
   const { closeModal } = useModal();
 
   if (!isOpen) return null;
-
   return (
     <Container>
       <LogoTitleWrapper>
@@ -36,16 +36,25 @@ const LoginModal: React.FC<ModalProps> = ({ children }) => {
         </CheckboxWrapper>
         <LoginBtn variant="contained">로그인</LoginBtn>
         <RegistrationOptions>
-          <LoginSubTitle>회원가입</LoginSubTitle>
-          <LoginSubTitle>|</LoginSubTitle>
-          <LoginSubTitle>비밀번호 찾기</LoginSubTitle>
+          <SignUpWrapper>
+            <LoginSubTitle>회원가입</LoginSubTitle>
+            <LoginSubTitle>|</LoginSubTitle>
+            <LoginSubTitle>비밀번호 찾기</LoginSubTitle>
+          </SignUpWrapper>
         </RegistrationOptions>
       </LoginForm>
       <SocialLoginSection>
         <LoginSubTitle>간편 로그인</LoginSubTitle>
         <SocialLoginOptions>
-          <LoginSubTitle>카카오톡으로 로그인</LoginSubTitle>
-          <LoginSubTitle>네이버로 로그인</LoginSubTitle>
+          <SocialLoginWrapper>
+            <SocialLoginIcon />
+            <LoginSubTitle>카카오톡으로 로그인</LoginSubTitle>
+          </SocialLoginWrapper>
+
+          <SocialLoginWrapper>
+            <SocialLoginIcon />
+            <LoginSubTitle>네이버로 로그인</LoginSubTitle>
+          </SocialLoginWrapper>
         </SocialLoginOptions>
       </SocialLoginSection>
       <StyledModalCloseButton onClick={closeModal} />
@@ -65,6 +74,29 @@ const bounceAnimation = keyframes`
     transform: translate(-50%, -50%);
     opacity:1;
   }
+`;
+const SocialLoginIcon = styled.div`
+  width: 26px;
+  height: 26px;
+  border-radius: 100px;
+  background-color: #fbe74d;
+`;
+
+const SocialLoginWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+
+  column-gap: 5px;
+  align-items: center;
+`;
+
+const SignUpWrapper = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+
+  column-gap: 15px;
+  margin-bottom: 20px;
+  align-items: center;
 `;
 
 const Container = styled.div`
@@ -151,7 +183,14 @@ const SocialLoginSection = styled.div`
 
 const SocialLoginOptions = styled.div`
   display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
   column-gap: 20px;
+  padding: 10px 5px;
+
+  border-top: 0.5px solid gray;
+
+  width: 100%;
 `;
 
 const StyledModalCloseButton = styled(ModalCloseButton)`
