@@ -19,7 +19,7 @@ import IconMarker from "@/components/Marker/Icon/IconMarker";
 export default function SearchHome() {
   const [isSearch, setIsSearch] = useState(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
-  const eng = ["Food", "Cafe", "Culture", "Beauty", "Etc"];
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
   const typeEngtoKor = (name: string) => {
     const kor = ["음식점", "카페", "문화", "미용", "기타"];

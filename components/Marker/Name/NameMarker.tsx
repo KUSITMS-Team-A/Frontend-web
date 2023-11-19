@@ -35,7 +35,7 @@ const NameMarker = ({
       setTime(1);
     }, 500); // 500 milliseconds (0.5 seconds) delay
   };
-  const eng = ["Food", "Cafe", "Culture", "Beauty", "Etc"];
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
   const typeEngtoKor = (name: string) => {
     const kor = ["음식점", "카페", "문화", "미용", "기타"];
