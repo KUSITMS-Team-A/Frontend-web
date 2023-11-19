@@ -1,9 +1,11 @@
 import * as phase from "@/components/styles/user/first/style";
 import * as styles from "@/components/styles/user/third/style";
+import { CreateImage, SignUp } from "@/pages/api/login";
 import { Button, Checkbox, TextField } from "@mui/material";
+import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 
 interface AuthProps {
   name?: string;
@@ -12,6 +14,52 @@ interface AuthProps {
 
 const AuthPage: React.FC<AuthProps> = () => {
   const router = useRouter();
+
+  // states
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [proofImage, setProofImage] = useState<File | null>(null);
+
+  // input file changes
+  const handleFileInput = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    setProofImage(file);
+  };
+
+  const registerImage = async () => {
+    try {
+      const response = await CreateImage(proofImage);
+      setProofImage(response);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  // 회원가입 api 호출
+  const handleSignUp = async () => {
+    if (password != passwordConfirm) {
+      alert("비밀번호가 일치하지 않습니다.");
+      return;
+    }
+
+    try {
+      const signUpResult = await SignUp({
+        email: email,
+        password: password,
+        type: "총학생회",
+        typeName: "총총",
+        proofImageUrl: "",
+      });
+
+      console.log(signUpResult);
+    } catch (error) {
+      console.error("회원가입 오류 : ", error);
+    }
+  };
+
   return (
     <phase.Container>
       <Head>
@@ -49,6 +97,10 @@ const AuthPage: React.FC<AuthProps> = () => {
               <styles.AskInput
                 variant="filled"
                 placeholder="학교 도메인 이메일로 작성해주세요"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
               <styles.AskButton variant="contained" style={{ display: "flex" }}>
                 인증번호
@@ -91,7 +143,13 @@ const AuthPage: React.FC<AuthProps> = () => {
             <styles.AskWord>비밀번호</styles.AskWord>
           </styles.AskTitle>
           <styles.AskContent>
-            <styles.AskInput variant="filled" />
+            <styles.AskInput
+              variant="filled"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
           </styles.AskContent>
         </styles.AskBox>
 
@@ -100,7 +158,13 @@ const AuthPage: React.FC<AuthProps> = () => {
             <styles.AskWord>비밀번호 확인</styles.AskWord>
           </styles.AskTitle>
           <styles.AskContent>
-            <styles.AskInput variant="filled" />
+            <styles.AskInput
+              variant="filled"
+              value={passwordConfirm}
+              onChange={(e) => {
+                setPasswordConfirm(e.target.value);
+              }}
+            />
           </styles.AskContent>
         </styles.AskBox>
 
@@ -109,9 +173,7 @@ const AuthPage: React.FC<AuthProps> = () => {
             <styles.AskWord>대표자 임명증 사진*</styles.AskWord>
           </styles.AskTitle>
           <styles.AskContent>
-            <Button variant="outlined" style={{ marginRight: "auto" }}>
-              파일 선택
-            </Button>
+            <input type="file" accept="image/*" onChange={handleFileInput} />
           </styles.AskContent>
         </styles.AskBox>
 
@@ -119,6 +181,7 @@ const AuthPage: React.FC<AuthProps> = () => {
           variant="contained"
           onClick={() => {
             router.push("/user/complete");
+            registerImage();
           }}
         >
           다음

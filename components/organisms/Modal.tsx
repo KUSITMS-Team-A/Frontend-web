@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "@emotion/styled";
 import { Button, Checkbox, TextField, keyframes } from "@mui/material";
 import { useRecoilState } from "recoil";
@@ -6,6 +6,7 @@ import { modalState } from "../atoms/modalState";
 import { useModal } from "../hooks/useModal";
 import Logo from "@/components/atoms/Logo.svg";
 import ModalCloseButton from "@/components/atoms/ModalCloseBtn.svg";
+import { login } from "@/pages/api/login";
 
 interface ModalProps {
   children?: React.ReactNode;
@@ -16,6 +17,24 @@ const LoginModal: React.FC<ModalProps> = () => {
 
   const { closeModal } = useModal();
 
+  const [email, setEmail] = useState<string>();
+  const [password, setPassword] = useState<string>();
+
+  const handleLogin = async (email: string, password: string) => {
+    try {
+      console.log("login");
+      console.log(email, password);
+      const result = await login({ email: email, password: password });
+      console.log(result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(`${email} + ${password}`);
+  }, []);
+
   if (!isOpen) return null;
   return (
     <Container>
@@ -24,17 +43,35 @@ const LoginModal: React.FC<ModalProps> = () => {
         <Title>로그인</Title>
       </LogoTitleWrapper>
       <LoginForm>
-        <StyledTextField variant="filled" placeholder="아이디를 입력하세요" />
+        <StyledTextField
+          variant="filled"
+          placeholder="아이디를 입력하세요"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+        />
         <StyledTextField
           type="password"
           variant="filled"
           placeholder="비밀번호를 입력하세요"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         <CheckboxWrapper>
           <Checkbox />
           <LoginSubTitle>로그인 유지</LoginSubTitle>
         </CheckboxWrapper>
-        <LoginBtn variant="contained">로그인</LoginBtn>
+        <LoginBtn
+          variant="contained"
+          onClick={() => {
+            handleLogin(email, password);
+          }}
+        >
+          로그인
+        </LoginBtn>
         <RegistrationOptions>
           <SignUpWrapper>
             <LoginSubTitle>회원가입</LoginSubTitle>
