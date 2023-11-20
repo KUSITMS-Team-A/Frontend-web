@@ -1,4 +1,4 @@
-import * as stylds from "@/components/styles/dashboard/style";
+import * as styles from "@/components/styles/dashboard/style";
 import Head from "next/head";
 import { css } from "@emotion/css";
 import { useEffect, useState } from "react";
@@ -32,42 +32,48 @@ const DashBoardPage: React.FC = () => {
         <title>제대로 대시보드</title>
         <meta name="dashboard" content="대시보드" />
       </Head>
-      <stylds.Container>
-        <stylds.TitleContainer>
-          <stylds.Title>대시보드</stylds.Title>
-          <stylds.IndexButton
+      <styles.Container>
+        <styles.TitleContainer>
+          <styles.Title>대시보드</styles.Title>
+          <styles.IndexButton
             className={css`
               align-self: flex-end;
             `}
           >
             가게별 검색
-          </stylds.IndexButton>
-          <stylds.SubTitle>
+          </styles.IndexButton>
+          <styles.SubTitle>
             이번달 [{dateRange.startDate} -{dateRange.endDate}] 기준입니다.
-          </stylds.SubTitle>
-        </stylds.TitleContainer>
+          </styles.SubTitle>
+        </styles.TitleContainer>
 
-        <stylds.OptionContainer>
-          <stylds.ButtonWrapper>
-            <stylds.IndexButton>전체</stylds.IndexButton>
-            <stylds.IndexButton>음식점</stylds.IndexButton>
-            <stylds.IndexButton>카페</stylds.IndexButton>
-            <stylds.IndexButton>미용</stylds.IndexButton>
-            <stylds.IndexButton>문화</stylds.IndexButton>
-            <stylds.IndexButton>기타</stylds.IndexButton>
-          </stylds.ButtonWrapper>
+        <styles.OptionContainer>
+          <styles.ButtonWrapper>
+            <styles.IndexButton>전체</styles.IndexButton>
+            <styles.IndexButton>음식점</styles.IndexButton>
+            <styles.IndexButton>카페</styles.IndexButton>
+            <styles.IndexButton>미용</styles.IndexButton>
+            <styles.IndexButton>문화</styles.IndexButton>
+            <styles.IndexButton>기타</styles.IndexButton>
+          </styles.ButtonWrapper>
 
-          <stylds.ButtonWrapper>
-            <stylds.IndexButton>최근 7일</stylds.IndexButton>
-            <stylds.IndexButton>최근 14일</stylds.IndexButton>
-            <stylds.IndexButton>이번 달</stylds.IndexButton>
-            <stylds.IndexButton>지난 달</stylds.IndexButton>
-            <stylds.IndexButton>올해</stylds.IndexButton>
-          </stylds.ButtonWrapper>
-        </stylds.OptionContainer>
+          <styles.ButtonWrapper>
+            <styles.IndexButton>최근 7일</styles.IndexButton>
+            <styles.IndexButton>최근 14일</styles.IndexButton>
+            <styles.IndexButton>이번 달</styles.IndexButton>
+            <styles.IndexButton>지난 달</styles.IndexButton>
+            <styles.IndexButton>올해</styles.IndexButton>
+          </styles.ButtonWrapper>
+        </styles.OptionContainer>
 
-        <stylds.ContentsContainer></stylds.ContentsContainer>
-      </stylds.Container>
+        <styles.ContentsContainer>
+          <styles.FirstBox>1</styles.FirstBox>
+          <styles.SecondBox>2</styles.SecondBox>
+          <styles.ThirdBox>3</styles.ThirdBox>
+          <styles.FourthBox>4</styles.FourthBox>
+          <styles.FifthBox>5</styles.FifthBox>
+        </styles.ContentsContainer>
+      </styles.Container>
     </>
   );
 };

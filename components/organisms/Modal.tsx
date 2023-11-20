@@ -24,14 +24,12 @@ const LoginModal: React.FC<ModalProps> = () => {
 
   const handleLogin = async (email: string, password: string) => {
     try {
-      console.log("login");
-      console.log(email, password);
       const result = await login({ email: email, password: password });
-      console.log(result);
       setLoginedUserState((prev) => ({
         ...prev,
         token: result.accessToken,
       }));
+      return result.data;
     } catch (error) {
       console.error(error);
     }
@@ -57,6 +55,7 @@ const LoginModal: React.FC<ModalProps> = () => {
             setEmail(e.target.value);
           }}
         />
+
         <StyledTextField
           type="password"
           variant="filled"
@@ -73,7 +72,10 @@ const LoginModal: React.FC<ModalProps> = () => {
         <LoginBtn
           variant="contained"
           onClick={() => {
-            handleLogin(email, password);
+            (async function () {
+              const result = await handleLogin(email, password);
+              result === "로그인 성공" && closeModal();
+            })();
           }}
         >
           로그인

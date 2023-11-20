@@ -32,8 +32,9 @@ export const OptionContainer = styled.div`
 export const ContentsContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, minmax(1fr, auto));
+  grid-template-rows: repeat(2, minmax(1fr, auto));
   width: 100%;
+  min-height: 50vh;
 `;
 
 //
@@ -76,4 +77,37 @@ export const ButtonWrapper = styled.div`
   display: flex;
 
   column-gap: 10px;
+`;
+
+export const DefaultBox = styled.article`
+  display: flex;
+
+  &:nth-of-type(even) {
+    background-color: red;
+  }
+`;
+
+export const FirstBox = styled(DefaultBox)`
+  grid-column: 1/3;
+  grid-row: 1/2;
+`;
+
+export const SecondBox = styled(DefaultBox)`
+  grid-column: 3/5;
+  grid-row: 1/2;
+`;
+
+export const ThirdBox = styled(DefaultBox)`
+  grid-column: 5/7;
+  grid-row: 1/2;
+`;
+
+export const FourthBox = styled(DefaultBox)`
+  grid-column: 1/4;
+  grid-row: 2/3;
+`;
+
+export const FifthBox = styled(DefaultBox)`
+  grid-column: 4/7;
+  grid-row: 2/3;
 `;

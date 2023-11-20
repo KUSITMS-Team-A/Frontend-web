@@ -1,14 +1,41 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 import { useModal } from "../hooks/useModal";
+import { useSetRecoilState } from "recoil";
+import { initialState } from "@/state/user/user";
+/*
+TODO:
+1. 로그인 - 세션스토리지 안에 로그인 여부에 따라서 다르게
+*/
 
 const Header = () => {
   const router = useRouter();
   const { openModal } = useModal();
+  const [userSessionData, setUserSessionData] = useState();
+
+  const setLogout = useSetRecoilState(initialState);
+
+  useEffect(() => {
+    setUserSessionData(window.sessionStorage.getItem("userSession"));
+  }, []);
+
+  useEffect(() => {
+    console.table(`USER SESSION DATA : ${userSessionData}`);
+  }, [userSessionData]);
+  const logoutHandler = () => {
+    setLogout({
+      logined: false,
+      email: "",
+      type: "",
+      typeName: "",
+      token: "",
+    });
+  };
+
   return (
     <HeaderFrame>
       <Logo
@@ -24,10 +51,14 @@ const Header = () => {
         <ul>
           <UpperMenuItem
             onClick={() => {
-              openModal();
+              if (userSessionData) {
+                logoutHandler();
+              } else {
+                openModal();
+              }
             }}
           >
-            로그인
+            {userSessionData ? "로그인" : "로그아웃"}
           </UpperMenuItem>
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
