@@ -4,6 +4,7 @@ import { css } from "@emotion/css";
 import { useEffect, useState } from "react";
 import useDateRange from "@/components/hooks/useDateRange";
 import FirstBox from "./FirstBox";
+import SecondBox from "./SecondBox";
 
 interface DashBoardProps {}
 interface DateState {
@@ -69,9 +70,11 @@ const DashBoardPage: React.FC = () => {
 
         <styles.ContentsContainer>
           <styles.FirstBox>
-            <FirstBox/>
+            <FirstBox />
           </styles.FirstBox>
-          <styles.SecondBox>2</styles.SecondBox>
+          <styles.SecondBox>
+            <SecondBox />
+          </styles.SecondBox>
           <styles.ThirdBox>3</styles.ThirdBox>
           <styles.FourthBox>4</styles.FourthBox>
           <styles.FifthBox>5</styles.FifthBox>

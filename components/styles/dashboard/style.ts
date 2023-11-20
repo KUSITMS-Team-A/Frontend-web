@@ -84,10 +84,6 @@ export const ButtonWrapper = styled.div`
 
 export const DefaultBox = styled.article`
   display: flex;
-
-  &:nth-of-type(even) {
-    background-color: red;
-  }
 `;
 
 export const FirstBox = styled(DefaultBox)`
