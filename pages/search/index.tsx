@@ -40,8 +40,18 @@ export default function SearchHome() {
     const baseData = getStoreBase();
     baseData.then((res) => {
       setData(res.stores);
+      console.log("res", res.stores);
     });
   }, []);
+
+  // 가게 타입 필터를 누를때마다 실행되는 함수
+  useEffect(() => {
+    const typeData = getStoreTypeFilter(contentFilter);
+    typeData.then((res) => {
+      setData(res?.stores || []);
+      console.log("type", res.stores);
+    });
+  }, [contentFilter]);
 
   return (
     <styles.Container>

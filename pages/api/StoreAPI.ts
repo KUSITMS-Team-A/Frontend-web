@@ -12,3 +12,17 @@ export const getStoreBase = async () => {
     return null;
   }
 };
+
+export const getStoreTypeFilter = async (type: string) => {
+  try {
+    const response = await axiosInstance.get(
+      `/store/search?category=${type}&pageSize=40`
+    );
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.data);
+    }
+    return null;
+  }
+};
