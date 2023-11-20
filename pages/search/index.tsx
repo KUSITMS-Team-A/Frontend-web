@@ -82,6 +82,12 @@ export default function SearchHome() {
     });
   }, [operateFilter]);
 
+  const handleOnClickPick = () => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      isPicked: !operateFilter.isPicked,
+    }));
+  };
 
   return (
     <styles.Container>
@@ -92,8 +98,12 @@ export default function SearchHome() {
         <styles.FilterEndBox>
           <SearchInput isSearch={isSearch} setIsSearch={setIsSearch} />
           <styles.HeartBox>
-            <styles.HeartIconBox>
-              <FullHeart alt="FullHeart" />
+            <styles.HeartIconBox onClick={handleOnClickPick}>
+              {operateFilter.isPicked ? (
+                <FullHeart alt="pick" />
+              ) : (
+                <EmptyHeart alt="not pick" />
+              )}
             </styles.HeartIconBox>
             <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
           </styles.HeartBox>
