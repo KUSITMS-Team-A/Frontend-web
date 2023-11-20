@@ -25,6 +25,7 @@ import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
   const [data, setData] = useState<StoreMapListInfo[]>();
+  const [input, setInput] = useState<string>("");
   const [operateFilter, setOperateFilter] = useState<FilterProps>({
     isPicked: false,
     name: "",
@@ -96,7 +97,13 @@ export default function SearchHome() {
         <Filter setContentFilter={setContentFilter} />
         {/** TODO: 누르면 expand로 변경되도록 */}
         <styles.FilterEndBox>
-          <SearchInput isSearch={isSearch} setIsSearch={setIsSearch} />
+          <SearchInput
+            input={input}
+            setInput={setInput}
+            setOperateFilter={setOperateFilter}
+            isSearch={isSearch}
+            setIsSearch={setIsSearch}
+          />
           <styles.HeartBox>
             <styles.HeartIconBox onClick={handleOnClickPick}>
               {operateFilter.isPicked ? (
