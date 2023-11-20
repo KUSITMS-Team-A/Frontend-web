@@ -199,7 +199,7 @@ export const NameBox = styled.div`
   font-family: Pretendard Variable;
   font-size: 21px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 19.264px; /* 91.732% */
   letter-spacing: -1.26px;
   display: flex;

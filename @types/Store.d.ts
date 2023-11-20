@@ -6,6 +6,8 @@ export type StoreMapListInfo = {
   isPicked: boolean;
   storeId: number;
   storeName: string;
+  latitude: number;
+  longitude: number;
 };
 
 export type StoreDetailInfo = {};

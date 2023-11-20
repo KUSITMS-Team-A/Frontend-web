@@ -39,8 +39,10 @@ export default function SearchHome() {
   useEffect(() => {
     const baseData = getStoreBase();
     baseData.then((res) => {
-      setData(res.stores);
-      console.log("res", res.stores);
+      if (res !== null) {
+        setData(res.stores);
+        console.log("res", res.stores);
+      }
     });
   }, []);
 
@@ -48,8 +50,10 @@ export default function SearchHome() {
   useEffect(() => {
     const typeData = getStoreTypeFilter(contentFilter);
     typeData.then((res) => {
-      setData(res?.stores || []);
-      console.log("type", res.stores);
+      if (res !== null) {
+        setData(res.stores || []);
+        console.log("type", res.stores);
+      }
     });
   }, [contentFilter]);
 
@@ -84,44 +88,17 @@ export default function SearchHome() {
               />
             ) : (
               <>
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0790428}
-                  type="Food"
-                  icon={Food}
-                />
-                <IconMarker
-                  lat={37.5380625}
-                  lng={127.0700328}
-                  type="Beauty"
-                  icon={Beauty}
-                />
-                <IconMarker
-                  lat={37.5437625}
-                  lng={127.0740428}
-                  type="Cafe"
-                  icon={Cafe}
-                />
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0720428}
-                  type="Etc"
-                  icon={Etc}
-                />
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0670428}
-                  type="Culture"
-                  icon={Culture}
-                />
-                <NameMarker
-                  lat={37.5437625}
-                  lng={127.0670428}
-                  type="음식점"
-                  icon={Food}
-                  title="릴즈"
-                  markerType="음식"
-                />
+                {data &&
+                  data.map((el) => {
+                    return (
+                      <IconMarker
+                        key={el.storeId}
+                        lat={el.latitude}
+                        lng={el.longitude}
+                        type={el.category}
+                      />
+                    );
+                  })}
               </>
             )}
           </KakaoMap>
@@ -136,8 +113,8 @@ export default function SearchHome() {
                 description={el.description}
                 place={el.address}
                 distance={Math.floor(el.distance)}
-                lat={37}
-                lng={127}
+                lat={el.latitude}
+                lng={el.longitude}
               />
             );
           })}
