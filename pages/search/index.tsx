@@ -2,6 +2,7 @@ import KakaoMap from "@/components/Map";
 import Storelist, { SProps } from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
 import FullHeart from "@/assets/svg/FullHeart.svg";
+import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import { useEffect, useState } from "react";
 import Filter from "@/components/organisms/Filter";
 import SearchInput from "@/components/SearchInput";
@@ -14,11 +15,22 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 import IconMarker from "@/components/Marker/Icon/IconMarker";
-import { getStoreBase, getStoreTypeFilter } from "../api/StoreAPI";
+import {
+  FilterProps,
+  getStoreBase,
+  getStoreTypeFilter,
+  getStoreWithFilter,
+} from "../api/StoreAPI";
 import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
   const [data, setData] = useState<StoreMapListInfo[]>();
+  const [operateFilter, setOperateFilter] = useState<FilterProps>({
+    isPicked: false,
+    name: "",
+    category: "NONE",
+    pageNumber: 0,
+  });
   const [contentFilter, setContentFilter] = useState<
     "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
   >("NONE");
@@ -48,14 +60,28 @@ export default function SearchHome() {
 
   // 가게 타입 필터를 누를때마다 실행되는 함수
   useEffect(() => {
-    const typeData = getStoreTypeFilter(contentFilter);
-    typeData.then((res) => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      category: contentFilter,
+    }));
+  }, [contentFilter]);
+
+  // 필터가 바뀔때마다 실행되는 함수
+  useEffect(() => {
+    const filterData = getStoreWithFilter({
+      isPicked: operateFilter.isPicked,
+      name: operateFilter.name,
+      category: operateFilter.category,
+      pageNumber: operateFilter.pageNumber,
+    });
+    filterData.then((res) => {
       if (res !== null) {
         setData(res.stores || []);
-        console.log("type", res.stores);
+        console.log("operateF", res.stores);
       }
     });
-  }, [contentFilter]);
+  }, [operateFilter]);
+
 
   return (
     <styles.Container>
