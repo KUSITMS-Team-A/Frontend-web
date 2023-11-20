@@ -35,6 +35,9 @@ export const ContentsContainer = styled.div`
   grid-template-rows: repeat(2, minmax(1fr, auto));
   width: 100%;
   min-height: 50vh;
+
+  column-gap: 10px;
+  row-gap: 10px;
 `;
 
 //
@@ -90,6 +93,8 @@ export const DefaultBox = styled.article`
 export const FirstBox = styled(DefaultBox)`
   grid-column: 1/3;
   grid-row: 1/2;
+
+  width: 100%;
 `;
 
 export const SecondBox = styled(DefaultBox)`
