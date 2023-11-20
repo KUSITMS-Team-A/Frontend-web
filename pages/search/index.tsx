@@ -14,11 +14,14 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 import IconMarker from "@/components/Marker/Icon/IconMarker";
-import { getStoreBase } from "../api/StoreAPI";
+import { getStoreBase, getStoreTypeFilter } from "../api/StoreAPI";
 import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
   const [data, setData] = useState<StoreMapListInfo[]>();
+  const [contentFilter, setContentFilter] = useState<
+    "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
+  >("NONE");
   const [isSearch, setIsSearch] = useState(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
@@ -44,7 +47,7 @@ export default function SearchHome() {
     <styles.Container>
       <styles.TitleBox>가게 찾기</styles.TitleBox>
       <styles.MiddleBox>
-        <Filter />
+        <Filter setContentFilter={setContentFilter} />
         {/** TODO: 누르면 expand로 변경되도록 */}
         <styles.FilterEndBox>
           <SearchInput isSearch={isSearch} setIsSearch={setIsSearch} />

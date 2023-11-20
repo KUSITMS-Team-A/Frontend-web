@@ -55,6 +55,9 @@ export default function Contact() {
   };
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
+  const [contentFilter, setContentFilter] = useState<
+    "All" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
+  >("All");
 
   const handleOnClickSearchBtn = () => {
     setIsSearchModalOpen(!isSearchModalOpen);
@@ -73,7 +76,7 @@ export default function Contact() {
         </styles.TopBox>
         <styles.MiddleBox>
           <styles.FilterBox>
-            <Filter AllCount={43} />
+            <Filter AllCount={43} setContentFilter={setContentFilter} />
           </styles.FilterBox>
           <styles.SearchBox onClick={handleOnClickSearchBtn}>
             <Image src={SearchIcon} alt="search icon" />
@@ -129,7 +132,7 @@ export default function Contact() {
               </styles.SearchIconBox>
             </styles.ModalSearchBox>
             <styles.ModalFilterBox>
-              <Filter AllCount={43} />
+              <Filter AllCount={43} setContentFilter={setContentFilter} />
             </styles.ModalFilterBox>
             <styles.ModalListsBox>
               <styles.ModalStoreList>

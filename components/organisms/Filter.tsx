@@ -10,9 +10,17 @@ import { ReactNode, useState } from "react";
 
 interface FProps {
   AllCount?: number;
+  setContentFilter: Function;
 }
 
-const Filter = ({ AllCount = -1 }: FProps) => {
+const Filter = ({ AllCount = -1, setContentFilter }: FProps) => {
+  const kor = ["음식점", "카페", "문화", "미용", "기타"];
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
+
+  const typeKorToEng = (name: string) => {
+    return eng[kor.indexOf(name)];
+  };
+
   const [isAll, setIsAll] = useState(true);
   const [filterState, setFilterState] = useState([
     false,
@@ -25,6 +33,7 @@ const Filter = ({ AllCount = -1 }: FProps) => {
   const handleOnClickAll = () => {
     setIsAll(!isAll);
     setFilterState([false, false, false, false, false]);
+    setContentFilter("NONE");
   };
 
   const handleOnClickFilter = (idx: number) => {
@@ -71,7 +80,10 @@ const Filter = ({ AllCount = -1 }: FProps) => {
         return (
           <styles.FilterComponentBox
             key={el}
-            onClick={() => handleOnClickFilter(idx)}
+            onClick={() => {
+              handleOnClickFilter(idx);
+              setContentFilter(typeKorToEng(el));
+            }}
           >
             <styles.FilterIconBox>
               {filterState[idx] ? typeIcon25[el].value : typeStyles[el].value}
