@@ -34,3 +34,11 @@ export const NumberBall = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const GridTemplate = styled.div`
+  display: grid;
+`;
+
+export const FlexTemplate = styled.div`
+  display: flex;
+`;

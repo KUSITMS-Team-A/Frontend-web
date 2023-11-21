@@ -1,14 +1,19 @@
 import { useState } from "react";
 
-export const useDashBoardData = () => {
-  const [data, setData] = useState(data01);
+interface ChartData {
+  name: string;
+  uv: number;
+  pv: number;
+  amt: number;
+}
 
-  const dataGetter = () => {};
+export const useDashBoardData = () => {
+  const [data, setData] = useState<ChartData[]>(exData);
 
   return { data };
 };
 
-const data01 = [
+const exData = [
   {
     name: "Page A",
     uv: 4000,
