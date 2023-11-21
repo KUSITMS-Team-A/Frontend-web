@@ -3,11 +3,12 @@ import DownArrow from "@/assets/svg/DownArrow.svg";
 import UpArrow from "@/assets/svg/UpArrow.svg";
 import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import FullHeart from "@/assets/svg/FullHeart.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SizeTypeImg68 } from "@/utils/TypeImg";
 import StoreInfo from "./StoreInfo";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
+import { deletePickStore, postPickStore } from "@/pages/api/StoreAPI";
 
 export interface SProps {
   type: "음식점" | "카페" | "문화" | "미용" | "기타";
@@ -17,6 +18,8 @@ export interface SProps {
   distance: number;
   lat: number;
   lng: number;
+  storeId: number;
+  isPicked: boolean;
 }
 
 const typeStyles = SizeTypeImg68();
@@ -29,13 +32,22 @@ const Storelist = ({
   description,
   lat,
   lng,
+  storeId,
+  isPicked,
 }: SProps) => {
-  const [isClick, setIsClick] = useState<boolean>(false);
+  useEffect(() => {}, [isPicked]);
+
+  const [isClick, setIsClick] = useState<boolean>(isPicked);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
 
   const handleOnClickHeart = () => {
     setIsClick(!isClick);
+    if (!isPicked) {
+      postPickStore(storeId);
+    } else {
+      deletePickStore(storeId);
+    }
   };
 
   const handleOnClickOpen = () => {

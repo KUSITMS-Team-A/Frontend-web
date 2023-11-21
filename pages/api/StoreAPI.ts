@@ -40,3 +40,31 @@ export const getStoreWithFilter = async ({
     return null;
   }
 };
+
+export const postPickStore = async (storeId: number) => {
+  try {
+    const response = await axiosInstance.post(`/store/pick`, {
+      storeId: storeId,
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.data);
+    }
+    return null;
+  }
+};
+
+export const deletePickStore = async (storeId: number) => {
+  try {
+    const response = await axiosInstance.delete(`/store/pick`, {
+      data: { storeId: storeId },
+    });
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.data);
+    }
+    return null;
+  }
+};

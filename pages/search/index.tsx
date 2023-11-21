@@ -146,6 +146,8 @@ export default function SearchHome() {
             return (
               <Storelist
                 key={el.storeId}
+                isPicked={el.isPicked}
+                storeId={el.storeId}
                 title={el.storeName}
                 type={typeEngtoKor(el.category)}
                 description={el.description}
