@@ -9,6 +9,7 @@ import Cafe from "@/assets/svg/Cafe.svg";
 import Culture from "@/assets/svg/Culture.svg";
 import Etc from "@/assets/svg/Etc.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
+import Select from "@/assets/svg/Select.svg";
 
 interface NameMarkerProps {
   lat: number;
@@ -58,7 +59,7 @@ const NameMarker = ({
       <styles.MarkerContainer type={typeEngtoKor(type)}>
         <styles.MarkerIconBox>
           {clickStore.isClick ? (
-            " ✅"
+            <Select />
           ) : (
             <Image src={icon} alt={`${title} marker`} width={29} height={29} />
           )}
