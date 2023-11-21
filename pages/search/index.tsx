@@ -127,8 +127,17 @@ export default function SearchHome() {
             ) : (
               <>
                 {data &&
-                  data.map((el) => {
-                    return (
+                  data.map((el, idx) => {
+                    return idx === 1 ? (
+                      <NameMarker
+                        lat={el.latitude}
+                        lng={el.longitude}
+                        type={el.category}
+                        icon={returnSVG(typeEngtoKor(el.category))}
+                        title={el.storeName}
+                        markerType={el.category}
+                      />
+                    ) : (
                       <IconMarker
                         key={el.storeId}
                         lat={el.latitude}
