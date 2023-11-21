@@ -7,6 +7,8 @@ import UBeauty from "@/assets/svg/unselect/uBeauty.svg";
 import Image from "next/image";
 import { SizeTypeImg25 } from "@/utils/TypeImg";
 import { ReactNode, useState } from "react";
+import { useRecoilState } from "recoil";
+import { NewClickStore } from "@/states/Store";
 
 interface FProps {
   AllCount?: number;
@@ -14,6 +16,8 @@ interface FProps {
 }
 
 const Filter = ({ AllCount = -1, setContentFilter }: FProps) => {
+  const [clickStore, setClickStore] = useRecoilState(NewClickStore);
+
   const kor = ["음식점", "카페", "문화", "미용", "기타"];
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
@@ -34,6 +38,13 @@ const Filter = ({ AllCount = -1, setContentFilter }: FProps) => {
     setIsAll(!isAll);
     setFilterState([false, false, false, false, false]);
     setContentFilter("NONE");
+    setClickStore({
+      isClick: false,
+      name: "",
+      type: "",
+      lat: 0,
+      lng: 0,
+    });
   };
 
   const handleOnClickFilter = (idx: number) => {
@@ -41,6 +52,13 @@ const Filter = ({ AllCount = -1, setContentFilter }: FProps) => {
     setFilterState((prevState) =>
       prevState.map((value, index) => (index === idx ? true : false))
     );
+    setClickStore({
+      isClick: false,
+      name: "",
+      type: "",
+      lat: 0,
+      lng: 0,
+    });
   };
 
   const filterName: ("음식점" | "카페" | "미용" | "문화" | "기타")[] = [
