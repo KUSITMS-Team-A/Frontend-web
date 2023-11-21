@@ -3,36 +3,36 @@ import React from "react";
 import * as styles from "@/components/styles/coupon/style";
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
+import { usePopupData } from "@/components/hooks/usePopupData";
 
-const CouponAdminPage: React.FC = () => {
+const PopupAdminPage: React.FC = () => {
   const router = useRouter();
 
-  const { coupons } = useCouponData();
+  const { popups } = usePopupData();
 
-  console.log(coupons);
   return (
     <styles.Container>
       <styles.TitleBox>
-        <styles.Title>쿠폰 관리</styles.Title>
+        <styles.Title>팝업 관리</styles.Title>
         <styles.SubTitle>
-          학생들에게 보여줄 쿠폰을 관리해보세요.
+          학생들에게 보여줄 팝업을 관리해보세요.
         </styles.SubTitle>
       </styles.TitleBox>
       <styles.ContentsBox>
         <styles.LabelBox>
           <styles.CountLabel>
-            총 {coupons ? coupons.length : 0}개
+            총 {popups ? popups.length : 0}개
           </styles.CountLabel>
           <styles.ContentsLabel>내용</styles.ContentsLabel>
           <styles.InfoLabel>정보제공</styles.InfoLabel>
         </styles.LabelBox>
         <styles.ListBox>
-          {coupons &&
-            coupons.map((element, index) => (
+          {popups &&
+            popups.map((element, index) => (
               <styles.ListElement key={index}>
                 <styles.ListIndex>{index + 1}</styles.ListIndex>
-                <styles.ListContent>{element.couponName}</styles.ListContent>
-                <styles.ListStore>{element.couponStore}</styles.ListStore>
+                <styles.ListContent>{element.title}</styles.ListContent>
+                <styles.ListStore>{element.period}</styles.ListStore>
               </styles.ListElement>
             ))}
         </styles.ListBox>
@@ -54,4 +54,4 @@ const CouponAdminPage: React.FC = () => {
   );
 };
 
-export default CouponAdminPage;
+export default PopupAdminPage;
