@@ -20,7 +20,7 @@ const Header = () => {
   const setLogout = useSetRecoilState(initialState);
 
   useEffect(() => {
-    setUserSessionData(window.sessionStorage.getItem("userSession"));
+    setUserSessionData(window.sessionStorage?.getItem("userSession"));
   }, []);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Header = () => {
           <UpperMenuItem
             onClick={() => {
               if (userSessionData) {
-                logoutHandler();
+                openModal();
               } else {
                 openModal();
               }

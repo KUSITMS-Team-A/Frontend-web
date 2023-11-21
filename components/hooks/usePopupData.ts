@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { getPopups } from "@/pages/api/popup";
+import { useEffect, useState } from "react";
 
 enum PopupPeriod {
   none,
@@ -20,6 +21,14 @@ export const usePopupData = () => {
   const [popups, setPopups] = useState<Popup[]>(exData);
 
   // api 호출해서 초기화
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPopups(0);
+      console.log(data);
+    };
+
+    fetchData();
+  }, []);
 
   return { popups };
 };
