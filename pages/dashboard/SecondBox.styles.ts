@@ -6,11 +6,20 @@ export const Container = styled.div`
 
   display: flex;
   flex-flow: column nowrap;
+  align-items: center;
+  border: 1px solid var(--g1, #c6c6c6);
+  border-radius: 10px;
+
+  padding: 1rem;
 `;
 
 export const ChartBox = styled.div`
   width: 100%;
   height: 90%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TitleBox = styled.div`
@@ -24,11 +33,7 @@ export const TitleBox = styled.div`
 `;
 
 export const Title = styled.p`
-  color: #000;
-  font-family: Pretendard Variable;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20.86px; /* 139.066% */
-  letter-spacing: -0.9px;
+  font-size: 1rem;
+  color: var(--g3, #636366);
+  font-weight: 500;
 `;

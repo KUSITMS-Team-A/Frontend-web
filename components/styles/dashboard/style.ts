@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { Button } from "@mui/material";
 
 export const Container = styled.div`
   padding-top: 1rem;
@@ -29,17 +30,6 @@ export const OptionContainer = styled.div`
   row-gap: 10px;
 `;
 
-export const ContentsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, minmax(1fr, auto));
-  width: 100%;
-  min-height: 50vh;
-
-  column-gap: 10px;
-  row-gap: 10px;
-`;
-
 //
 export const Title = styled.p`
   color: var(--, #1c1c1e);
@@ -56,12 +46,26 @@ export const IndexButton = styled.div`
 
   min-width: 6rem;
 
-  border: 1px solid var(--g1, #c6c6c6);
   padding: 10px 15px;
+  border-radius: 20px;
 
   transition: all 0.5s ease;
   &:hover {
     background-color: var(--g1, #c6c6c680);
+    border-radius: 20px;
+    transition: all 0.5s ease;
+  }
+`;
+
+export const SearchButton = styled.div`
+  border-radius: 6px;
+  background-color: #3d4149;
+  color: #dfff60;
+  padding: 13px 16px;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: #2c5aff;
     transition: all 0.5s ease;
   }
 `;
@@ -86,29 +90,112 @@ export const DefaultBox = styled.article`
   display: flex;
 `;
 
-export const FirstBox = styled(DefaultBox)`
-  grid-column: 1/3;
-  grid-row: 1/2;
+// ------ DashBoard Chart Container ------
+/*
+d 3
 
+d 3 7 4
+d
+d
+
+d 1 1
+d
+d
+*/
+export const ContentsContainer = styled.div`
   width: 100%;
+  min-height: 5cqmax;
+
+  display: grid;
+  grid-template-rows: repeat(6, minmax(1fr, auto));
+
+  column-gap: 10px;
+  row-gap: 10px;
+
+  margin-bottom: 5vh;
+`;
+
+// --- Layer ---
+export const FirstLayer = styled(DefaultBox)`
+  width: 100%;
+  grid-row: 1 / 2;
+
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+
+  column-gap: 10px;
+`;
+
+export const SecondLayer = styled(DefaultBox)`
+  width: 100%;
+  grid-row: 2/3;
+
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  column-gap: 10px;
+  row-gap: 10px;
+`;
+
+export const ThirdLayer = styled(DefaultBox)`
+  width: 100%;
+  grid-row: 3/7;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  column-gap: 10px;
+`;
+
+// --- Box ---
+
+export const FirstBox = styled(DefaultBox)`
+  grid-column: 1/4;
 `;
 
 export const SecondBox = styled(DefaultBox)`
-  grid-column: 3/5;
-  grid-row: 1/2;
+  grid-column: 4/7;
 `;
 
 export const ThirdBox = styled(DefaultBox)`
-  grid-column: 5/7;
-  grid-row: 1/2;
+  grid-column: 7/10;
 `;
+
+//
 
 export const FourthBox = styled(DefaultBox)`
   grid-column: 1/4;
-  grid-row: 2/3;
+  grid-row: 1/5;
 `;
 
 export const FifthBox = styled(DefaultBox)`
-  grid-column: 4/7;
-  grid-row: 2/3;
+  grid-column: 4/11;
+  grid-row: 1/5;
+`;
+
+export const SixthUpperBox = styled(DefaultBox)`
+  grid-column: 11 / 15;
+  grid-row: 1/3;
+
+  display: flex;
+  align-items: center;
+`;
+
+export const SixthLowerBox = styled(DefaultBox)`
+  grid-column: 11/15;
+  grid-row: 3/5;
+
+  display: flex;
+  align-items: center;
+`;
+
+//
+
+export const SeventhBox = styled(DefaultBox)`
+  grid-column: 1/2;
+`;
+
+export const EightthBox = styled(DefaultBox)`
+  grid-column: 2/3;
 `;

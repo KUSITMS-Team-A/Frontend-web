@@ -3,8 +3,12 @@ import Head from "next/head";
 import { css } from "@emotion/css";
 import { useEffect, useState } from "react";
 import useDateRange from "@/components/hooks/useDateRange";
-import FirstBox from "./FirstBox";
-import SecondBox from "./SecondBox";
+import FirstLayerChart from "./FirstLayerChart";
+import PieCharts from "./PieCharts";
+import StackCharts from "./StackCharts";
+import ListChart from "./ListChart";
+import { useDashBoardData } from "@/components/hooks/useDashBoardData";
+import BarChart from "./BarChart";
 
 interface DashBoardProps {}
 interface DateState {
@@ -19,7 +23,7 @@ enum dates {
 }
 const DashBoardPage: React.FC = () => {
   const { dateRange, calculateDateRange } = useDateRange();
-
+  const barChartData = useDashBoardData().data;
   const [dateFilter, setDateFilter] = useState<DateState>({
     dates: dates.aWeek,
   });
@@ -37,13 +41,13 @@ const DashBoardPage: React.FC = () => {
       <styles.Container>
         <styles.TitleContainer>
           <styles.Title>대시보드</styles.Title>
-          <styles.IndexButton
+          <styles.SearchButton
             className={css`
               align-self: flex-end;
             `}
           >
             가게별 검색
-          </styles.IndexButton>
+          </styles.SearchButton>
           <styles.SubTitle>
             이번달 [{dateRange.startDate} -{dateRange.endDate}] 기준입니다.
           </styles.SubTitle>
@@ -69,15 +73,45 @@ const DashBoardPage: React.FC = () => {
         </styles.OptionContainer>
 
         <styles.ContentsContainer>
-          <styles.FirstBox>
-            <FirstBox />
-          </styles.FirstBox>
-          <styles.SecondBox>
-            <SecondBox />
-          </styles.SecondBox>
-          <styles.ThirdBox>3</styles.ThirdBox>
-          <styles.FourthBox>4</styles.FourthBox>
-          <styles.FifthBox>5</styles.FifthBox>
+          <styles.FirstLayer>
+            <styles.FirstBox>
+              <FirstLayerChart title="일 방문 수" content="21" />
+            </styles.FirstBox>
+            <styles.SecondBox>
+              <FirstLayerChart title="누적 혜택" content="143,000" />
+            </styles.SecondBox>
+            <styles.ThirdBox>
+              <FirstLayerChart title="목표 달성률" content="46%" />
+            </styles.ThirdBox>
+          </styles.FirstLayer>
+          <styles.SecondLayer>
+            <styles.FourthBox>
+              <PieCharts />
+            </styles.FourthBox>
+            <styles.FifthBox>
+              <StackCharts />
+            </styles.FifthBox>
+            <styles.SixthUpperBox>
+              <ListChart
+                title="제휴가게 방문자 수 상위 Top N (누적)"
+                contents={["탕화쿵푸", "탕화쿵푸", "탕화풍푸"]}
+              />
+            </styles.SixthUpperBox>
+            <styles.SixthLowerBox>
+              <ListChart
+                title="제휴가게 방문자 수 하위 Top N (누적)"
+                contents={["탕화쿵푸", "탕화쿵푸", "탕화풍푸"]}
+              />
+            </styles.SixthLowerBox>
+          </styles.SecondLayer>
+          <styles.ThirdLayer>
+            <styles.SeventhBox>
+              <BarChart title="주 이용 요일" data={barChartData} />
+            </styles.SeventhBox>
+            <styles.EightthBox>
+              <BarChart title="학과 별 이용량 순위" data={barChartData} />
+            </styles.EightthBox>
+          </styles.ThirdLayer>
         </styles.ContentsContainer>
       </styles.Container>
     </>
