@@ -1,6 +1,4 @@
-import Food from "@/assets/svg/Food.svg";
 import { CustomOverlayMap } from "react-kakao-maps-sdk";
-import Image from "next/image";
 import { SizeTypeImg25 } from "@/utils/TypeImg";
 
 interface NameMarkerProps {
@@ -15,7 +13,7 @@ type TypeIcon = {
   };
 };
 
-const typeIcon: TypeIcon = SizeTypeImg25();
+export const typeIcon: TypeIcon = SizeTypeImg25();
 
 const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 

@@ -2,28 +2,26 @@ import styled from "@emotion/styled";
 import { COLORS } from "@/styles/colors";
 
 const typeStyles: { [key: string]: { border?: string } } = {
-  Food: {
+  FOOD: {
     border: `1px solid ${COLORS.green}`,
   },
-  Cafe: {
+  CAFE: {
     border: `1px solid ${COLORS.yellow}`,
   },
-  Beauty: {
+  BEAUTY: {
     border: `1px solid ${COLORS.black}`,
   },
-  Culture: {
+  CULTURE: {
     border: `1px solid ${COLORS.blue}`,
   },
-  Etc: {
+  ETC: {
     border: `1px solid ${COLORS.purple}`,
   },
 };
 
 export const MarkerContainer = styled.div<{ type: string }>`
-  border: ${(props) => {
-    const borderColor = typeStyles[props.type]?.border;
-    return borderColor || `1px solid ${COLORS.blue}`; // Default border if type is not found
-  }};
+  border: ${(props) =>
+    typeStyles[props.type]?.border || `1px solid ${COLORS.blue}`};
   border-radius: 16.5px;
   display: flex;
   background-color: white;
