@@ -4,7 +4,7 @@ import UpArrow from "@/assets/svg/UpArrow.svg";
 import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import FullHeart from "@/assets/svg/FullHeart.svg";
 import { useState } from "react";
-import { SizeTypeImg25, SizeTypeImg68 } from "@/utils/TypeImg";
+import { SizeTypeImg68 } from "@/utils/TypeImg";
 import StoreInfo from "./StoreInfo";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";

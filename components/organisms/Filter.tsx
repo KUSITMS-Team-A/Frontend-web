@@ -4,7 +4,6 @@ import UCulture from "@/assets/svg/unselect/uCulture.svg";
 import UEtc from "@/assets/svg/unselect/uEtc.svg";
 import UFood from "@/assets/svg/unselect/uFood.svg";
 import UBeauty from "@/assets/svg/unselect/uBeauty.svg";
-import Image from "next/image";
 import { SizeTypeImg25 } from "@/utils/TypeImg";
 import { ReactNode, useState } from "react";
 import { useRecoilState } from "recoil";

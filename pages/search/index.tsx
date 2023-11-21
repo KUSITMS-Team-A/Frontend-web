@@ -15,12 +15,7 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 import IconMarker from "@/components/Marker/Icon/IconMarker";
-import {
-  FilterProps,
-  getStoreBase,
-  getStoreTypeFilter,
-  getStoreWithFilter,
-} from "../api/StoreAPI";
+import { FilterProps, getStoreBase, getStoreWithFilter } from "../api/StoreAPI";
 import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
