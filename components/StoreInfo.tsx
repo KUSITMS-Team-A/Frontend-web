@@ -1,9 +1,36 @@
 import { COLORS } from "@/styles/colors";
 import styled from "@emotion/styled";
 import EditIcon from "@/assets/svg/Edit.svg";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import { getStoreInfo } from "@/pages/api/StoreAPI";
+import { StoreDetailInfo } from "@/@types/Store";
 
-const StoreInfo = () => {
+interface SInfo {
+  storeId: number;
+}
+
+const StoreInfo = ({ storeId }: SInfo) => {
+  const [data, setData] = useState<StoreDetailInfo>({
+    address: "",
+    businessHours: [],
+    category: "기타",
+    description: "",
+    distance: 80,
+    latitude: 0,
+    longitude: 0,
+    mapUrl: "",
+    phoneNumber: "",
+    picked: false,
+    storeId: 0,
+    storeName: "",
+  });
+  useEffect(() => {
+    const info = getStoreInfo(storeId);
+    info.then((res) => {
+      setData(res);
+    });
+  }, []);
+
   return (
     <Container>
       <InfoListBox>
@@ -12,18 +39,20 @@ const StoreInfo = () => {
       </InfoListBox>
       <InfoListBox>
         <InfoTypeBox>가게 번호</InfoTypeBox>
-        <InfoDescriptionBox>09</InfoDescriptionBox>
+        <InfoDescriptionBox>{data?.phoneNumber}</InfoDescriptionBox>
       </InfoListBox>
       <InfoListBox>
         <InfoTypeBox>거리</InfoTypeBox>
-        <InfoDescriptionBox>09</InfoDescriptionBox>
+        <InfoDescriptionBox>
+          도보 {Math.floor(data?.distance / 80)}분
+        </InfoDescriptionBox>
       </InfoListBox>
       <InfoListBox>
         <InfoTypeBox>네이버 지도</InfoTypeBox>
-        <InfoDescriptionBox>09</InfoDescriptionBox>
+        <InfoDescriptionBox>{data?.mapUrl}</InfoDescriptionBox>
       </InfoListBox>
       <ContactBox>
-        <ContactTitleBox>저장된 컨택 멘트</ContactTitleBox>
+        <ContactTitleBox>전화 컨택 가이드</ContactTitleBox>
         <ContactContentBox>
           🙂 안녕하세요, 건국대학교 예술대학 학생회 ‘다빈치' 입니다. 건국대 상권
           활성화를 위한 제휴 사업을 제한하고자 합니다.

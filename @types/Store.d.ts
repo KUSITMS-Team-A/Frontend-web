@@ -10,4 +10,23 @@ export type StoreMapListInfo = {
   longitude: number;
 };
 
-export type StoreDetailInfo = {};
+interface businessHour {
+  dayOfWeek: string;
+  openingTime: string;
+  closingTime: string;
+}
+
+export type StoreDetailInfo = {
+  address: string;
+  businessHours: businessHour[];
+  category: "음식점" | "카페" | "문화" | "미용" | "기타";
+  description: string;
+  distance: number;
+  latitude: number;
+  longitude: number;
+  mapUrl: string;
+  phoneNumber: string;
+  picked: boolean;
+  storeId: number;
+  storeName: string;
+};

@@ -68,3 +68,15 @@ export const deletePickStore = async (storeId: number) => {
     return null;
   }
 };
+
+export const getStoreInfo = async (storeId: number) => {
+  try {
+    const response = await axiosInstance.get(`/store/details/${storeId}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.data);
+    }
+    return null;
+  }
+};

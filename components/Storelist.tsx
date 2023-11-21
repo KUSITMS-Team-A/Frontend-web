@@ -96,7 +96,7 @@ const Storelist = ({
         </styles.InfoContainerBox>
       </styles.ListTopBox>
       <styles.ListBottomBox>
-        {isOpen && <StoreInfo />}
+        {isOpen && <StoreInfo storeId={storeId} />}
 
         <styles.InfoContainerBox>
           <styles.DownBtnBox
