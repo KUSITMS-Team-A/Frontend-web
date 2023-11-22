@@ -76,6 +76,7 @@ export const SearchBox = styled.div`
   gap: 20px;
   border-radius: 30px;
   background: #f7f7f7;
+  cursor: pointer;
 `;
 
 export const SearchExpandBox = styled.div`
@@ -109,17 +110,20 @@ export const SearchIconBox = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
 `;
 
 export const HeartBox = styled.div`
   display: flex;
   align-items: center;
   margin-left: 15px;
+  cursor: pointer;
 `;
 
 export const HeartIconBox = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const HeartTextBox = styled.div`

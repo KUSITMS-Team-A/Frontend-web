@@ -44,7 +44,7 @@ const StoreInfo = ({ storeId }: SInfo) => {
       <InfoListBox>
         <InfoTypeBox>거리</InfoTypeBox>
         <InfoDescriptionBox>
-          도보 {Math.floor(data?.distance / 80)}분
+          도보 {Math.ceil(data?.distance / 80)}분
         </InfoDescriptionBox>
       </InfoListBox>
       <InfoListBox>

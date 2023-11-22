@@ -99,8 +99,8 @@ export default function SearchHome() {
             isSearch={isSearch}
             setIsSearch={setIsSearch}
           />
-          <styles.HeartBox>
-            <styles.HeartIconBox onClick={handleOnClickPick}>
+          <styles.HeartBox onClick={handleOnClickPick}>
+            <styles.HeartIconBox>
               {operateFilter.isPicked ? (
                 <FullHeart alt="pick" />
               ) : (
