@@ -5,19 +5,24 @@ import type { AppProps } from "next/app";
 import { RecoilRoot } from "recoil";
 import styled from "@emotion/styled";
 import { css, Global } from "@emotion/react";
-
+import LoginModal from "@/components/organisms/Modal";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={theme}>
-      <RecoilRoot>
-        <Global styles={globalStyles} />
-        <PageLayout>
-          <Header />
-          <MainContent>
-            <Component {...pageProps} />
-          </MainContent>
-        </PageLayout>
-      </RecoilRoot>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <RecoilRoot>
+          <Global styles={globalStyles} />
+          <PageLayout>
+            <Header />
+            <LoginModal />
+            <MainContent>
+              <Component {...pageProps} />
+            </MainContent>
+          </PageLayout>
+        </RecoilRoot>
+      </LocalizationProvider>
     </ThemeProvider>
   );
 }
