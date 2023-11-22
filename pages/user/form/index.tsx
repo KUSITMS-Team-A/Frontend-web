@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { css } from "@emotion/css";
 import styled from "@emotion/styled";
 
+
 interface FormPageProps {}
 
 enum Unions {
@@ -110,6 +111,7 @@ const FormPage: React.FC<FormPageProps> = () => {
             <styles.AskContents>
               <styles.AskSubBox>
                 <styles.HorizontalBox>
+
                   <styles.AskSubTitle
                     className={css`
                       column-gap: 10px;
@@ -139,12 +141,14 @@ const FormPage: React.FC<FormPageProps> = () => {
                       onChange={checkBoxInputHandler}
                     />
                     <Label>단과대 학생회</Label>
+
                   </styles.AskSubTitle>
                   <styles.AskSubContent>
                     <TextField variant="filled" style={{ width: "100%" }} />
                   </styles.AskSubContent>
                 </styles.HorizontalBox>
                 <styles.HorizontalBox>
+
                   <styles.AskSubTitle
                     className={css`
                       column-gap: 10px;
@@ -158,6 +162,7 @@ const FormPage: React.FC<FormPageProps> = () => {
                       onChange={checkBoxInputHandler}
                     />
                     <Label>과 학생회</Label>
+
                   </styles.AskSubTitle>
                   <styles.AskSubContent>
                     <TextField
@@ -198,8 +203,10 @@ const FormPage: React.FC<FormPageProps> = () => {
 
 export default FormPage;
 
+
 const Label = styled.p`
   font-size: 1rem;
   font-weight: 500;
   width: 9rem;
 `;
+
