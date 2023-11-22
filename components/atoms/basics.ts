@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Checkbox } from "@mui/material";
 
 interface HorizontalBox {
@@ -43,3 +44,4 @@ export const GridTemplate = styled.div`
 export const FlexTemplate = styled.div`
   display: flex;
 `;
+

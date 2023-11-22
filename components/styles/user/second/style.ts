@@ -52,6 +52,7 @@ export const AskTitle = styled.div`
   align-items: flex-start;
 
   margin-top: 5px;
+
 `;
 
 export const AskContents = styled.div`

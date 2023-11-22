@@ -69,6 +69,7 @@ export const TablePeriodTitle = styled.div`
   align-items: center;
 `;
 
+
 export const TableDeleteTitle = styled.div`
   width: 35px;
   border-radius: 6px;
@@ -77,6 +78,7 @@ export const TableDeleteTitle = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 
 export const PopUpsContainer = styled.div`
   border-radius: 6px;
@@ -88,6 +90,7 @@ export const PopupContainer = styled.div`
   height: 58px;
   display: flex;
 `;
+
 
 export const DeleteBox = styled.div`
   color: var(--, #3d4149);

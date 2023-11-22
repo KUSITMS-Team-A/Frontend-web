@@ -3,9 +3,11 @@ import styled from "@emotion/styled";
 
 // ------ Container Level ------
 export const Container = styled(FlexTemplate)`
+
   width: 80%;
   min-height: 80vh;
   margin: 0px auto;
+
   padding: 1% 5%;
 
   flex-flow: column nowrap;
@@ -34,7 +36,9 @@ export const LabelBox = styled(GridTemplate)`
   grid-row: 1/2;
 
   grid-template-columns: repeat(14, 1fr);
+
   column-gap: 5px;
+
 
   width: 100%;
 `;
@@ -47,7 +51,9 @@ export const ListBox = styled(FlexTemplate)`
   border: 1px solid #f7f7f7;
   border-radius: 6px;
 
+
   padding-top: 5px;
+
 
   display: flex;
   flex-flow: column nowrap;
@@ -60,6 +66,7 @@ export const ListElement = styled(GridTemplate)`
   width: 100%;
   min-height: 50px;
 
+
   column-gap: 5px;
 
   padding: 10px 0px;
@@ -67,6 +74,7 @@ export const ListElement = styled(GridTemplate)`
   grid-template-columns: repeat(14, 1fr);
 
   border-top: 0.5px solid #f4f4f4;
+
 `;
 
 export const ListIndex = styled(FlexTemplate)`
@@ -76,6 +84,7 @@ export const ListIndex = styled(FlexTemplate)`
   align-items: center;
 
   color: #0e6eff;
+
 `;
 
 export const ListContent = styled(FlexTemplate)`
@@ -85,7 +94,9 @@ export const ListContent = styled(FlexTemplate)`
 `;
 
 export const ListStore = styled(FlexTemplate)`
+
   grid-column: 10 / 14;
+
   justify-content: center;
   align-items: center;
 `;
@@ -99,12 +110,14 @@ export const LabelElement = styled(FlexTemplate)`
   color: #afafaf;
 `;
 
+
 export const DeleteElement = styled(FlexTemplate)`
   grid-column: 14/15;
 
   justify-content: center;
   align-items: center;
 `;
+
 
 export const CountLabel = styled(LabelElement)`
   grid-column: 1/4;
@@ -113,10 +126,12 @@ export const ContentsLabel = styled(LabelElement)`
   grid-column: 4/10;
 `;
 export const InfoLabel = styled(LabelElement)`
+
   grid-column: 10 / 14;
 `;
 export const DeleteLabel = styled(LabelElement)`
   grid-column: 14 / 15;
+
 `;
 
 // ------ Elements Level ------
@@ -177,3 +192,4 @@ export const InfoBox = styled.div`
   line-height: 25.043px; /* 160.532% */
   letter-spacing: -0.936px;
 `;
+

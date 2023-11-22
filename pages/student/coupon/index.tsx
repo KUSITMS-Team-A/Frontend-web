@@ -1,10 +1,13 @@
 import { useRouter } from "next/router";
 import React from "react";
+
 import * as styles from "@/components/styles/popup/style";
+
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
 import Link from "next/link";
 import EmptyComponent from "@/components/atoms/EmptyComponent";
+
 import { usePopupData } from "@/components/hooks/usePopupData";
 import { Checkbox } from "@mui/material";
 import { useUniv } from "@/components/hooks/useUniv";
@@ -13,6 +16,7 @@ const CouponAdminPage: React.FC = () => {
   const router = useRouter();
 
   const { coupons } = useCouponData();
+
   const data = useUniv();
 
   console.log(coupons);
@@ -31,7 +35,9 @@ const CouponAdminPage: React.FC = () => {
           </styles.CountLabel>
           <styles.ContentsLabel>내용</styles.ContentsLabel>
           <styles.InfoLabel>정보제공</styles.InfoLabel>
+
           <styles.DeleteLabel>삭제</styles.DeleteLabel>
+
         </styles.LabelBox>
         <styles.ListBox>
           {coupons.length !== 0 ? (
@@ -39,12 +45,14 @@ const CouponAdminPage: React.FC = () => {
               <styles.ListElement key={index}>
                 <styles.ListIndex>{index + 1}</styles.ListIndex>
                 <styles.ListContent>{element.couponName}</styles.ListContent>
+
                 <styles.ListStore>
                   <styles.InfoBox>{element.couponStore}</styles.InfoBox>
                 </styles.ListStore>
                 <styles.DeleteElement>
                   <Checkbox />
                 </styles.DeleteElement>
+
               </styles.ListElement>
             ))
           ) : (

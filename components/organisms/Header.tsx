@@ -8,7 +8,9 @@ import { useRouter } from "next/router";
 import { useModal } from "../hooks/useModal";
 import { useSetRecoilState } from "recoil";
 import { initialState } from "@/state/user/user";
+
 import { Logout } from "@/pages/api/login";
+
 /*
 TODO:
 1. 로그인 - 세션스토리지 안에 로그인 여부에 따라서 다르게
@@ -33,6 +35,7 @@ const Header = () => {
     console.log("logout");
     const response = await Logout();
     console.log(response);
+
     setLogout({
       logined: false,
       email: "",
@@ -41,6 +44,7 @@ const Header = () => {
       token: "",
     });
   };
+
 
   return (
     <HeaderFrame>
@@ -55,23 +59,29 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
+
           <UpperMenuItem
             onClick={() => {
               if (userSessionData) {
                 logoutHandler();
+
               } else {
                 openModal();
               }
             }}
           >
+
             {userSessionData ? "로그아웃" : "로그인"}
+
           </UpperMenuItem>
 
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
+
             <Link href="/mypage">마이페이지</Link>
+
           </UpperMenuItem>
           <UpperMenuItem>
             <NotificationsNoneOutlinedIcon />
@@ -81,6 +91,7 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <LowerMenuItem>
+
             <Link href="/dashboard">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>
@@ -91,6 +102,7 @@ const Header = () => {
           </LowerMenuItem>
           <LowerMenuItem>
             학생관리
+
             <SubDropdownMenu>
               <SubDropdownMenuItem>
                 <Link href="/student/popup">팝업관리</Link>
@@ -146,6 +158,7 @@ const SubDropdownMenu = styled.div`
   bottom: -3rem;
 
   visibility: hidden;
+
   border-radius: 8px;
   background: #f6f6f6;
 
@@ -163,7 +176,9 @@ const SubDropdownMenuItem = styled.div`
   width: 100px;
   height: 1.5rem;
 
+
   padding: 3px 0px;
+
   &:hover {
     background-color: gray;
     color: white;
@@ -173,9 +188,11 @@ const SubDropdownMenuItem = styled.div`
 const LowerMenuItem = styled.li`
   position: relative;
 
+
   color: var(--, #3d4149);
   text-align: center;
   font-family: Pretendard;
+
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

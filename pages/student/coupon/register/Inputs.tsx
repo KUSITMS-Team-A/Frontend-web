@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import * as styles from "./Inputs.style";
 import { css } from "@emotion/css";
@@ -31,6 +32,7 @@ const Inputs: React.FC = () => {
     ],
     []
   );
+
 
   const [formData, setFormData] = useState<EventProps>({
     storeId: 2,
@@ -182,6 +184,7 @@ const Inputs: React.FC = () => {
           </styles.SubmitButton>
         </styles.InputBox>
       </form>
+
     </styles.Container>
   );
 };
