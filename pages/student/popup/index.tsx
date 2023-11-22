@@ -9,6 +9,7 @@ import EmptyComponent from "@/components/atoms/EmptyComponent";
 import { usePopupData } from "@/components/hooks/usePopupData";
 import { Checkbox } from "@mui/material";
 
+
 const PopupAdminPage: React.FC = () => {
   const router = useRouter();
 
@@ -84,7 +85,6 @@ const PopupAdminPage: React.FC = () => {
     </styles.Container>
   );
 };
-
 
 export default PopupAdminPage;
 

@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import { css } from "@emotion/css";
 import styled from "@emotion/styled";
 
-
 interface FormPageProps {}
 
 enum Unions {
