@@ -36,7 +36,7 @@ export const InputWrapper = styled(GridTemplate)`
 
 export const Title = styled.p`
   color: var(--, #1c1c1e);
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   letter-spacing: 0.3px;
@@ -70,7 +70,11 @@ export const SubmitButton = styled(Button)`
   margin-top: 2rem;
 `;
 
-export const PopupOptionButton = styled(FlexTemplate)`
+interface PopupButtonProps {
+  selected: boolean;
+}
+
+export const PopupOptionButton = styled(FlexTemplate)<PopupButtonProps>`
   // color: #2c5aff;
   font-family: Pretendard Variable;
   font-size: 13.984px;
@@ -87,4 +91,7 @@ export const PopupOptionButton = styled(FlexTemplate)`
 
   border-radius: 5px;
   border: 1px solid var(--g0, #f4f4f4);
+
+  background-color: ${(props) => (props.selected ? "#AEAEB250" : "white")};
+  color: ${(props) => (props.selected ? "#2C5AFF" : "black")};
 `;

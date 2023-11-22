@@ -23,7 +23,8 @@ enum dates {
 }
 const DashBoardPage: React.FC = () => {
   const { dateRange, calculateDateRange } = useDateRange();
-  const barChartData = useDashBoardData().data;
+  const barChartData = useDashBoardData({ selection: 1 }).data;
+  const barChartData2 = useDashBoardData({ selection: 2 }).data;
   const [dateFilter, setDateFilter] = useState<DateState>({
     dates: dates.aWeek,
   });
@@ -109,7 +110,7 @@ const DashBoardPage: React.FC = () => {
               <BarChart title="주 이용 요일" data={barChartData} />
             </styles.SeventhBox>
             <styles.EightthBox>
-              <BarChart title="학과 별 이용량 순위" data={barChartData} />
+              <BarChart title="학과 별 이용량 순위" data={barChartData2} />
             </styles.EightthBox>
           </styles.ThirdLayer>
         </styles.ContentsContainer>
