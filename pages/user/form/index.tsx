@@ -17,58 +17,36 @@ enum Unions {
   third = "third",
 }
 
-/*
-form Data 예시
-univ : 숭실대
-belong : {
-  first : {
-    checked : false, name : ''
-  },
-  second : {
-    checked : true, name : '숭숭it대학'
-  },
-  third : {
-    checked : false, name : ''
-  }
-},
-uion
- */
 interface FormData {
   univ: string;
-  belong: belong;
+  first: belong;
+  second: belong;
+  third: belong;
   unionName: string;
 }
 
-type belong = {
+interface belong {
   checked: boolean;
   name: string;
-};
+}
 
 const FormPage: React.FC<FormPageProps> = () => {
   const router = useRouter();
 
-  const [formData, setFormData] = useState<FormData>();
+  const [formData, setFormData] = useState<FormData>({
+    univ: "",
 
-  const checkBoxInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
+    first: { checked: false, name: "" },
+    second: { checked: false, name: "" },
+    third: { checked: false, name: "" },
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: checked,
-    }));
-  };
+    unionName: "",
+  });
 
-  const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, name } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
   useEffect(() => {
     console.log(JSON.stringify(formData));
   }, [formData]);
+
   return (
     <phase.Container>
       <phase.PhaseBox>
@@ -101,9 +79,16 @@ const FormPage: React.FC<FormPageProps> = () => {
                 name="Univ"
                 style={{ width: "100%" }}
                 endAdornment={<SearchOutlinedIcon />}
+                onChange={(e) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    univ: e.target.value,
+                  }));
+                }}
               />
             </styles.AskContents>
           </styles.AskWrapper>
+
           <styles.AskWrapper>
             <styles.AskTitle>학생회 소속*</styles.AskTitle>
             <styles.AskContents>
@@ -119,11 +104,19 @@ const FormPage: React.FC<FormPageProps> = () => {
                       icon={<CircleIcon />}
                       checkedIcon={<CheckCircleIcon />}
                       name={Unions.first}
-                      onChange={checkBoxInputHandler}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          first: { ...prev.first, checked: true },
+                          second: { checked: false, name: "" },
+                          third: { checked: false, name: "" },
+                        }));
+                      }}
                     />
                     <Label>총 학생회</Label>
                   </styles.AskSubTitle>
                 </styles.HorizontalBox>
+
                 <styles.HorizontalBox>
                   <styles.AskSubTitle
                     className={css`
@@ -135,14 +128,31 @@ const FormPage: React.FC<FormPageProps> = () => {
                       icon={<CircleIcon />}
                       checkedIcon={<CheckCircleIcon />}
                       name={Unions.second}
-                      onChange={checkBoxInputHandler}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          first: { checked: false, name: "" },
+                          second: { ...prev.second, checked: e.target.checked },
+                          third: { checked: false, name: "" },
+                        }));
+                      }}
                     />
                     <Label>단과대 학생회</Label>
                   </styles.AskSubTitle>
                   <styles.AskSubContent>
-                    <TextField variant="filled" style={{ width: "100%" }} />
+                    <TextField
+                      variant="filled"
+                      style={{ width: "100%" }}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          second: { ...prev.second, name: e.target.value },
+                        }));
+                      }}
+                    />
                   </styles.AskSubContent>
                 </styles.HorizontalBox>
+
                 <styles.HorizontalBox>
                   <styles.AskSubTitle
                     className={css`
@@ -154,7 +164,14 @@ const FormPage: React.FC<FormPageProps> = () => {
                       icon={<CircleIcon />}
                       checkedIcon={<CheckCircleIcon />}
                       name={Unions.third}
-                      onChange={checkBoxInputHandler}
+                      onChange={(e) => {
+                        setFormData((prev) => ({
+                          ...prev,
+                          first: { checked: false, name: "" },
+                          second: { checked: false, name: "" },
+                          third: { ...prev.third, checked: e.target.checked },
+                        }));
+                      }}
                     />
                     <Label>과 학생회</Label>
                   </styles.AskSubTitle>
@@ -162,7 +179,10 @@ const FormPage: React.FC<FormPageProps> = () => {
                     <TextField
                       variant="filled"
                       style={{ width: "100%" }}
-                      onChange={InputHandler}
+                      value={formData.third.name}
+                      onChange={(e)=>{
+                        setFormData(prev=>)
+                      }}
                     />
                   </styles.AskSubContent>
                 </styles.HorizontalBox>
@@ -177,7 +197,6 @@ const FormPage: React.FC<FormPageProps> = () => {
                 name="nameOfUnion"
                 variant="filled"
                 style={{ width: "100%" }}
-                onChange={InputHandler}
               />
             </styles.AskContents>
           </styles.AskWrapper>
