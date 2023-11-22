@@ -1,12 +1,42 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-import React from "react";
+
+import React, { useEffect, useState } from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
+import { useModal } from "../hooks/useModal";
+import { useSetRecoilState } from "recoil";
+import { initialState } from "@/state/user/user";
+/*
+TODO:
+1. 로그인 - 세션스토리지 안에 로그인 여부에 따라서 다르게
+*/
 
 const Header = () => {
   const router = useRouter();
+  const { openModal } = useModal();
+  const [userSessionData, setUserSessionData] = useState();
+
+  const setLogout = useSetRecoilState(initialState);
+
+  useEffect(() => {
+    setUserSessionData(window.sessionStorage?.getItem("userSession"));
+  }, []);
+
+  useEffect(() => {
+    console.table(`USER SESSION DATA : ${userSessionData}`);
+  }, [userSessionData]);
+  const logoutHandler = () => {
+    setLogout({
+      logined: false,
+      email: "",
+      type: "",
+      typeName: "",
+      token: "",
+    });
+  };
+
 
   return (
     <HeaderFrame>
@@ -21,12 +51,26 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-          <UpperMenuItem onClick={() => {}}>로그인</UpperMenuItem>
+
+          <UpperMenuItem
+            onClick={() => {
+              if (userSessionData) {
+                openModal();
+              } else {
+                openModal();
+              }
+            }}
+          >
+            {userSessionData ? "로그인" : "로그아웃"}
+          </UpperMenuItem>
+
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
-            <Link href="/contact">마이페이지</Link>
+
+            <Link href="/mypage">마이페이지</Link>
+
           </UpperMenuItem>
           <UpperMenuItem>
             <NotificationsNoneOutlinedIcon />
@@ -36,13 +80,15 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <LowerMenuItem>
-            <Link href="/">대시보드</Link>
+
+            <Link href="/dashboard">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>
-            <Link href="/search">가게찾기</Link>
+            <Link href="/">가게찾기</Link>
           </LowerMenuItem>
           <LowerMenuItem>
-            <Link href="/apply">제휴가게</Link>
+            <Link href="/">제휴가게</Link>
+
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">학생관리</Link>

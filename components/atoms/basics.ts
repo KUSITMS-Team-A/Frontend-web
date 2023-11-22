@@ -21,3 +21,26 @@ export const FlexBox = styled.div<HorizontalBox>`
   display: flex;
   flex-flow: ${(props) => (props?.column ? "column nowrap" : "row nowrap")};
 `;
+
+
+export const NumberBall = styled.div`
+  width: 24px;
+  height: 24px;
+  background-color: #636366;
+  color: white;
+
+  border-radius: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const GridTemplate = styled.div`
+  display: grid;
+`;
+
+export const FlexTemplate = styled.div`
+  display: flex;
+`;
+
