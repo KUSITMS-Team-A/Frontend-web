@@ -20,6 +20,8 @@ import CloseIcon from "@/assets/svg/Close.svg";
 import { getContractBase } from "../api/ContractAPI";
 import { ContractListInfo } from "@/@types/Contract";
 import { typeIcon } from "@/components/Marker/Icon/IconMarker";
+import Link from "next/link";
+import { useRouter } from "next/router";
 type TypeIcon = {
   [key: string]: {
     value: JSX.Element;
@@ -60,6 +62,8 @@ export default function Contact() {
     setIsSearchModalOpen(!isSearchModalOpen);
   };
 
+  const router = useRouter();
+
   return (
     <>
       <styles.Container>
@@ -89,7 +93,12 @@ export default function Contact() {
         <styles.MainBox>
           {data?.map((el) => {
             return (
-              <styles.StoreContainer key={el.storeId}>
+              <styles.StoreContainer
+                key={el.storeId}
+                onClick={() => {
+                  router.push(`/contact/store/${el.storeId}`);
+                }}
+              >
                 <styles.StoreTopBox>
                   <styles.StoreIconBox>
                     {typeIcon[typeEngtoKor(el.category)]?.value || null}

@@ -2,7 +2,6 @@ import KakaoMap from "@/components/Map";
 import GrayButton from "@/components/organisms/GrayButton";
 import * as styled from "@/components/styles/ContactStore.styles";
 import { COLORS } from "@/styles/colors";
-import { SizeTypeImg } from "@/utils/TypeImg";
 import React, { useState } from "react";
 import Benefit from "@/assets/svg/info/Benefit.svg";
 import Call from "@/assets/svg/info/Call.svg";
@@ -30,8 +29,6 @@ const ContactStore = () => {
   const handleOnClickFinish = () => {
     setIsFinishModal(!isFinishModal);
   };
-
-  const typeStyles = SizeTypeImg(68);
 
   return (
     <>
