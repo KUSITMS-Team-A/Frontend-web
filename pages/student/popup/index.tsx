@@ -36,9 +36,11 @@ const PopupAdminPage: React.FC = () => {
             popups.map((element, index) => (
               <styles.ListElement key={index}>
                 <styles.ListIndex>{index + 1}</styles.ListIndex>
-                <styles.ListContent>{element.contents}</styles.ListContent>
+                <styles.ListContent>{element.content}</styles.ListContent>
                 <styles.ListStore>
-                  <styles.InfoBox>{element.period}</styles.InfoBox>
+                  <styles.InfoBox>
+                    {element.endDate}/{element.reservation}
+                  </styles.InfoBox>
                 </styles.ListStore>
                 <styles.DeleteElement>
                   <Checkbox />

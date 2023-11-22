@@ -7,11 +7,13 @@ import Link from "next/link";
 import EmptyComponent from "@/components/atoms/EmptyComponent";
 import { usePopupData } from "@/components/hooks/usePopupData";
 import { Checkbox } from "@mui/material";
+import { useUniv } from "@/components/hooks/useUniv";
 
-const PopupAdminPage: React.FC = () => {
+const CouponAdminPage: React.FC = () => {
   const router = useRouter();
 
   const { coupons } = useCouponData();
+  const data = useUniv();
 
   console.log(coupons);
   return (
@@ -71,7 +73,7 @@ const PopupAdminPage: React.FC = () => {
         `}
       >
         <styles.CustomButton primary={true}>
-          <Link href="/student/popup/register">등록하기</Link>
+          <Link href="/student/coupon/register">등록하기</Link>
         </styles.CustomButton>
         <styles.CustomButton primary={false}>삭제하기</styles.CustomButton>
       </div>
@@ -79,4 +81,4 @@ const PopupAdminPage: React.FC = () => {
   );
 };
 
-export default PopupAdminPage;
+export default CouponAdminPage;
