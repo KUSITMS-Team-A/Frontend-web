@@ -2,7 +2,7 @@ import KakaoMap from "@/components/Map";
 import GrayButton from "@/components/organisms/GrayButton";
 import * as styled from "@/components/styles/ContactStore.styles";
 import { COLORS } from "@/styles/colors";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Benefit from "@/assets/svg/info/Benefit.svg";
 import Call from "@/assets/svg/info/Call.svg";
 import LinkImg from "@/assets/svg/info/Link.svg";
@@ -19,8 +19,31 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import StampModal from "@/components/organisms/Modal/StampModal";
 import FinishModal from "@/components/organisms/Modal/FinishModal";
 import { SizeTypeImg68 } from "@/utils/TypeImg";
+import { useRouter } from "next/router";
+import { getContractInfo } from "@/pages/api/ContractAPI";
+import { ContractInfo } from "@/@types/Contract";
+import { typeEngtoKor } from "@/components/Marker/Icon/IconMarker";
 
 const ContactStore = () => {
+  const [data, setData] = useState<ContractInfo>({
+    benefits: [],
+    category: "NONE",
+    endDate: "",
+    latitude: 0,
+    longitude: 0,
+    manager: "",
+    mapUrl: "",
+    phoneNumber: "",
+    startDate: "string",
+    storeId: 0,
+    storeName: "",
+    visitInfo: {},
+  });
+
+  const router = useRouter();
+  const { id } = router.query;
+  console.log("id", id);
+
   const [isStampModal, setIsStampModal] = useState<boolean>(false);
   const [isFinishModal, setIsFinishModal] = useState<boolean>(false);
   const handleOnClickStamp = () => {
@@ -30,7 +53,25 @@ const ContactStore = () => {
   const handleOnClickFinish = () => {
     setIsFinishModal(!isFinishModal);
   };
-  const typeStyles = SizeTypeImg68();
+  const typeStyles: {
+    [key: string]: {
+      value: React.JSX.Element;
+    };
+  } = SizeTypeImg68();
+
+  useEffect(() => {
+    const info = getContractInfo(Number(id));
+    info.then((res) => {
+      setData(res);
+      console.log("info", res);
+    });
+  }, [id]);
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
+
+  const returnSVG = (name: string) => {
+    const arr = [Food, Cafe, Culture, Beauty, Etc];
+    return arr[eng.indexOf(name)];
+  };
 
   return (
     <>
@@ -38,7 +79,7 @@ const ContactStore = () => {
         <styled.HeadTitleBox>제휴 가게</styled.HeadTitleBox>
         <styled.ButtonsBox>
           <GrayButton
-            label="2023.01.03 - 2023.12.21"
+            label={data?.startDate + " - " + data?.endDate}
             width={216}
             color="black"
           />
@@ -61,31 +102,38 @@ const ContactStore = () => {
         </styled.ButtonsBox>
         <styled.MainBox>
           <styled.MapBox>
-            <KakaoMap latitude={37.5407625} longitude={127.0740428}>
-              <NameMarker
-                lat={37.5407625}
-                lng={127.0740428}
-                type="음식점"
-                icon={Food}
-                title="릴즈"
-                markerType="음식점"
-              />
+            <KakaoMap
+              latitude={data ? data.latitude : 37.5407625}
+              longitude={data ? data.longitude : 127.0740428}
+            >
+              {data && (
+                <NameMarker
+                  lat={data ? data.latitude : 37.5407625}
+                  lng={data ? data.longitude : 127.0740428}
+                  type={data.category}
+                  icon={""}
+                  title={data ? data?.storeName : ""}
+                  markerType={data ? typeEngtoKor(data?.category) : ""}
+                />
+              )}
             </KakaoMap>
           </styled.MapBox>
           <styled.InfoBox>
             <styled.TopBox>
               <styled.TopIconBox>
-                {typeStyles["음식점"].value}
+                {data ? typeStyles[typeEngtoKor(data.category)]?.value : ""}
               </styled.TopIconBox>
-              <styled.TopTitleBox>릴즈</styled.TopTitleBox>
-              <styled.TopTypeBox>음식점</styled.TopTypeBox>
+              <styled.TopTitleBox>{data?.storeName}</styled.TopTitleBox>
+              <styled.TopTypeBox>
+                {typeEngtoKor(data?.category)}
+              </styled.TopTypeBox>
             </styled.TopBox>
             <styled.StoreInfoContainer>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
                   <Place alt="place icon" width={22} height={22} />
                 </styled.SmallIconBox>
-                <styled.TextBox>서울특별시</styled.TextBox>
+                <styled.TextBox>{/** TODO: address 연결 */}</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
@@ -100,19 +148,19 @@ const ContactStore = () => {
                 <styled.SmallIconBox>
                   <Call alt="Call icon" width={22} height={22} />
                 </styled.SmallIconBox>
-                <styled.TextBox>서울특별시</styled.TextBox>
+                <styled.TextBox>{data?.phoneNumber}</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
                   <Profile alt="profile icon" width={22} height={22} />
                 </styled.SmallIconBox>
-                <styled.TextBox>서울특별시</styled.TextBox>
+                <styled.TextBox>{data?.manager}</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
                   <LinkImg alt="link icon" width={22} height={22} />
                 </styled.SmallIconBox>
-                <styled.TextBox>서울특별시</styled.TextBox>
+                <styled.TextBox>{data?.mapUrl}</styled.TextBox>
               </styled.StoreInfoBox>
             </styled.StoreInfoContainer>
             <styled.DashBoardsBox>

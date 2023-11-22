@@ -11,3 +11,18 @@ type Benefit = {
   content: string;
   type: "FIX" | "RATE" | "MENU";
 };
+
+export type ContractInfo = {
+  benefits: Benefit[];
+  category: "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC" | "NONE";
+  endDate: string;
+  latitude: number;
+  longitude: number;
+  manager: string;
+  mapUrl: string;
+  phoneNumber: string;
+  startDate: string;
+  storeId: number;
+  storeName: string;
+  visitInfo: object;
+};

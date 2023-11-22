@@ -20,3 +20,15 @@ export const getContractBase = async ({
     return null;
   }
 };
+
+export const getContractInfo = async (id: number) => {
+  try {
+    const response = await axiosInstance.get(`/contract/details/${id}`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.response?.data);
+    }
+    return null;
+  }
+};
