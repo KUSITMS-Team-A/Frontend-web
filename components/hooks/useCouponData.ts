@@ -1,17 +1,15 @@
-
 import { getCoupons } from "@/pages/api/coupon";
 import { useEffect, useState } from "react";
-
 
 interface CouponContent {
   couponName: string;
   couponStore: string;
   couponCondition: Array<string>;
   couponQuantity: number;
+  couponId: number;
 }
 
 export const useCouponData = () => {
-
   const [coupons, setCoupons] = useState<CouponContent[]>([]);
 
   // api 호출해서 초기화
@@ -28,7 +26,6 @@ export const useCouponData = () => {
 
     fetchData();
   }, []);
-
 
   return { coupons };
 };

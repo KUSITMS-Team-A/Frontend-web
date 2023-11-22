@@ -1,4 +1,5 @@
 import axios from "axios";
+import { axiosInstance } from "./axiosInstance";
 
 const apiBase = () => {
   const userSession = sessionStorage.getItem("userSession");
@@ -67,6 +68,20 @@ export const createCoupon = async ({
       discount,
       quantity,
     });
+    return response.data;
+  } catch (e) {
+    console.error(`Error 코드 : ${e}`);
+  }
+};
+
+interface DeleteProps {
+  items: number[];
+}
+
+export const deleteCoupons = async ({ items }: DeleteProps) => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_DELETE_COUPONS}?type=COUPON&ids=${items}`;
+    const response = await axiosInstance().delete(url);
     return response.data;
   } catch (e) {
     console.error(`Error 코드 : ${e}`);
