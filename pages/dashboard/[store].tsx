@@ -50,7 +50,7 @@ const StorePage = () => {
           <FirstLayerChart title="신규 방문 인원" content="5" />
         </styles.SecondBox>
         <styles.ThirdBox>
-          <FirstLayerChart title="1인 평균 제휴 횟수" content="1.3회" />
+          <FirstLayerChart title="평균 혜택 이용 수" content="1.3회" />
         </styles.ThirdBox>
         <styles.FourthBox>
           <ComposedChart title="총 판매 금액 & 제휴 제공 금액" />

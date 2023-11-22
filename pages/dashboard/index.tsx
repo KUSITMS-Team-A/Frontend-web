@@ -9,6 +9,7 @@ import StackCharts from "./StackCharts";
 import ListChart from "./ListChart";
 import { useDashBoardData } from "@/components/hooks/useDashBoardData";
 import BarChart from "./BarChart";
+import Filter from "@/components/organisms/Filter";
 
 interface DashBoardProps {}
 interface DateState {
@@ -25,6 +26,10 @@ const DashBoardPage: React.FC = () => {
   const { dateRange, calculateDateRange } = useDateRange();
   const barChartData = useDashBoardData({ selection: 1 }).data;
   const barChartData2 = useDashBoardData({ selection: 2 }).data;
+  const [contentFilter, setContentFilter] = useState<
+    "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
+  >("FOOD");
+
   const [dateFilter, setDateFilter] = useState<DateState>({
     dates: dates.aWeek,
   });
@@ -55,15 +60,15 @@ const DashBoardPage: React.FC = () => {
         </styles.TitleContainer>
 
         <styles.OptionContainer>
-          <styles.ButtonWrapper>
+          {/* <styles.ButtonWrapper>
             <styles.IndexButton>전체</styles.IndexButton>
             <styles.IndexButton>음식점</styles.IndexButton>
             <styles.IndexButton>카페</styles.IndexButton>
             <styles.IndexButton>미용</styles.IndexButton>
             <styles.IndexButton>문화</styles.IndexButton>
             <styles.IndexButton>기타</styles.IndexButton>
-          </styles.ButtonWrapper>
-
+          </styles.ButtonWrapper> */}
+          <Filter setContentFilter={setContentFilter} />
           <styles.ButtonWrapper>
             <styles.IndexButton>최근 7일</styles.IndexButton>
             <styles.IndexButton>최근 14일</styles.IndexButton>
