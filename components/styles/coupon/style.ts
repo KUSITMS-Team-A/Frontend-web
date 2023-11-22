@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 // ------ Container Level ------
 export const Container = styled(FlexTemplate)`
   width: 100%;
+
   min-height: 80vh;
 
   padding: 1% 5%;

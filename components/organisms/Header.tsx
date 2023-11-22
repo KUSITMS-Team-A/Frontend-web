@@ -64,7 +64,7 @@ const Header = () => {
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
-            <Link href="/contact">마이페이지</Link>
+            <Link href="/mypage">마이페이지</Link>
           </UpperMenuItem>
           <UpperMenuItem>
             <NotificationsNoneOutlinedIcon />

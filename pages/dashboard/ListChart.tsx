@@ -11,12 +11,12 @@ interface ListProps {
 
 const ListChart: React.FC<ListProps> = ({ title, contents }) => {
   return (
-    <containerStyle.Container
-    >
+    <containerStyle.Container>
       <containerStyle.TitleBox>
         <containerStyle.Title
           className={css`
-            margin-top: 15px;
+            margin-top: 25px;
+            margin-bottom: 15px;
           `}
         >
           {title}

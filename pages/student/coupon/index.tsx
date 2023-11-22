@@ -3,6 +3,7 @@ import React from "react";
 import * as styles from "@/components/styles/coupon/style";
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
+import Link from "next/link";
 
 const CouponAdminPage: React.FC = () => {
   const router = useRouter();
@@ -47,7 +48,9 @@ const CouponAdminPage: React.FC = () => {
           margin-top: 20px;
         `}
       >
-        <styles.CustomButton primary={true}>등록하기</styles.CustomButton>
+        <styles.CustomButton primary={true}>
+          <Link href="/student/coupon/register">등록하기</Link>
+        </styles.CustomButton>
         <styles.CustomButton primary={false}>삭제하기</styles.CustomButton>
       </div>
     </styles.Container>
