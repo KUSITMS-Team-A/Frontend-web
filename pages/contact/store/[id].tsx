@@ -5,9 +5,9 @@ import { COLORS } from "@/styles/colors";
 import React, { useState } from "react";
 import Benefit from "@/assets/svg/info/Benefit.svg";
 import Call from "@/assets/svg/info/Call.svg";
-import link from "@/assets/svg/info/Link.svg";
-import place from "@/assets/svg/info/place.svg";
-import profile from "@/assets/svg/info/Profile.svg";
+import LinkImg from "@/assets/svg/info/Link.svg";
+import Place from "@/assets/svg/info/place.svg";
+import Profile from "@/assets/svg/info/Profile.svg";
 import NextBtn from "@/assets/svg/NextBtn.svg";
 import Image from "next/image";
 import NameMarker from "@/components/Marker/Name/NameMarker";
@@ -18,6 +18,7 @@ import Etc from "@/assets/svg/Etc.svg";
 import Beauty from "@/assets/svg/Beauty.svg";
 import StampModal from "@/components/organisms/Modal/StampModal";
 import FinishModal from "@/components/organisms/Modal/FinishModal";
+import { SizeTypeImg68 } from "@/utils/TypeImg";
 
 const ContactStore = () => {
   const [isStampModal, setIsStampModal] = useState<boolean>(false);
@@ -29,6 +30,7 @@ const ContactStore = () => {
   const handleOnClickFinish = () => {
     setIsFinishModal(!isFinishModal);
   };
+  const typeStyles = SizeTypeImg68();
 
   return (
     <>
@@ -81,18 +83,13 @@ const ContactStore = () => {
             <styled.StoreInfoContainer>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
-                  <Image src={place} alt="place icon" width={22} height={22} />
+                  <Place alt="place icon" width={22} height={22} />
                 </styled.SmallIconBox>
                 <styled.TextBox>서울특별시</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
-                  <Image
-                    src={Benefit}
-                    alt="Benefit icon"
-                    width={22}
-                    height={22}
-                  />
+                  <Benefit alt="Benefit icon" width={22} height={22} />
                 </styled.SmallIconBox>
                 <styled.TextBox>
                   주문시
@@ -101,24 +98,19 @@ const ContactStore = () => {
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
-                  <Image src={Call} alt="Call icon" width={22} height={22} />
+                  <Call alt="Call icon" width={22} height={22} />
                 </styled.SmallIconBox>
                 <styled.TextBox>서울특별시</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
-                  <Image
-                    src={profile}
-                    alt="profile icon"
-                    width={22}
-                    height={22}
-                  />
+                  <Profile alt="profile icon" width={22} height={22} />
                 </styled.SmallIconBox>
                 <styled.TextBox>서울특별시</styled.TextBox>
               </styled.StoreInfoBox>
               <styled.StoreInfoBox>
                 <styled.SmallIconBox>
-                  <Image src={link} alt="link icon" width={22} height={22} />
+                  <LinkImg alt="link icon" width={22} height={22} />
                 </styled.SmallIconBox>
                 <styled.TextBox>서울특별시</styled.TextBox>
               </styled.StoreInfoBox>
@@ -127,12 +119,7 @@ const ContactStore = () => {
               <styled.DashTopBox>
                 <styled.DashTitleBox>대시보드</styled.DashTitleBox>
                 <styled.NextBox>
-                  <Image
-                    src={NextBtn}
-                    alt="next button"
-                    width={24}
-                    height={24}
-                  />
+                  <NextBtn alt="next button" width={24} height={24} />
                 </styled.NextBox>
               </styled.DashTopBox>
               <styled.DashContainer>
