@@ -54,7 +54,7 @@ const FormPage: React.FC<FormPageProps> = () => {
   const checkBoxInputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
 
-    setFormData((prev) => ({
+    setFormData((prev: any) => ({
       ...prev,
       [name]: checked,
     }));
@@ -63,7 +63,7 @@ const FormPage: React.FC<FormPageProps> = () => {
   const InputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
 
-    setFormData((prev) => ({
+    setFormData((prev: any) => ({
       ...prev,
       [name]: value,
     }));

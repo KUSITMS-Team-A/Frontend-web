@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import * as styles from "./Inputs.style";
+import * as styles from "@/components/styles/Inputs.style";
 import { css } from "@emotion/css";
 import { FilledInput, IconButton, InputAdornment } from "@mui/material";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
@@ -169,7 +169,7 @@ const Inputs: React.FC = () => {
               </styles.BoxWithCheckBox>
               <DateTimePicker
                 label="선택해주세요"
-                onChange={(newValue) => {
+                onChange={(newValue: any) => {
                   let date = `${newValue.$y}-${newValue.$M}-${newValue.$D} ${newValue.$H}:${newValue.$m}`;
                   console.log(date);
                   setFormData((prev) => ({

@@ -19,7 +19,7 @@ TODO:
 const Header = () => {
   const router = useRouter();
   const { openModal } = useModal();
-  const [userSessionData, setUserSessionData] = useState();
+  const [userSessionData, setUserSessionData] = useState<string | null>(null);
 
   const setLogout = useSetRecoilState(initialState);
 
@@ -45,7 +45,6 @@ const Header = () => {
     });
   };
 
-
   return (
     <HeaderFrame>
       <Logo
@@ -59,7 +58,6 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
-
           <UpperMenuItem
             onClick={() => {
               if (userSessionData) {
@@ -79,9 +77,7 @@ const Header = () => {
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
-
             <Link href="/mypage">마이페이지</Link>
-
           </UpperMenuItem>
           <UpperMenuItem>
             <NotificationsNoneOutlinedIcon />
@@ -91,7 +87,6 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <LowerMenuItem>
-
             <Link href="/dashboard">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>

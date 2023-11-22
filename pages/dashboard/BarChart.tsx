@@ -1,11 +1,11 @@
 import React from "react";
-import * as ChartStyles from "./SecondBox.styles";
+import * as ChartStyles from "../../components/styles/SecondBox.styles";
 import { Bar, ResponsiveContainer, BarChart, XAxis } from "recharts";
 
 interface DataProps {
   title: string;
   data: Array<ChartElement>;
-  color: string;
+  color?: string;
 }
 
 interface ChartElement {

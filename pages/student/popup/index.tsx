@@ -40,7 +40,9 @@ const PopupAdminPage: React.FC = () => {
                 <styles.ListContent>{element.content}</styles.ListContent>
                 <styles.ListStore>
                   <styles.InfoBox>
-                    {element.endDate}/{element.reservation}
+
+                    {element.content}/{element.reservation}
+
                   </styles.InfoBox>
                 </styles.ListStore>
                 <styles.DeleteElement>

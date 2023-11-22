@@ -10,7 +10,7 @@ interface ThirdBoxProps {
   children?: ReactNode;
 }
 
-import * as styles from "./SecondBox.styles";
+import * as styles from "../../components/styles/SecondBox.styles";
 
 const ThirdBox: React.FC<ThirdBoxProps> = () => {
   return (
@@ -39,7 +39,7 @@ const ThirdBox: React.FC<ThirdBoxProps> = () => {
               type="monotone"
               dataKey="uv"
               stroke="#8884d8"
-              fill="#8884d8"
+              fill="#0E6EFF"
             />
           </AreaChart>
         </ResponsiveContainer>

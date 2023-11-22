@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import * as styles from "./SecondBox.styles";
+import * as styles from "../../components/styles/SecondBox.styles";
 import { Pie, PieChart, ResponsiveContainer, Sector, Tooltip } from "recharts";
 interface SecondBoxProps {
   children?: ReactNode;
@@ -15,7 +15,7 @@ const data01 = [
 const SecondBox: React.FC<SecondBoxProps> = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const onPieEnter = (_, index) => {
+  const onPieEnter = (_: any, index: any) => {
     setActiveIndex(index);
   };
 
@@ -46,7 +46,7 @@ const SecondBox: React.FC<SecondBoxProps> = () => {
   );
 };
 
-const renderActiveShape = (props) => {
+const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
   const {
     cx,
@@ -93,13 +93,14 @@ const renderActiveShape = (props) => {
         innerRadius={outerRadius + 6}
         outerRadius={outerRadius + 10}
         fill={fill}
+        color="#0E6EFF"
       />
       <path
         d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`}
         stroke={fill}
         fill="none"
       />
-      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
+      <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" color="#0E6EFF" />
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}

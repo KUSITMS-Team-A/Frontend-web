@@ -82,7 +82,7 @@ const DashBoardPage: React.FC = () => {
               <FirstLayerChart title="누적 혜택" content="143,000" />
             </styles.SecondBox>
             <styles.ThirdBox>
-              <FirstLayerChart title="목표 달성률" content="46%" />
+              <FirstLayerChart title="평균 혜택 이용 수" content="2.4회" />
             </styles.ThirdBox>
           </styles.FirstLayer>
           <styles.SecondLayer>
@@ -107,10 +107,18 @@ const DashBoardPage: React.FC = () => {
           </styles.SecondLayer>
           <styles.ThirdLayer>
             <styles.SeventhBox>
-              <BarChart title="주 이용 요일" data={barChartData} />
+              <BarChart
+                title="주 이용 요일"
+                data={barChartData}
+                color="#3D4149"
+              />
             </styles.SeventhBox>
             <styles.EightthBox>
-              <BarChart title="학과 별 이용량 순위" data={barChartData2} />
+              <BarChart
+                title="학과 별 이용량 순위"
+                data={barChartData2}
+                color="#0E6EFF"
+              />
             </styles.EightthBox>
           </styles.ThirdLayer>
         </styles.ContentsContainer>
