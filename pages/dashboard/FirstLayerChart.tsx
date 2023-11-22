@@ -19,6 +19,7 @@ export default FirstLayerChart;
 const Container = styled.div`
   width: 100%;
 
+  row-gap: 10px;
   border-radius: 10px;
   border: 1px solid var(--g1, #c6c6c6);
   background: #fff;

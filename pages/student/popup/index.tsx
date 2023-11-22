@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import * as styles from "@/components/styles/coupon/style";
 import { css } from "@emotion/css";
-import { useCouponData } from "@/components/hooks/useCouponData";
 import { usePopupData } from "@/components/hooks/usePopupData";
+import EmptyComponent from "@/components/atoms/EmptyComponent";
 
 const PopupAdminPage: React.FC = () => {
   const router = useRouter();
@@ -27,14 +27,27 @@ const PopupAdminPage: React.FC = () => {
           <styles.InfoLabel>정보제공</styles.InfoLabel>
         </styles.LabelBox>
         <styles.ListBox>
-          {popups &&
+          {popups.length !== 0 ? (
             popups.map((element, index) => (
               <styles.ListElement key={index}>
                 <styles.ListIndex>{index + 1}</styles.ListIndex>
                 <styles.ListContent>{element.title}</styles.ListContent>
                 <styles.ListStore>{element.period}</styles.ListStore>
               </styles.ListElement>
-            ))}
+            ))
+          ) : (
+            <div
+              className={css`
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              `}
+            >
+              <EmptyComponent />
+            </div>
+          )}
         </styles.ListBox>
       </styles.ContentsBox>
       <div
