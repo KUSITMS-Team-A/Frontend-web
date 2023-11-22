@@ -3,12 +3,12 @@ import * as templateStyle from "@/components/styles/coupon/style";
 import * as styles from "@/components/styles/coupon/register/style";
 import Inputs from "./Inputs";
 
-const CouponRegisterPage: React.FC = () => {
+const PopupRegisterPage: React.FC = () => {
   return (
     <templateStyle.Container>
       <templateStyle.TitleBox>
-        <templateStyle.Title>쿠폰 등록</templateStyle.Title>
-        <templateStyle.SubTitle>홈 / 쿠폰 / 쿠폰등록</templateStyle.SubTitle>
+        <templateStyle.Title>팝업 등록</templateStyle.Title>
+        <templateStyle.SubTitle>홈 / 팝업 / 팝업등록</templateStyle.SubTitle>
         <styles.PreviewButton>미리보기</styles.PreviewButton>
       </templateStyle.TitleBox>
       <styles.ContentsBox>
@@ -18,4 +18,4 @@ const CouponRegisterPage: React.FC = () => {
   );
 };
 
-export default CouponRegisterPage;
+export default PopupRegisterPage;

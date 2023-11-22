@@ -8,7 +8,7 @@ export const PreviewButton = styled(FlexTemplate)`
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  width: 100px;
+  width: 130px;
 
   align-self: flex-end;
 

@@ -4,6 +4,7 @@ import * as styles from "@/components/styles/coupon/style";
 import { css } from "@emotion/css";
 import { usePopupData } from "@/components/hooks/usePopupData";
 import EmptyComponent from "@/components/atoms/EmptyComponent";
+import Link from "next/link";
 
 const PopupAdminPage: React.FC = () => {
   const router = useRouter();
@@ -60,7 +61,9 @@ const PopupAdminPage: React.FC = () => {
           margin-top: 20px;
         `}
       >
-        <styles.CustomButton primary={true}>등록하기</styles.CustomButton>
+        <styles.CustomButton primary={true}>
+          <Link href="/student/popup/register">등록하기</Link>
+        </styles.CustomButton>
         <styles.CustomButton primary={false}>삭제하기</styles.CustomButton>
       </div>
     </styles.Container>
