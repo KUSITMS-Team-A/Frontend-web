@@ -2,9 +2,13 @@ import SearchInput from "@/components/SearchInput";
 import Filter from "@/components/organisms/Filter";
 import * as styles from "@/components/styles/Contact.styles";
 import SearchIcon from "@/assets/svg/Search.svg";
-import { SizeTypeImg25, SizeTypeImg49 } from "@/utils/TypeImg";
+import {
+  SizeTypeImg25,
+  SizeTypeImg49,
+  SizeTypeImgSmall,
+} from "@/utils/TypeImg";
 import Image from "next/image";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import Food from "@/assets/svg/Food.svg";
 import Cafe from "@/assets/svg/Cafe.svg";
 import Culture from "@/assets/svg/Culture.svg";
@@ -13,29 +17,39 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import DashBoard from "@/assets/svg/SmallDashBoardIcon.svg";
 import Modal from "@/components/organisms/Modal/Modal";
 import CloseIcon from "@/assets/svg/Close.svg";
+import { getContractBase } from "../api/ContractAPI";
+import { ContractListInfo } from "@/@types/Contract";
+import { typeIcon } from "@/components/Marker/Icon/IconMarker";
+type TypeIcon = {
+  [key: string]: {
+    value: JSX.Element;
+  };
+};
 
 export default function Contact() {
-  const typeIcon25 = SizeTypeImg25();
+  const [data, setData] = useState<ContractListInfo[]>();
+  const typeIcon25 = SizeTypeImgSmall();
   const typeIcon49 = SizeTypeImg49();
-  const typeStyles: { [key: string]: { value: ReactNode } } = {
-    음식점: {
-      value: <Image src={Food} alt="food marker" width={24} height={24} />,
-    },
-    카페: {
-      value: <Image src={Cafe} alt="cafe marker" width={24} height={24} />,
-    },
-    미용: {
-      value: <Image src={Beauty} alt="Beauty marker" width={24} height={24} />,
-    },
-    문화: {
-      value: (
-        <Image src={Culture} alt="Culture marker" width={24} height={24} />
-      ),
-    },
-    기타: {
-      value: <Image src={Etc} alt="Etc marker" width={24} height={24} />,
-    },
+
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
+
+  const typeEngtoKor = (name: string) => {
+    const kor = ["음식점", "카페", "문화", "미용", "기타"];
+    return kor[eng.indexOf(name)];
   };
+
+  useEffect(() => {
+    const baseData = getContractBase({
+      isPicked: false,
+      name: "",
+      category: "NONE",
+      pageNumber: 0,
+    });
+    baseData.then((res) => {
+      setData(res?.contractedStores);
+      console.log(res?.contractedStores);
+    });
+  }, []);
 
   const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
   const [contentFilter, setContentFilter] = useState<
@@ -45,6 +59,7 @@ export default function Contact() {
   const handleOnClickSearchBtn = () => {
     setIsSearchModalOpen(!isSearchModalOpen);
   };
+
   return (
     <>
       <styles.Container>
@@ -72,22 +87,36 @@ export default function Contact() {
           </styles.ButtonBox>
         </styles.MiddleBox>
         <styles.MainBox>
-          <styles.StoreContainer>
-            <styles.StoreTopBox>
-              <styles.StoreIconBox>
-                {typeIcon25["음식점"].value}
-              </styles.StoreIconBox>
-              <styles.StoreTypeBox>음식점</styles.StoreTypeBox>
-              <styles.DashBoardIcon>
-                <DashBoard alt="dash board icon" width={24} height={24} />
-              </styles.DashBoardIcon>
-            </styles.StoreTopBox>
-            <styles.StoreNameBox>제대로 미용실</styles.StoreNameBox>
-            <styles.BenefitBox>
-              <styles.ConditionBox>주문시</styles.ConditionBox>
-              <styles.PercentBox>24% 할인</styles.PercentBox>
-            </styles.BenefitBox>
-          </styles.StoreContainer>
+          {data?.map((el) => {
+            return (
+              <styles.StoreContainer key={el.storeId}>
+                <styles.StoreTopBox>
+                  <styles.StoreIconBox>
+                    {typeIcon[typeEngtoKor(el.category)]?.value || null}
+                  </styles.StoreIconBox>
+                  <styles.StoreTypeBox>
+                    {typeEngtoKor(el.category)}
+                  </styles.StoreTypeBox>
+                  <styles.DashBoardIcon>
+                    <DashBoard alt="dash board icon" width={24} height={24} />
+                  </styles.DashBoardIcon>
+                </styles.StoreTopBox>
+                <styles.StoreNameBox>{el.storeName}</styles.StoreNameBox>
+                <styles.BenefitBox>
+                  <styles.ConditionBox>
+                    {el.benefits[0].content}
+                  </styles.ConditionBox>
+                  <styles.PercentBox>
+                    {el.benefits[0].type === "RATE"
+                      ? el.benefits[0].amount + "% 할인"
+                      : el.benefits[0].type === "FIX"
+                      ? el.benefits[0].amount + "원 할인"
+                      : el.benefits[0].content}
+                  </styles.PercentBox>
+                </styles.BenefitBox>
+              </styles.StoreContainer>
+            );
+          })}
         </styles.MainBox>
       </styles.Container>
       {isSearchModalOpen && (
