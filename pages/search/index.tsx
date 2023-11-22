@@ -1,9 +1,9 @@
 import KakaoMap from "@/components/Map";
-import Storelist from "@/components/Storelist";
+import Storelist, { SProps } from "@/components/Storelist";
 import * as styles from "@/components/styles/Search.styles";
-import Image from "next/image";
 import FullHeart from "@/assets/svg/FullHeart.svg";
-import { useState } from "react";
+import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
+import { useEffect, useState } from "react";
 import Filter from "@/components/organisms/Filter";
 import SearchInput from "@/components/SearchInput";
 import NameMarker from "@/components/Marker/Name/NameMarker";
@@ -15,15 +15,28 @@ import Beauty from "@/assets/svg/Beauty.svg";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
 import IconMarker from "@/components/Marker/Icon/IconMarker";
+import { FilterProps, getStoreBase, getStoreWithFilter } from "../api/StoreAPI";
+import { StoreMapListInfo } from "@/@types/Store";
 
 export default function SearchHome() {
+  const [data, setData] = useState<StoreMapListInfo[]>();
+  const [input, setInput] = useState<string>("");
+  const [operateFilter, setOperateFilter] = useState<FilterProps>({
+    isPicked: false,
+    name: "",
+    category: "NONE",
+    pageNumber: 0,
+  });
+  const [contentFilter, setContentFilter] = useState<
+    "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
+  >("NONE");
   const [isSearch, setIsSearch] = useState(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
-  const eng = ["Food", "Cafe", "Culture", "Beauty", "Etc"];
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
   const typeEngtoKor = (name: string) => {
     const kor = ["음식점", "카페", "문화", "미용", "기타"];
-    return kor[eng.indexOf(name)];
+    return kor[eng.indexOf(name)] as SProps["type"];
   };
 
   const returnSVG = (name: string) => {
@@ -31,17 +44,68 @@ export default function SearchHome() {
     return arr[eng.indexOf(name)];
   };
 
+  useEffect(() => {
+    const baseData = getStoreBase();
+    baseData.then((res) => {
+      if (res !== null) {
+        setData(res.stores);
+        console.log("res", res.stores);
+      }
+    });
+  }, []);
+
+  // 가게 타입 필터를 누를때마다 실행되는 함수
+  useEffect(() => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      category: contentFilter,
+    }));
+  }, [contentFilter]);
+
+  // 필터가 바뀔때마다 실행되는 함수
+  useEffect(() => {
+    const filterData = getStoreWithFilter({
+      isPicked: operateFilter.isPicked,
+      name: operateFilter.name,
+      category: operateFilter.category,
+      pageNumber: operateFilter.pageNumber,
+    });
+    filterData.then((res) => {
+      if (res !== null) {
+        setData(res.stores || []);
+        console.log("operateF", res.stores);
+      }
+    });
+  }, [operateFilter]);
+
+  const handleOnClickPick = () => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      isPicked: !operateFilter.isPicked,
+    }));
+  };
+
   return (
     <styles.Container>
       <styles.TitleBox>가게 찾기</styles.TitleBox>
       <styles.MiddleBox>
-        <Filter />
+        <Filter setContentFilter={setContentFilter} />
         {/** TODO: 누르면 expand로 변경되도록 */}
         <styles.FilterEndBox>
-          <SearchInput isSearch={isSearch} setIsSearch={setIsSearch} />
-          <styles.HeartBox>
+          <SearchInput
+            input={input}
+            setInput={setInput}
+            setOperateFilter={setOperateFilter}
+            isSearch={isSearch}
+            setIsSearch={setIsSearch}
+          />
+          <styles.HeartBox onClick={handleOnClickPick}>
             <styles.HeartIconBox>
-              <Image src={FullHeart} alt="FullHeart" />
+              {operateFilter.isPicked ? (
+                <FullHeart alt="pick" />
+              ) : (
+                <EmptyHeart alt="not pick" />
+              )}
             </styles.HeartIconBox>
             <styles.HeartTextBox>픽한 업체</styles.HeartTextBox>
           </styles.HeartBox>
@@ -62,76 +126,47 @@ export default function SearchHome() {
               />
             ) : (
               <>
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0790428}
-                  type="Food"
-                  icon={Food}
-                />
-                <IconMarker
-                  lat={37.5380625}
-                  lng={127.0700328}
-                  type="Beauty"
-                  icon={Beauty}
-                />
-                <IconMarker
-                  lat={37.5437625}
-                  lng={127.0740428}
-                  type="Cafe"
-                  icon={Cafe}
-                />
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0720428}
-                  type="Etc"
-                  icon={Etc}
-                />
-                <IconMarker
-                  lat={37.5407625}
-                  lng={127.0670428}
-                  type="Culture"
-                  icon={Culture}
-                />
-                <NameMarker
-                  lat={37.5437625}
-                  lng={127.0670428}
-                  type="음식점"
-                  icon={Food}
-                  title="릴즈"
-                  markerType="음식"
-                />
+                {data &&
+                  data.map((el, idx) => {
+                    return idx === 1 ? (
+                      <NameMarker
+                        lat={el.latitude}
+                        lng={el.longitude}
+                        type={el.category}
+                        icon={returnSVG(typeEngtoKor(el.category))}
+                        title={el.storeName}
+                        markerType={el.category}
+                      />
+                    ) : (
+                      <IconMarker
+                        key={el.storeId}
+                        lat={el.latitude}
+                        lng={el.longitude}
+                        type={el.category}
+                      />
+                    );
+                  })}
               </>
             )}
           </KakaoMap>
         </styles.MapBox>
         <styles.ListsBox>
-          <Storelist
-            title="릴즈"
-            type="음식점"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5407625}
-            lng={127.0790428}
-          />
-          <Storelist
-            title="566"
-            type="음식점"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5380625}
-            lng={127.0700328}
-          />
-          <Storelist
-            title="rfhf"
-            type="카페"
-            description="아메리칸"
-            place="서울특별시"
-            distance={176}
-            lat={37.5380625}
-            lng={127.0700328}
-          />
+          {data?.map((el) => {
+            return (
+              <Storelist
+                key={el.storeId}
+                isPicked={el.isPicked}
+                storeId={el.storeId}
+                title={el.storeName}
+                type={typeEngtoKor(el.category)}
+                description={el.description}
+                place={el.address}
+                distance={Math.floor(el.distance)}
+                lat={el.latitude}
+                lng={el.longitude}
+              />
+            );
+          })}
         </styles.ListsBox>
       </styles.MainBox>
     </styles.Container>

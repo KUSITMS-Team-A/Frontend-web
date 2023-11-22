@@ -1,18 +1,29 @@
 import * as styles from "@/components/styles/Search.styles";
-import uCafe from "@/assets/svg/unselect/uCafe.svg";
-import uCulture from "@/assets/svg/unselect/uCulture.svg";
-import uEtc from "@/assets/svg/unselect/uEtc.svg";
-import uFood from "@/assets/svg/unselect/uFood.svg";
-import uBeauty from "@/assets/svg/unselect/uBeauty.svg";
-import Image from "next/image";
-import { SizeTypeImg } from "@/utils/TypeImg";
+import UCafe from "@/assets/svg/unselect/uCafe.svg";
+import UCulture from "@/assets/svg/unselect/uCulture.svg";
+import UEtc from "@/assets/svg/unselect/uEtc.svg";
+import UFood from "@/assets/svg/unselect/uFood.svg";
+import UBeauty from "@/assets/svg/unselect/uBeauty.svg";
+import { SizeTypeImg25 } from "@/utils/TypeImg";
 import { ReactNode, useState } from "react";
+import { useRecoilState } from "recoil";
+import { NewClickStore } from "@/states/Store";
 
 interface FProps {
   AllCount?: number;
+  setContentFilter: Function;
 }
 
-const Filter = ({ AllCount = -1 }: FProps) => {
+const Filter = ({ AllCount = -1, setContentFilter }: FProps) => {
+  const [clickStore, setClickStore] = useRecoilState(NewClickStore);
+
+  const kor = ["음식점", "카페", "문화", "미용", "기타"];
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
+
+  const typeKorToEng = (name: string) => {
+    return eng[kor.indexOf(name)];
+  };
+
   const [isAll, setIsAll] = useState(true);
   const [filterState, setFilterState] = useState([
     false,
@@ -25,6 +36,14 @@ const Filter = ({ AllCount = -1 }: FProps) => {
   const handleOnClickAll = () => {
     setIsAll(!isAll);
     setFilterState([false, false, false, false, false]);
+    setContentFilter("NONE");
+    setClickStore({
+      isClick: false,
+      name: "",
+      type: "",
+      lat: 0,
+      lng: 0,
+    });
   };
 
   const handleOnClickFilter = (idx: number) => {
@@ -32,6 +51,13 @@ const Filter = ({ AllCount = -1 }: FProps) => {
     setFilterState((prevState) =>
       prevState.map((value, index) => (index === idx ? true : false))
     );
+    setClickStore({
+      isClick: false,
+      name: "",
+      type: "",
+      lat: 0,
+      lng: 0,
+    });
   };
 
   const filterName: ("음식점" | "카페" | "미용" | "문화" | "기타")[] = [
@@ -44,23 +70,23 @@ const Filter = ({ AllCount = -1 }: FProps) => {
 
   const typeStyles: { [key: string]: { value: ReactNode } } = {
     음식점: {
-      value: <Image src={uFood} alt="food marker" width={30} height={30} />,
+      value: <UFood alt="food marker" width={30} height={30} />,
     },
     카페: {
-      value: <Image src={uCafe} alt="cafe marker" width={30} height={30} />,
+      value: <UCafe alt="cafe marker" width={30} height={30} />,
     },
     미용: {
-      value: <Image src={uBeauty} alt="Beauty marker" width={30} height={30} />,
+      value: <UBeauty alt="Beauty marker" width={30} height={30} />,
     },
     문화: {
-      value: (
-        <Image src={uCulture} alt="Culture marker" width={30} height={30} />
-      ),
+      value: <UCulture alt="Culture marker" width={30} height={30} />,
     },
     기타: {
-      value: <Image src={uEtc} alt="Etc marker" width={30} height={30} />,
+      value: <UEtc alt="Etc marker" width={30} height={30} />,
     },
   };
+
+  const typeIcon25 = SizeTypeImg25();
 
   return (
     <styles.FiltersBox>
@@ -71,12 +97,13 @@ const Filter = ({ AllCount = -1 }: FProps) => {
         return (
           <styles.FilterComponentBox
             key={el}
-            onClick={() => handleOnClickFilter(idx)}
+            onClick={() => {
+              handleOnClickFilter(idx);
+              setContentFilter(typeKorToEng(el));
+            }}
           >
             <styles.FilterIconBox>
-              {filterState[idx]
-                ? SizeTypeImg(30)[el].value
-                : typeStyles[el].value}
+              {filterState[idx] ? typeIcon25[el].value : typeStyles[el].value}
             </styles.FilterIconBox>
             <styles.FilterText type={filterState[idx]}>{el}</styles.FilterText>
           </styles.FilterComponentBox>

@@ -76,6 +76,7 @@ export const SearchBox = styled.div`
   gap: 20px;
   border-radius: 30px;
   background: #f7f7f7;
+  cursor: pointer;
 `;
 
 export const SearchExpandBox = styled.div`
@@ -109,17 +110,20 @@ export const SearchIconBox = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
 `;
 
 export const HeartBox = styled.div`
   display: flex;
   align-items: center;
   margin-left: 15px;
+  cursor: pointer;
 `;
 
 export const HeartIconBox = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const HeartTextBox = styled.div`
@@ -199,11 +203,12 @@ export const NameBox = styled.div`
   font-family: Pretendard Variable;
   font-size: 21px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 19.264px; /* 91.732% */
   letter-spacing: -1.26px;
   display: flex;
   align-items: center;
+  max-width: 245px;
 `;
 
 export const StoreTypeBox = styled.div`

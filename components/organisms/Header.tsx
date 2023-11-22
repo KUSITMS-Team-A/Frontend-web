@@ -35,12 +35,11 @@ const Header = () => {
       </UserMenu>
       <DefaultMenu>
         <ul>
-
           <LowerMenuItem>
             <Link href="/">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>
-            <Link href="/">가게찾기</Link>
+            <Link href="/search">가게찾기</Link>
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/apply">제휴가게</Link>
@@ -56,7 +55,6 @@ const Header = () => {
               </SubDropdownMenuItem>
             </SubDropdownMenu>
           </LowerMenuItem>
-
         </ul>
       </DefaultMenu>
     </HeaderFrame>

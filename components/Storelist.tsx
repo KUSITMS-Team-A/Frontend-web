@@ -1,16 +1,16 @@
 import * as styles from "@/components/styles/Search.styles";
-import Image from "next/image";
 import DownArrow from "@/assets/svg/DownArrow.svg";
 import UpArrow from "@/assets/svg/UpArrow.svg";
 import EmptyHeart from "@/assets/svg/EmptyHeart.svg";
 import FullHeart from "@/assets/svg/FullHeart.svg";
-import { useState } from "react";
-import { SizeTypeImg } from "@/utils/TypeImg";
+import { useEffect, useState } from "react";
+import { SizeTypeImg68 } from "@/utils/TypeImg";
 import StoreInfo from "./StoreInfo";
 import { useRecoilState } from "recoil";
 import { NewClickStore } from "@/states/Store";
+import { deletePickStore, postPickStore } from "@/pages/api/StoreAPI";
 
-interface SProps {
+export interface SProps {
   type: "음식점" | "카페" | "문화" | "미용" | "기타";
   title: string;
   description: string;
@@ -18,9 +18,11 @@ interface SProps {
   distance: number;
   lat: number;
   lng: number;
+  storeId: number;
+  isPicked: boolean;
 }
 
-const typeStyles = SizeTypeImg(68);
+const typeStyles = SizeTypeImg68();
 
 const Storelist = ({
   type,
@@ -30,13 +32,22 @@ const Storelist = ({
   description,
   lat,
   lng,
+  storeId,
+  isPicked,
 }: SProps) => {
-  const [isClick, setIsClick] = useState<boolean>(false);
+  useEffect(() => {}, [isPicked]);
+
+  const [isClick, setIsClick] = useState<boolean>(isPicked);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [clickStore, setClickStore] = useRecoilState(NewClickStore);
 
   const handleOnClickHeart = () => {
     setIsClick(!isClick);
+    if (!isPicked) {
+      postPickStore(storeId);
+    } else {
+      deletePickStore(storeId);
+    }
   };
 
   const handleOnClickOpen = () => {
@@ -71,9 +82,9 @@ const Storelist = ({
             <styles.StoreTypeBox>{type}</styles.StoreTypeBox>
             <styles.StoreHeartBox onClick={handleOnClickHeart}>
               {isClick ? (
-                <Image src={FullHeart} alt="FullHeart" />
+                <FullHeart alt="FullHeart" />
               ) : (
-                <Image src={EmptyHeart} alt="emptyHeart" />
+                <EmptyHeart alt="emptyHeart" />
               )}
             </styles.StoreHeartBox>
           </styles.InfoTopBox>
@@ -85,7 +96,7 @@ const Storelist = ({
         </styles.InfoContainerBox>
       </styles.ListTopBox>
       <styles.ListBottomBox>
-        {isOpen && <StoreInfo />}
+        {isOpen && <StoreInfo storeId={storeId} />}
 
         <styles.InfoContainerBox>
           <styles.DownBtnBox
@@ -93,20 +104,14 @@ const Storelist = ({
             onClick={handleOnClickOpen}
           >
             {isOpen ? (
-              <Image
+              <UpArrow
                 style={{ marginTop: "35px" }}
-                src={UpArrow}
                 alt="up arrow button"
                 width={20}
                 height={20}
               />
             ) : (
-              <Image
-                src={DownArrow}
-                alt="down arrow button"
-                width={20}
-                height={20}
-              />
+              <DownArrow alt="down arrow button" width={20} height={20} />
             )}
           </styles.DownBtnBox>
         </styles.InfoContainerBox>
