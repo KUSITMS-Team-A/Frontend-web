@@ -22,6 +22,7 @@ export const FlexBox = styled.div<HorizontalBox>`
   flex-flow: ${(props) => (props?.column ? "column nowrap" : "row nowrap")};
 `;
 
+
 export const NumberBall = styled.div`
   width: 24px;
   height: 24px;
@@ -42,3 +43,4 @@ export const GridTemplate = styled.div`
 export const FlexTemplate = styled.div`
   display: flex;
 `;
+

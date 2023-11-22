@@ -1,4 +1,5 @@
 import Head from "next/head";
+
 import styled from "@emotion/styled";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       </Container>
     </>
   );
+
 }
 
 const Container = styled.div`

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+
 import React, { useEffect, useState } from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
@@ -36,6 +37,7 @@ const Header = () => {
     });
   };
 
+
   return (
     <HeaderFrame>
       <Logo
@@ -49,6 +51,7 @@ const Header = () => {
       />
       <UserMenu>
         <ul>
+
           <UpperMenuItem
             onClick={() => {
               if (userSessionData) {
@@ -60,11 +63,14 @@ const Header = () => {
           >
             {userSessionData ? "로그인" : "로그아웃"}
           </UpperMenuItem>
+
           <UpperMenuItem>
             <Link href="/user">회원가입</Link>
           </UpperMenuItem>
           <UpperMenuItem>
+
             <Link href="/mypage">마이페이지</Link>
+
           </UpperMenuItem>
           <UpperMenuItem>
             <NotificationsNoneOutlinedIcon />
@@ -74,6 +80,7 @@ const Header = () => {
       <DefaultMenu>
         <ul>
           <LowerMenuItem>
+
             <Link href="/dashboard">대시보드</Link>
           </LowerMenuItem>
           <LowerMenuItem>
@@ -81,6 +88,7 @@ const Header = () => {
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">제휴가게</Link>
+
           </LowerMenuItem>
           <LowerMenuItem>
             <Link href="/">학생관리</Link>
