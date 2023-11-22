@@ -17,7 +17,7 @@ export const typeIcon: TypeIcon = SizeTypeImg25();
 
 const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
-const typeEngtoKor = (name: string) => {
+export const typeEngtoKor = (name: string) => {
   const kor = ["음식점", "카페", "문화", "미용", "기타"];
   return kor[eng.indexOf(name)];
 };

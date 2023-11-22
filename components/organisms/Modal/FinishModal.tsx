@@ -3,8 +3,7 @@ import Modal from "./Modal";
 import styled from "@emotion/styled";
 import Button from "../Button";
 import CloseIcon from "@/assets/svg/Close.svg";
-import Image from "next/image";
-import { SizeTypeImg } from "@/utils/TypeImg";
+import { SizeTypeImg57 } from "@/utils/TypeImg";
 
 interface Props {
   title: string;
@@ -17,13 +16,13 @@ const FinishModal = ({ setIsFinishModal, title, type }: Props) => {
     setIsFinishModal(false);
   };
 
-  const typeStyles = SizeTypeImg(57);
+  const typeStyles = SizeTypeImg57();
 
   return (
     <Modal>
       <Container>
         <ModalCloseBox onClick={handleOnClickStamp}>
-          <Image src={CloseIcon} alt="close icon" width={32} height={32} />
+          <CloseIcon alt="close icon" width={32} height={32} />
         </ModalCloseBox>
         <BigMarkerContainer>
           <MarkerIconBox>{typeStyles[type].value}</MarkerIconBox>

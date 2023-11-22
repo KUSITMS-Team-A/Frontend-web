@@ -5,7 +5,9 @@ import Image from "next/image";
 import CloseIcon from "@/assets/svg/Close.svg";
 import Button from "../Button";
 import { COLORS } from "@/styles/colors";
-
+import { Checkbox } from "@mui/material";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import CircleIcon from "@mui/icons-material/Circle";
 interface Props {
   setIsStampModal: Function;
 }
@@ -39,7 +41,7 @@ const StampModal = ({ setIsStampModal }: Props) => {
     <Modal>
       <Container>
         <ModalCloseBox onClick={handleOnClickStamp}>
-          <Image src={CloseIcon} alt="close icon" width={32} height={32} />
+          <CloseIcon alt="close icon" width={32} height={32} />
         </ModalCloseBox>
         <TitleBox>2배 스탬프 적용</TitleBox>
         <InfoBox>
@@ -66,12 +68,22 @@ const StampModal = ({ setIsStampModal }: Props) => {
           </DayBox>
           <InfoTitleBox>2. 조건 유무</InfoTitleBox>
           <ConditionBox>
-            <CheckIconBox>{/** TODO: svg 적용하기 */}</CheckIconBox>
+            <CheckIconBox>
+              <Checkbox
+                icon={<CircleIcon />}
+                checkedIcon={<CheckCircleIcon />}
+              />
+            </CheckIconBox>
             <CheckTextBox>n명 달성 시 종료</CheckTextBox>
           </ConditionBox>
           <PersonBox></PersonBox>
           <ConditionBox>
-            <CheckIconBox>{/** TODO: svg 적용하기 */}</CheckIconBox>
+            <CheckIconBox>
+              <Checkbox
+                icon={<CircleIcon />}
+                checkedIcon={<CheckCircleIcon />}
+              />
+            </CheckIconBox>
             <CheckTextBox>제한 인원 X</CheckTextBox>
           </ConditionBox>
         </InfoBox>
@@ -150,12 +162,13 @@ const ConditionBox = styled.div`
 const CheckIconBox = styled.div``;
 
 const CheckTextBox = styled.div`
-  margin-left: 8px;
   color: #000;
   font-size: 16px;
   font-weight: 400;
   line-height: 19.264px; /* 120.399% */
   letter-spacing: -1.12px;
+  display: flex;
+  align-items: center;
 `;
 
 const PersonBox = styled.div`

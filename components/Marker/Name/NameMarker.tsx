@@ -19,7 +19,6 @@ const NameMarker = ({
   lat,
   lng,
   type = "CULTURE",
-  icon,
   title,
   markerType,
 }: NameMarkerProps) => {
