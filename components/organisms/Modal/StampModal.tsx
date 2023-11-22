@@ -39,7 +39,7 @@ const StampModal = ({ setIsStampModal }: Props) => {
     <Modal>
       <Container>
         <ModalCloseBox onClick={handleOnClickStamp}>
-          <Image src={CloseIcon} alt="close icon" width={32} height={32} />
+          <CloseIcon alt="close icon" width={32} height={32} />
         </ModalCloseBox>
         <TitleBox>2배 스탬프 적용</TitleBox>
         <InfoBox>

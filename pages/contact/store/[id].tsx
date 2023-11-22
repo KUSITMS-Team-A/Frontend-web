@@ -68,9 +68,16 @@ const ContactStore = () => {
   }, [id]);
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
-  const returnSVG = (name: string) => {
-    const arr = [Food, Cafe, Culture, Beauty, Etc];
-    return arr[eng.indexOf(name)];
+  const typeEngtoKor = (
+    name: string
+  ): "음식점" | "카페" | "문화" | "미용" | "기타" => {
+    const kor = ["음식점", "카페", "문화", "미용", "기타"];
+    return kor[eng.indexOf(name)] as
+      | "음식점"
+      | "카페"
+      | "문화"
+      | "미용"
+      | "기타";
   };
 
   return (
@@ -191,8 +198,8 @@ const ContactStore = () => {
       {isStampModal && <StampModal setIsStampModal={setIsStampModal} />}
       {isFinishModal && (
         <FinishModal
-          title={"모노돈까스"}
-          type="음식점"
+          title={data.storeName}
+          type={typeEngtoKor(data.category)}
           setIsFinishModal={setIsFinishModal}
         />
       )}

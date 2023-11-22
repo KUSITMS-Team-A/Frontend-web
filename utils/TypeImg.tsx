@@ -16,6 +16,12 @@ import MBeauty from "@/assets/svg/Mid/MBeauty.svg";
 import MCulture from "@/assets/svg/Mid/MCulture.svg";
 import MEtc from "@/assets/svg/Mid/MEtc.svg";
 
+import MLFood from "@/assets/svg/57/Food.svg";
+import MLCafe from "@/assets/svg/57/Cafe.svg";
+import MLBeauty from "@/assets/svg/57/Beauty.svg";
+import MLCulture from "@/assets/svg/57/Culture.svg";
+import MLEtc from "@/assets/svg/57/Etc.svg";
+
 import LCafe from "@/assets/svg/Big/Cafe.svg";
 import LCulture from "@/assets/svg/Big/Culture.svg";
 import LEtc from "@/assets/svg/Big/Etc.svg";
@@ -78,6 +84,26 @@ export const SizeTypeImg49 = () => {
     },
     기타: {
       value: <MEtc alt="Etc marker" />,
+    },
+  };
+};
+
+export const SizeTypeImg57 = () => {
+  return {
+    음식점: {
+      value: <MLFood alt="food marker" />,
+    },
+    카페: {
+      value: <MLCafe alt="cafe marker" />,
+    },
+    미용: {
+      value: <MLBeauty alt="Beauty marker" />,
+    },
+    문화: {
+      value: <MLCulture alt="Culture marker" />,
+    },
+    기타: {
+      value: <MLEtc alt="Etc marker" />,
     },
   };
 };
