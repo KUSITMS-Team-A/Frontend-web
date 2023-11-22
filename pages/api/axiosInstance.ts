@@ -2,7 +2,9 @@ import axios from "axios";
 
 const userSession = sessionStorage.getItem("userSession");
 let token: string = "";
+
 if (userSession) {
+  console.log("usersession 있음");
   const parsedSession = JSON.parse(userSession);
   token = parsedSession.user?.token || "";
 } else {

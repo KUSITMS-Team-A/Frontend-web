@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 
 enum PopupPeriod {
   none,
-  aDay,
-  aWeek,
-  twoWeek,
-  aMonth,
+  aDay = "하루간",
+  aWeek = "1주간",
+  twoWeek = "2주간",
+  aMonth = "1달간",
 }
 
 interface Popup {
