@@ -38,14 +38,17 @@ export const Title = styled.p`
   letter-spacing: -1.56px;
 `;
 
-export const IndexButton = styled.div`
+interface IndexProps {
+  selected: boolean;
+}
+export const IndexButton = styled.div<IndexProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-
+  font-size: 15px;
   min-width: 6rem;
 
-  padding: 10px 15px;
+  padding: 8px 12px;
   border-radius: 20px;
 
   transition: all 0.5s ease;
@@ -54,6 +57,8 @@ export const IndexButton = styled.div`
     border-radius: 20px;
     transition: all 0.5s ease;
   }
+
+  background-color: ${(props) => (props.selected ? "#c6c6c680" : "white")};
 `;
 
 export const SearchButton = styled.div`
@@ -164,17 +169,17 @@ export const ThirdBox = styled(DefaultBox)`
 //
 
 export const FourthBox = styled(DefaultBox)`
-  grid-column: 1/4;
+  grid-column: 1/5;
   grid-row: 1/5;
 `;
 
 export const FifthBox = styled(DefaultBox)`
-  grid-column: 4/11;
+  grid-column: 5/12;
   grid-row: 1/5;
 `;
 
 export const SixthUpperBox = styled(DefaultBox)`
-  grid-column: 11 / 15;
+  grid-column: 12 / 15;
   grid-row: 1/3;
 
   display: flex;
@@ -182,7 +187,7 @@ export const SixthUpperBox = styled(DefaultBox)`
 `;
 
 export const SixthLowerBox = styled(DefaultBox)`
-  grid-column: 11/15;
+  grid-column: 12/15;
   grid-row: 3/5;
 
   display: flex;
