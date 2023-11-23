@@ -6,9 +6,8 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 import { useModal } from "../hooks/useModal";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { initialState } from "@/state/user/user";
-
 import { Logout } from "@/pages/api/login";
 
 const Header = () => {
@@ -37,6 +36,7 @@ const Header = () => {
       typeName: "",
       token: "",
     });
+    sessionStorage.clear();
   };
 
   return (
