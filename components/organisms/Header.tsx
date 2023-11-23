@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
-
 import React, { useEffect, useState } from "react";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import Logo from "@/components/atoms/Logo.svg";
@@ -37,6 +36,7 @@ const Header = () => {
       token: "",
     });
     sessionStorage.clear();
+    setUserSessionData(null);
   };
 
   return (
@@ -54,14 +54,14 @@ const Header = () => {
         <ul>
           <UpperMenuItem
             onClick={() => {
-              if (logData.logined) {
+              if (userSessionData) {
                 logoutHandler();
               } else {
                 openModal();
               }
             }}
           >
-            {logData.logined ? "로그아웃" : "로그인"}
+            {userSessionData ? "로그아웃" : "로그인"}
           </UpperMenuItem>
 
           <UpperMenuItem>
