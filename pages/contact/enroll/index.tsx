@@ -3,8 +3,15 @@ import * as styles from "@/components/styles/popup/style";
 import { Checkbox } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircleIcon from "@mui/icons-material/Circle";
+import SearchIcon from "@/assets/svg/Search.svg";
+import { useState } from "react";
 
 const ContractEnroll = () => {
+  const [input, setInput] = useState<string>("");
+  const handleInputChange = (event: any) => {
+    setInput(event.target.value);
+  };
+
   return (
     <Container>
       <styles.TitleBox>
@@ -16,6 +23,16 @@ const ContractEnroll = () => {
       <MainBox>
         <NumberBox>
           <NumberTitleBox>1. 가게 검색</NumberTitleBox>
+          <SearchExpandBox>
+            <SearchInput
+              value={input}
+              placeholder="제휴하려는 가게를 찾아보세요!"
+              onChange={handleInputChange}
+            />
+            <SearchIconBox>
+              <SearchIcon alt="search icon" />
+            </SearchIconBox>
+          </SearchExpandBox>
         </NumberBox>
         <NumberBox>
           <NumberTitleBox>
@@ -24,19 +41,19 @@ const ContractEnroll = () => {
         </NumberBox>
         <NumberBox>
           <GrayInput placeholder="가게명" />
-          <GrayInput placeholder="카테고리" />
+          <GrayInput style={{ marginLeft: "10px" }} placeholder="카테고리" />
         </NumberBox>
-        <NumberBox>
+        <NumberBox style={{ width: "100%" }}>
           <GrayInput placeholder="메뉴" />
         </NumberBox>
-        <NumberBox>
+        <NumberBox style={{ width: "100%" }}>
           <GrayInput placeholder="주소" />
         </NumberBox>
         <NumberBox>
           <GrayInput placeholder="영업 시간" />
-          <GrayInput placeholder="거리" />
+          <GrayInput style={{ marginLeft: "10px" }} placeholder="거리" />
         </NumberBox>
-        <NumberBox>
+        <NumberBox style={{ marginTop: "25px" }}>
           <NumberTitleBox>3. 제휴 혜택</NumberTitleBox>
         </NumberBox>
         <NumberBox>
@@ -50,7 +67,7 @@ const ContractEnroll = () => {
             </ConditionIcon>
           </ConditionBox>
         </NumberBox>
-        <NumberBox>
+        <NumberBox style={{ marginTop: "15px" }}>
           <NumberTitleBox>4. 계약 기간</NumberTitleBox>
         </NumberBox>
         <NumberBox>
@@ -79,20 +96,101 @@ const Container = styled.div`
 
 const MainBox = styled.div`
   margin: 0 auto;
+  width: 485px;
 `;
 
-const NumberBox = styled.div``;
+const NumberBox = styled.div`
+  height: 42px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 
 const NumberTitleBox = styled.div``;
 
 const ConditionBox = styled.div`
   display: flex;
+  border-radius: 6px;
+  border: 1px solid var(--border, #e3e3e3);
+  padding: 5px;
+  align-items: center;
+  width: 100%;
 `;
 
-const ConditionInput = styled.input``;
+const ConditionInput = styled.input`
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  height: 30px;
+  outline: none;
+  border: none;
+  color: #4a4a4a;
+  font-family: Pretendard Variable;
+  font-size: 13.984px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  ::placeholder {
+    color: #afafaf;
+  }
+`;
 
-const ConditionIcon = styled.div``;
+const ConditionIcon = styled.div`
+  margin-left: auto;
+`;
 
-const GrayInput = styled.input``;
+const GrayInput = styled.input`
+  border-radius: 6px;
+  background: #f7f7f7;
+  color: #4a4a4a;
+  font-size: 13.984px;
+  font-weight: 500;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  height: 42px;
+  padding-left: 10px;
+  outline: none;
+  border: none;
+  ::placeholder {
+    color: #afafaf;
+  }
+  width: 100%;
+`;
+
+const SearchExpandBox = styled.div`
+  width: 305px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 21px;
+  background: #f7f7f7;
+  padding: 9px 8px;
+  display: flex;
+  margin-left: auto;
+`;
+
+const SearchInput = styled.input`
+  font-size: 13.984px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.264px; /* 137.751% */
+  letter-spacing: -0.839px;
+  background-color: transparent;
+  border: none;
+  margin-left: 8px;
+  width: 100%;
+  outline: none;
+
+  ::placeholder {
+    color: #afafaf;
+  }
+`;
+
+const SearchIconBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  cursor: pointer;
+`;
 
 export default ContractEnroll;
