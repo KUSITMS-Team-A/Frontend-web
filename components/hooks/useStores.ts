@@ -28,9 +28,12 @@ export const useStores = async ({
         pageNumber,
       });
 
-      console.log(`FOODS ${JSON.stringify(result)}`);
+      setData(result.coupons);
+      console.log(result.coupons);
     };
 
     fetchData();
-  });
+  }, []);
+
+  return { data };
 };
