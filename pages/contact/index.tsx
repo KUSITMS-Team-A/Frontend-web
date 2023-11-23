@@ -91,7 +91,13 @@ export default function Contact() {
               1년 동안 제휴를 맺은 가게들이에요.
             </styles.SubTitleBox>
           </styles.TopTitleBox>
-          <styles.BlackButtonBox>정산관리</styles.BlackButtonBox>
+          <styles.BlackButtonBox
+            onClick={() => {
+              setIsOperate(true);
+            }}
+          >
+            정산관리
+          </styles.BlackButtonBox>
         </styles.TopBox>
         <styles.MiddleBox>
           <styles.FilterBox>
