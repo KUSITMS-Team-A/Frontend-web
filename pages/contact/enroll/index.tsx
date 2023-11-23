@@ -5,6 +5,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircleIcon from "@mui/icons-material/Circle";
 import SearchIcon from "@/assets/svg/Search.svg";
 import { useState } from "react";
+import SearchModal from "@/components/organisms/Modal/\bSearchModal";
 
 const ContractEnroll = () => {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
@@ -18,72 +19,75 @@ const ContractEnroll = () => {
   };
 
   return (
-    <Container>
-      <styles.TitleBox>
-        <styles.Title>팝업 관리</styles.Title>
-        <styles.SubTitle>
-          학생들에게 보여줄 제휴 가게를 등록해보세요.
-        </styles.SubTitle>
-      </styles.TitleBox>
-      <MainBox>
-        <NumberBox>
-          <NumberTitleBox>1. 가게 검색</NumberTitleBox>
-          <SearchExpandBox onClick={handleOnClikSearchOpen}>
-            <SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
-            <SearchIconBox>
-              <SearchIcon alt="search icon" />
-            </SearchIconBox>
-          </SearchExpandBox>
-        </NumberBox>
-        <NumberBox>
-          <NumberTitleBox>
-            2. 가게 정보(가게명, 카테고리, 메뉴, 주소, 거리, 영업시간)
-          </NumberTitleBox>
-        </NumberBox>
-        <NumberBox>
-          <GrayInput placeholder="가게명" />
-          <GrayInput style={{ marginLeft: "10px" }} placeholder="카테고리" />
-        </NumberBox>
-        <NumberBox style={{ width: "100%" }}>
-          <GrayInput placeholder="메뉴" />
-        </NumberBox>
-        <NumberBox style={{ width: "100%" }}>
-          <GrayInput placeholder="주소" />
-        </NumberBox>
-        <NumberBox>
-          <GrayInput placeholder="영업 시간" />
-          <GrayInput style={{ marginLeft: "10px" }} placeholder="거리" />
-        </NumberBox>
-        <NumberBox style={{ marginTop: "25px" }}>
-          <NumberTitleBox>3. 제휴 혜택</NumberTitleBox>
-        </NumberBox>
-        <NumberBox>
-          <ConditionBox>
-            <ConditionInput placeholder="ex) 2500원 할인" />
-            <ConditionIcon>
-              <Checkbox
-                icon={<CircleIcon />}
-                checkedIcon={<CheckCircleIcon />}
-              />
-            </ConditionIcon>
-          </ConditionBox>
-        </NumberBox>
-        <NumberBox style={{ marginTop: "15px" }}>
-          <NumberTitleBox>4. 계약 기간</NumberTitleBox>
-        </NumberBox>
-        <NumberBox>
-          <ConditionBox>
-            <ConditionInput placeholder="2023.11.25 ~ 2024.11.25" />
-            <ConditionIcon>
-              <Checkbox
-                icon={<CircleIcon />}
-                checkedIcon={<CheckCircleIcon />}
-              />
-            </ConditionIcon>
-          </ConditionBox>
-        </NumberBox>
-      </MainBox>
-    </Container>
+    <>
+      <Container>
+        <styles.TitleBox>
+          <styles.Title>팝업 관리</styles.Title>
+          <styles.SubTitle>
+            학생들에게 보여줄 제휴 가게를 등록해보세요.
+          </styles.SubTitle>
+        </styles.TitleBox>
+        <MainBox>
+          <NumberBox>
+            <NumberTitleBox>1. 가게 검색</NumberTitleBox>
+            <SearchExpandBox onClick={handleOnClikSearchOpen}>
+              <SearchInput>제휴하려는 가게를 찾아보세요!</SearchInput>
+              <SearchIconBox>
+                <SearchIcon alt="search icon" />
+              </SearchIconBox>
+            </SearchExpandBox>
+          </NumberBox>
+          <NumberBox>
+            <NumberTitleBox>
+              2. 가게 정보(가게명, 카테고리, 메뉴, 주소, 거리, 영업시간)
+            </NumberTitleBox>
+          </NumberBox>
+          <NumberBox>
+            <GrayInput placeholder="가게명" />
+            <GrayInput style={{ marginLeft: "10px" }} placeholder="카테고리" />
+          </NumberBox>
+          <NumberBox style={{ width: "100%" }}>
+            <GrayInput placeholder="메뉴" />
+          </NumberBox>
+          <NumberBox style={{ width: "100%" }}>
+            <GrayInput placeholder="주소" />
+          </NumberBox>
+          <NumberBox>
+            <GrayInput placeholder="영업 시간" />
+            <GrayInput style={{ marginLeft: "10px" }} placeholder="거리" />
+          </NumberBox>
+          <NumberBox style={{ marginTop: "25px" }}>
+            <NumberTitleBox>3. 제휴 혜택</NumberTitleBox>
+          </NumberBox>
+          <NumberBox>
+            <ConditionBox>
+              <ConditionInput placeholder="ex) 2500원 할인" />
+              <ConditionIcon>
+                <Checkbox
+                  icon={<CircleIcon />}
+                  checkedIcon={<CheckCircleIcon />}
+                />
+              </ConditionIcon>
+            </ConditionBox>
+          </NumberBox>
+          <NumberBox style={{ marginTop: "15px" }}>
+            <NumberTitleBox>4. 계약 기간</NumberTitleBox>
+          </NumberBox>
+          <NumberBox>
+            <ConditionBox>
+              <ConditionInput placeholder="2023.11.25 ~ 2024.11.25" />
+              <ConditionIcon>
+                <Checkbox
+                  icon={<CircleIcon />}
+                  checkedIcon={<CheckCircleIcon />}
+                />
+              </ConditionIcon>
+            </ConditionBox>
+          </NumberBox>
+        </MainBox>
+      </Container>
+      {isSearchOpen && <SearchModal setIsSearchOpen={setIsSearchOpen} />}
+    </>
   );
 };
 
@@ -170,7 +174,9 @@ const SearchExpandBox = styled.div`
   margin-left: auto;
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 13.984px;
   font-style: normal;
   font-weight: 500;
@@ -182,9 +188,7 @@ const SearchInput = styled.input`
   width: 100%;
   outline: none;
 
-  ::placeholder {
-    color: #afafaf;
-  }
+  color: #afafaf;
 `;
 
 const SearchIconBox = styled.div`

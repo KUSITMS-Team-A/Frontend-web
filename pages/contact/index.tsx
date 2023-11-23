@@ -12,6 +12,7 @@ import { typeIcon } from "@/components/Marker/Icon/IconMarker";
 import { useRouter } from "next/router";
 import { FilterProps } from "../api/StoreAPI";
 import SearchModal from "@/components/organisms/Modal/\bSearchModal";
+import Link from "next/link";
 
 export default function Contact() {
   const [data, setData] = useState<ContractListInfo[]>();
@@ -99,9 +100,11 @@ export default function Contact() {
           </styles.SearchBox>
           <styles.ButtonBox>
             <styles.RemoveBtn>삭제하기</styles.RemoveBtn>
-            <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
-              등록하기
-            </styles.WhiteBtnBox>
+            <Link href={"/contact/enroll"}>
+              <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
+                등록하기
+              </styles.WhiteBtnBox>
+            </Link>
           </styles.ButtonBox>
         </styles.MiddleBox>
         <styles.MainBox>
