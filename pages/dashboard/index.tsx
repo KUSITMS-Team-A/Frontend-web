@@ -49,6 +49,9 @@ const DashBoardPage: React.FC = () => {
       <styles.Container>
         <styles.TitleContainer>
           <styles.Title>대시보드</styles.Title>
+          <styles.SubTitleBox>
+            학생들의 제휴 이용 현황을 확인해보세요.
+          </styles.SubTitleBox>
           <styles.SearchButton
             className={css`
               align-self: flex-end;

@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   margin: auto;
 
-  width: 80vw;
+  width: 1050px;
 
   row-gap: 2rem;
 `;
@@ -19,6 +19,15 @@ export const TitleContainer = styled.div`
   align-items: flex-start;
 
   width: 100%;
+`;
+export const SubTitleBox = styled.div`
+  margin-top: 12px;
+  color: var(--, #1c1c1e);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 19.264px; /* 128.425% */
+  letter-spacing: -0.9px;
 `;
 
 export const OptionContainer = styled.div`
@@ -34,7 +43,7 @@ export const Title = styled.p`
   color: var(--, #1c1c1e);
   font-size: 26px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: -1.56px;
 `;
 
