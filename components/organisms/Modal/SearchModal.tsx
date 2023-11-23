@@ -3,11 +3,6 @@ import * as styles from "@/components/styles/SearchModal.styles";
 import CloseIcon from "@/assets/svg/Close.svg";
 import SearchIcon from "@/assets/svg/Search.svg";
 import Filter from "@/components/organisms/Filter";
-import Food from "@/assets/svg/Food.svg";
-import Cafe from "@/assets/svg/Cafe.svg";
-import Culture from "@/assets/svg/Culture.svg";
-import Etc from "@/assets/svg/Etc.svg";
-import Beauty from "@/assets/svg/Beauty.svg";
 import { SizeTypeImg49 } from "@/utils/TypeImg";
 import { useEffect, useState } from "react";
 import { StoreMapListInfo } from "@/@types/Store";
@@ -34,17 +29,11 @@ const SearchModal = ({ setIsSearchOpen }: SMProps) => {
   const [contentFilter, setContentFilter] = useState<
     "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
   >("NONE");
-  const [isSearch, setIsSearch] = useState(false);
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
 
   const typeEngtoKor = (name: string) => {
     const kor = ["음식점", "카페", "문화", "미용", "기타"];
     return kor[eng.indexOf(name)] as SProps["type"];
-  };
-
-  const returnSVG = (name: string) => {
-    const arr = [Food, Cafe, Culture, Beauty, Etc];
-    return arr[eng.indexOf(name)];
   };
 
   useEffect(() => {
@@ -119,7 +108,7 @@ const SearchModal = ({ setIsSearchOpen }: SMProps) => {
           <Filter setContentFilter={setContentFilter} />
         </styles.ModalFilterBox>
         <styles.ModalListsBox>
-          {data?.map((el, idx) => {
+          {data?.map((el) => {
             return (
               <styles.ModalStoreList key={el.storeId}>
                 <styles.ModalStoreIconBox>
