@@ -5,19 +5,24 @@ import SearchIcon from "@/assets/svg/Search.svg";
 import Filter from "@/components/organisms/Filter";
 import { SizeTypeImg49 } from "@/utils/TypeImg";
 import { useEffect, useState } from "react";
-import { StoreMapListInfo } from "@/@types/Store";
+import { StoreMapListInfo, businessHour } from "@/@types/Store";
 import {
   FilterProps,
   getStoreBase,
+  getStoreInfo,
   getStoreWithFilter,
 } from "@/pages/api/StoreAPI";
 import { SProps } from "@/components/Storelist";
+import { NewEnrollStore } from "@/states/Enroll";
+import { useRecoilState } from "recoil";
 
 interface SMProps {
   setIsSearchOpen: Function;
 }
 
 const SearchModal = ({ setIsSearchOpen }: SMProps) => {
+  const [enrollInfo, setEnrollInfo] = useRecoilState(NewEnrollStore);
+  const [time, setTime] = useState();
   const [data, setData] = useState<StoreMapListInfo[]>();
   const [input, setInput] = useState<string>("");
   const [operateFilter, setOperateFilter] = useState<FilterProps>({
@@ -127,7 +132,27 @@ const SearchModal = ({ setIsSearchOpen }: SMProps) => {
                     {el.address}
                   </styles.ModalStoreBottomBox>
                 </styles.ModalStoreInfoBox>
-                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
+                <styles.ModalCheckBox
+                  onClick={() => {
+                    const info = getStoreInfo(el.storeId);
+                    info.then((res) => {
+                      setTime(res.businessHours);
+                    });
+
+                    setEnrollInfo({
+                      storeId: el.storeId,
+                      address: el.address,
+                      category: el.category,
+                      description: el.description,
+                      storeName: el.storeName,
+                      distance: el.distance,
+                      time: time,
+                    });
+                    setIsSearchOpen(false);
+                  }}
+                >
+                  확인
+                </styles.ModalCheckBox>
               </styles.ModalStoreList>
             );
           })}

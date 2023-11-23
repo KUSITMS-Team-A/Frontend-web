@@ -6,15 +6,16 @@ import CircleIcon from "@mui/icons-material/Circle";
 import SearchIcon from "@/assets/svg/Search.svg";
 import { useState } from "react";
 import SearchModal from "@/components/organisms/Modal/\bSearchModal";
+import { useRecoilState } from "recoil";
+import { NewEnrollStore } from "@/states/Enroll";
+import Button from "@/components/organisms/Button";
 
 const ContractEnroll = () => {
+  const [enrollInfo, setEnrollInfo] = useRecoilState(NewEnrollStore);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [input, setInput] = useState<string>("");
-  const handleInputChange = (event: any) => {
-    setInput(event.target.value);
-  };
-
-  const handleOnClikSearchOpen = () => {
+  const [benefit, setBenefit] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const handleOnClickSearchOpen = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
@@ -30,7 +31,7 @@ const ContractEnroll = () => {
         <MainBox>
           <NumberBox>
             <NumberTitleBox>1. 가게 검색</NumberTitleBox>
-            <SearchExpandBox onClick={handleOnClikSearchOpen}>
+            <SearchExpandBox onClick={handleOnClickSearchOpen}>
               <SearchInput>제휴하려는 가게를 찾아보세요!</SearchInput>
               <SearchIconBox>
                 <SearchIcon alt="search icon" />
@@ -43,25 +44,29 @@ const ContractEnroll = () => {
             </NumberTitleBox>
           </NumberBox>
           <NumberBox>
-            <GrayInput placeholder="가게명" />
-            <GrayInput style={{ marginLeft: "10px" }} placeholder="카테고리" />
+            <GrayInput placeholder="가게명">{enrollInfo.storeName}</GrayInput>
+            <GrayInput style={{ marginLeft: "10px" }} placeholder="카테고리">
+              {enrollInfo.category}
+            </GrayInput>
           </NumberBox>
           <NumberBox style={{ width: "100%" }}>
-            <GrayInput placeholder="메뉴" />
+            <GrayInput placeholder="메뉴">{enrollInfo.description}</GrayInput>
           </NumberBox>
           <NumberBox style={{ width: "100%" }}>
-            <GrayInput placeholder="주소" />
+            <GrayInput placeholder="주소">{enrollInfo.address}</GrayInput>
           </NumberBox>
           <NumberBox>
-            <GrayInput placeholder="영업 시간" />
-            <GrayInput style={{ marginLeft: "10px" }} placeholder="거리" />
+            <GrayInput placeholder="영업 시간">{enrollInfo.time}</GrayInput>
+            <GrayInput style={{ marginLeft: "10px" }} placeholder="거리">
+              도보 {Math.ceil(enrollInfo?.distance / 80)}분
+            </GrayInput>
           </NumberBox>
           <NumberBox style={{ marginTop: "25px" }}>
             <NumberTitleBox>3. 제휴 혜택</NumberTitleBox>
           </NumberBox>
           <NumberBox>
             <ConditionBox>
-              <ConditionInput placeholder="ex) 2500원 할인" />
+              <ConditionInput value={benefit} placeholder="ex) 2500원 할인" />
               <ConditionIcon>
                 <Checkbox
                   icon={<CircleIcon />}
@@ -75,7 +80,10 @@ const ContractEnroll = () => {
           </NumberBox>
           <NumberBox>
             <ConditionBox>
-              <ConditionInput placeholder="2023.11.25 ~ 2024.11.25" />
+              <ConditionInput
+                value={date}
+                placeholder="2023-11-25~2024-11-25"
+              />
               <ConditionIcon>
                 <Checkbox
                   icon={<CircleIcon />}
@@ -85,6 +93,7 @@ const ContractEnroll = () => {
             </ConditionBox>
           </NumberBox>
         </MainBox>
+        <Button title="등록하기" width={193} />
       </Container>
       {isSearchOpen && <SearchModal setIsSearchOpen={setIsSearchOpen} />}
     </>
@@ -145,10 +154,9 @@ const ConditionIcon = styled.div`
   margin-left: auto;
 `;
 
-const GrayInput = styled.input`
+const GrayInput = styled.div`
   border-radius: 6px;
   background: #f7f7f7;
-  color: #4a4a4a;
   font-size: 13.984px;
   font-weight: 500;
   line-height: 19.264px; /* 137.751% */
@@ -157,10 +165,10 @@ const GrayInput = styled.input`
   padding-left: 10px;
   outline: none;
   border: none;
-  ::placeholder {
-    color: #afafaf;
-  }
+  color: #afafaf;
   width: 100%;
+  display: flex;
+  align-items: center;
 `;
 
 const SearchExpandBox = styled.div`
