@@ -1,4 +1,3 @@
-import SearchInput from "@/components/SearchInput";
 import Filter from "@/components/organisms/Filter";
 import * as styles from "@/components/styles/Contact.styles";
 import SearchIcon from "@/assets/svg/Search.svg";
@@ -127,14 +126,10 @@ export default function Contact() {
                 <styles.StoreNameBox>{el.storeName}</styles.StoreNameBox>
                 <styles.BenefitBox>
                   <styles.ConditionBox>
-                    {el.benefits[0].content}
+                    {el.benefits[0].condition}
                   </styles.ConditionBox>
                   <styles.PercentBox>
-                    {el.benefits[0].type === "RATE"
-                      ? el.benefits[0].amount + "% 할인"
-                      : el.benefits[0].type === "FIX"
-                      ? el.benefits[0].amount + "원 할인"
-                      : el.benefits[0].content}
+                    {el.benefits[0].content}
                   </styles.PercentBox>
                 </styles.BenefitBox>
               </styles.StoreContainer>
