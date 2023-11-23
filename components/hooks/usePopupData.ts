@@ -2,7 +2,6 @@ import { getPopups } from "@/pages/api/popup";
 import { useEffect, useState } from "react";
 
 
-
 interface Popup {
   title: string;
   content: string;
