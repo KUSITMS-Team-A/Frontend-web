@@ -7,9 +7,14 @@ import SearchIcon from "@/assets/svg/Search.svg";
 import { useState } from "react";
 
 const ContractEnroll = () => {
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
   const handleInputChange = (event: any) => {
     setInput(event.target.value);
+  };
+
+  const handleOnClikSearchOpen = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
 
   return (
@@ -23,12 +28,8 @@ const ContractEnroll = () => {
       <MainBox>
         <NumberBox>
           <NumberTitleBox>1. 가게 검색</NumberTitleBox>
-          <SearchExpandBox>
-            <SearchInput
-              value={input}
-              placeholder="제휴하려는 가게를 찾아보세요!"
-              onChange={handleInputChange}
-            />
+          <SearchExpandBox onClick={handleOnClikSearchOpen}>
+            <SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
             <SearchIconBox>
               <SearchIcon alt="search icon" />
             </SearchIconBox>
