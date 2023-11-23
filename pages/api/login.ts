@@ -99,7 +99,9 @@ export const Logout = async () => {
   }
   try {
     const response = await apiBase.post(
+
       `${process.env.NEXT_PUBLIC_LOGOUT_ENDPOINT}`,
+
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -111,3 +113,4 @@ export const Logout = async () => {
     console.error(`에러코드 : ${e}`);
   }
 };
+

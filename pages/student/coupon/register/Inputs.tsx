@@ -1,5 +1,7 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import * as styles from "../../../../components/styles/CInputs.style";
+
 import { css } from "@emotion/css";
 import {
   Checkbox,
@@ -31,6 +33,7 @@ const Inputs: React.FC = () => {
     ],
     []
   );
+
 
   const [formData, setFormData] = useState<EventProps>({
     storeId: 2,
@@ -131,7 +134,9 @@ const Inputs: React.FC = () => {
               placeholder={placeHolders[3]}
               name="condition"
               onChange={(e) => {
+
                 let result: any = [];
+
                 result.push(e.target.value);
 
                 setFormData((prev) => ({ ...prev, conditions: result }));
@@ -182,6 +187,7 @@ const Inputs: React.FC = () => {
           </styles.SubmitButton>
         </styles.InputBox>
       </form>
+
     </styles.Container>
   );
 };
