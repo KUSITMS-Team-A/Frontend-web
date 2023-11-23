@@ -2,35 +2,30 @@ import SearchInput from "@/components/SearchInput";
 import Filter from "@/components/organisms/Filter";
 import * as styles from "@/components/styles/Contact.styles";
 import SearchIcon from "@/assets/svg/Search.svg";
-import {
-  SizeTypeImg25,
-  SizeTypeImg49,
-  SizeTypeImgSmall,
-} from "@/utils/TypeImg";
-import Image from "next/image";
-import { ReactNode, useEffect, useState } from "react";
-import Food from "@/assets/svg/Food.svg";
-import Cafe from "@/assets/svg/Cafe.svg";
-import Culture from "@/assets/svg/Culture.svg";
-import Etc from "@/assets/svg/Etc.svg";
-import Beauty from "@/assets/svg/Beauty.svg";
+import { SizeTypeImg49, SizeTypeImgSmall } from "@/utils/TypeImg";
+import { useEffect, useState } from "react";
 import DashBoard from "@/assets/svg/SmallDashBoardIcon.svg";
 import Modal from "@/components/organisms/Modal/Modal";
 import CloseIcon from "@/assets/svg/Close.svg";
 import { getContractBase } from "../api/ContractAPI";
 import { ContractListInfo } from "@/@types/Contract";
 import { typeIcon } from "@/components/Marker/Icon/IconMarker";
-import Link from "next/link";
 import { useRouter } from "next/router";
-type TypeIcon = {
-  [key: string]: {
-    value: JSX.Element;
-  };
-};
+import { FilterProps } from "../api/StoreAPI";
 
 export default function Contact() {
   const [data, setData] = useState<ContractListInfo[]>();
-  const typeIcon25 = SizeTypeImgSmall();
+  const [operateFilter, setOperateFilter] = useState<FilterProps>({
+    isPicked: false,
+    name: "",
+    category: "NONE",
+    pageNumber: 0,
+  });
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
+  const [contentFilter, setContentFilter] = useState<
+    "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
+  >("NONE");
+
   const typeIcon49 = SizeTypeImg49();
 
   const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
@@ -53,10 +48,29 @@ export default function Contact() {
     });
   }, []);
 
-  const [isSearchModalOpen, setIsSearchModalOpen] = useState<boolean>(false);
-  const [contentFilter, setContentFilter] = useState<
-    "All" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
-  >("All");
+  // 가게 타입 필터를 누를때마다 실행되는 함수
+  useEffect(() => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      category: contentFilter,
+    }));
+  }, [contentFilter]);
+
+  // 필터가 바뀔때마다 실행되는 함수
+  useEffect(() => {
+    const filterData = getContractBase({
+      isPicked: operateFilter.isPicked,
+      name: operateFilter.name,
+      category: operateFilter.category,
+      pageNumber: operateFilter.pageNumber,
+    });
+    filterData.then((res) => {
+      if (res !== null) {
+        setData(res.contractedStores);
+        console.log("operateF", res.contractedStores);
+      }
+    });
+  }, [operateFilter]);
 
   const handleOnClickSearchBtn = () => {
     setIsSearchModalOpen(!isSearchModalOpen);
@@ -78,7 +92,7 @@ export default function Contact() {
         </styles.TopBox>
         <styles.MiddleBox>
           <styles.FilterBox>
-            <Filter AllCount={43} setContentFilter={setContentFilter} />
+            <Filter setContentFilter={setContentFilter} />
           </styles.FilterBox>
           <styles.SearchBox onClick={handleOnClickSearchBtn}>
             <SearchIcon alt="search icon" />
