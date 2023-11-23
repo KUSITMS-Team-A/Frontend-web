@@ -1,12 +1,6 @@
-import { useState } from "react";
 import Modal from "./Modal";
 import styled from "@emotion/styled";
 import CloseIcon from "@/assets/svg/Close.svg";
-import Button from "../Button";
-import { COLORS } from "@/styles/colors";
-import { Checkbox } from "@mui/material";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CircleIcon from "@mui/icons-material/Circle";
 import One from "@/assets/svg/One.svg";
 import Two from "@/assets/svg/Two.svg";
 import Three from "@/assets/svg/Three.svg";
