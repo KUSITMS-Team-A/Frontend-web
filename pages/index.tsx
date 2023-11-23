@@ -34,8 +34,8 @@ const Container = styled.div`
   width: 100%;
 
   height: 100vh;
-  /* background-image: url(${Background.src}); */
-  background-image: url(${Background2.src});
+  background-image: url(${Background.src});
+  /* background-image: url(${Background2.src}); */
 
   background-size: cover;
 `;
