@@ -9,8 +9,10 @@ import { useRecoilState } from "recoil";
 import { initialState } from "@/state/user/user";
 
 import { Logout } from "@/pages/api/login";
+
 import { Box, Button, Modal } from "@mui/material";
 import { css } from "@emotion/css";
+
 
 
 const Header = () => {
@@ -38,11 +40,13 @@ const Header = () => {
 
   const logoutHandler = async () => {
 
+
     console.log("logout합니다");
     const result = await Logout();
     console.log(result);
 
     setLogData({
+
 
       logined: false,
       email: "",
@@ -121,8 +125,10 @@ const Header = () => {
             onClick={() => {
               if (userSessionData) {
 
+
                 setModalOpen(true);
                 logoutHandler();
+
 
               } else {
                 openModal();
@@ -130,7 +136,9 @@ const Header = () => {
             }}
           >
 
+
             {userSessionData ? "로그아웃" : "로그인"}
+
 
           </UpperMenuItem>
 
@@ -261,7 +269,6 @@ const SubDropdownMenuItem = styled.div`
 
 const LowerMenuItem = styled.li`
   position: relative;
-
 
   color: var(--, #3d4149);
   text-align: center;

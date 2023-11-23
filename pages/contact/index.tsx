@@ -11,6 +11,8 @@ import { ContractListInfo } from "@/@types/Contract";
 import { typeIcon } from "@/components/Marker/Icon/IconMarker";
 import { useRouter } from "next/router";
 import { FilterProps } from "../api/StoreAPI";
+import SearchModal from "@/components/organisms/Modal/\bSearchModal";
+import Link from "next/link";
 
 export default function Contact() {
   const [data, setData] = useState<ContractListInfo[]>();
@@ -98,9 +100,11 @@ export default function Contact() {
           </styles.SearchBox>
           <styles.ButtonBox>
             <styles.RemoveBtn>삭제하기</styles.RemoveBtn>
-            <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
-              등록하기
-            </styles.WhiteBtnBox>
+            <Link href={"/contact/enroll"}>
+              <styles.WhiteBtnBox style={{ marginLeft: "7px" }}>
+                등록하기
+              </styles.WhiteBtnBox>
+            </Link>
           </styles.ButtonBox>
         </styles.MiddleBox>
         <styles.MainBox>
@@ -138,86 +142,7 @@ export default function Contact() {
         </styles.MainBox>
       </styles.Container>
       {isSearchModalOpen && (
-        <Modal>
-          <styles.ModalContainer>
-            <div style={{ display: "flex" }}>
-              <styles.ModalCloseBox onClick={handleOnClickSearchBtn}>
-                <CloseIcon alt="close icon" width={32} height={32} />
-              </styles.ModalCloseBox>
-            </div>
-            <styles.ModalSearchBox>
-              <styles.SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
-              <styles.SearchIconBox>
-                <SearchIcon alt="search icon" />
-              </styles.SearchIconBox>
-            </styles.ModalSearchBox>
-            <styles.ModalFilterBox>
-              <Filter AllCount={43} setContentFilter={setContentFilter} />
-            </styles.ModalFilterBox>
-            <styles.ModalListsBox>
-              <styles.ModalStoreList>
-                <styles.ModalStoreIconBox>
-                  {typeIcon49["음식점"].value}
-                </styles.ModalStoreIconBox>
-                <styles.ModalStoreInfoBox>
-                  <styles.ModalStoreTopBox>
-                    <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                    <styles.ModalStoreType>음식점</styles.ModalStoreType>
-                  </styles.ModalStoreTopBox>
-                  <styles.ModalStoreBottomBox>
-                    서울특별시
-                  </styles.ModalStoreBottomBox>
-                </styles.ModalStoreInfoBox>
-                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-              </styles.ModalStoreList>
-              <styles.ModalStoreList>
-                <styles.ModalStoreIconBox>
-                  {typeIcon49["음식점"].value}
-                </styles.ModalStoreIconBox>
-                <styles.ModalStoreInfoBox>
-                  <styles.ModalStoreTopBox>
-                    <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                    <styles.ModalStoreType>음식점</styles.ModalStoreType>
-                  </styles.ModalStoreTopBox>
-                  <styles.ModalStoreBottomBox>
-                    서울특별시
-                  </styles.ModalStoreBottomBox>
-                </styles.ModalStoreInfoBox>
-                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-              </styles.ModalStoreList>
-              <styles.ModalStoreList>
-                <styles.ModalStoreIconBox>
-                  {typeIcon49["음식점"].value}
-                </styles.ModalStoreIconBox>
-                <styles.ModalStoreInfoBox>
-                  <styles.ModalStoreTopBox>
-                    <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                    <styles.ModalStoreType>음식점</styles.ModalStoreType>
-                  </styles.ModalStoreTopBox>
-                  <styles.ModalStoreBottomBox>
-                    서울특별시
-                  </styles.ModalStoreBottomBox>
-                </styles.ModalStoreInfoBox>
-                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-              </styles.ModalStoreList>
-              <styles.ModalStoreList>
-                <styles.ModalStoreIconBox>
-                  {typeIcon49["카페"].value}
-                </styles.ModalStoreIconBox>
-                <styles.ModalStoreInfoBox>
-                  <styles.ModalStoreTopBox>
-                    <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                    <styles.ModalStoreType>음식점</styles.ModalStoreType>
-                  </styles.ModalStoreTopBox>
-                  <styles.ModalStoreBottomBox>
-                    서울특별시
-                  </styles.ModalStoreBottomBox>
-                </styles.ModalStoreInfoBox>
-                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-              </styles.ModalStoreList>
-            </styles.ModalListsBox>
-          </styles.ModalContainer>
-        </Modal>
+        <SearchModal setIsSearchOpen={handleOnClickSearchBtn} />
       )}
     </>
   );

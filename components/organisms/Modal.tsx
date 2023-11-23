@@ -19,7 +19,9 @@ const LoginModal: React.FC<ModalProps> = () => {
 
   const { closeModal } = useModal();
 
+
   const router = useRouter();
+
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
