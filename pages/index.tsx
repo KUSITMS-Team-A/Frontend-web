@@ -2,7 +2,9 @@ import Head from "next/head";
 
 import styled from "@emotion/styled";
 import Background from "@/assets/svg/background.gif";
+
 import Background2 from "@/assets/svg/background2.png";
+
 export default function Home() {
   return (
     <>
@@ -30,9 +32,11 @@ const Container = styled.div`
   padding-left: 10%;
 
   width: 100%;
+
   height: 100vh;
   /* background-image: url(${Background.src}); */
   background-image: url(${Background2.src});
+
   background-size: cover;
 `;
 
