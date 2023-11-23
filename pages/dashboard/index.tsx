@@ -10,6 +10,7 @@ import ListChart from "./ListChart";
 import { useDashBoardData } from "@/components/hooks/useDashBoardData";
 import BarChart from "./BarChart";
 import Filter from "@/components/organisms/Filter";
+import SearchModal from "@/components/organisms/Modal/\bSearchModal";
 
 interface DashBoardProps {}
 interface DateState {
@@ -23,6 +24,7 @@ enum dates {
   year,
 }
 const DashBoardPage: React.FC = () => {
+  const [isSearch, setIsSearch] = useState(false);
   const { dateRange, calculateDateRange } = useDateRange();
 
   const [contentFilter, setContentFilter] = useState<
@@ -53,6 +55,9 @@ const DashBoardPage: React.FC = () => {
             학생들의 제휴 이용 현황을 확인해보세요.
           </styles.SubTitleBox>
           <styles.SearchButton
+            onClick={() => {
+              setIsSearch(true);
+            }}
             className={css`
               align-self: flex-end;
             `}
@@ -271,6 +276,7 @@ const DashBoardPage: React.FC = () => {
           </styles.ThirdLayer>
         </styles.ContentsContainer>
       </styles.Container>
+      {isSearch && <SearchModal setIsSearchOpen={setIsSearch} />}
     </>
   );
 };
