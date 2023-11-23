@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
-
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as styles from "@/components/styles/popup/style";
-
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
 import Link from "next/link";
@@ -10,10 +8,6 @@ import EmptyComponent from "@/components/atoms/EmptyComponent";
 import { Checkbox } from "@mui/material";
 import { deleteCoupons } from "@/pages/api/coupon";
 import { useStores } from "@/components/hooks/useStores";
-
-import { usePopupData } from "@/components/hooks/usePopupData";
-
-import { useUniv } from "@/components/hooks/useUniv";
 
 const CouponAdminPage: React.FC = () => {
   const router = useRouter();
