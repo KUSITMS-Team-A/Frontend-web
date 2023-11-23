@@ -3,22 +3,91 @@ import * as styles from "@/components/styles/SearchModal.styles";
 import CloseIcon from "@/assets/svg/Close.svg";
 import SearchIcon from "@/assets/svg/Search.svg";
 import Filter from "@/components/organisms/Filter";
+import Food from "@/assets/svg/Food.svg";
+import Cafe from "@/assets/svg/Cafe.svg";
+import Culture from "@/assets/svg/Culture.svg";
+import Etc from "@/assets/svg/Etc.svg";
+import Beauty from "@/assets/svg/Beauty.svg";
 import { SizeTypeImg49 } from "@/utils/TypeImg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { StoreMapListInfo } from "@/@types/Store";
+import {
+  FilterProps,
+  getStoreBase,
+  getStoreWithFilter,
+} from "@/pages/api/StoreAPI";
+import { SProps } from "@/components/Storelist";
 
 interface SMProps {
   setIsSearchOpen: Function;
 }
 
 const SearchModal = ({ setIsSearchOpen }: SMProps) => {
+  const [data, setData] = useState<StoreMapListInfo[]>();
+  const [input, setInput] = useState<string>("");
+  const [operateFilter, setOperateFilter] = useState<FilterProps>({
+    isPicked: false,
+    name: "",
+    category: "NONE",
+    pageNumber: 0,
+  });
   const [contentFilter, setContentFilter] = useState<
     "NONE" | "FOOD" | "CAFE" | "BEAUTY" | "CULTURE" | "ETC"
   >("NONE");
+  const [isSearch, setIsSearch] = useState(false);
+  const eng = ["FOOD", "CAFE", "CULTURE", "BEAUTY", "ETC"];
+
+  const typeEngtoKor = (name: string) => {
+    const kor = ["음식점", "카페", "문화", "미용", "기타"];
+    return kor[eng.indexOf(name)] as SProps["type"];
+  };
+
+  const returnSVG = (name: string) => {
+    const arr = [Food, Cafe, Culture, Beauty, Etc];
+    return arr[eng.indexOf(name)];
+  };
+
+  useEffect(() => {
+    const baseData = getStoreBase();
+    baseData.then((res) => {
+      if (res !== null) {
+        setData(res.stores);
+        console.log("res", res.stores);
+      }
+    });
+  }, []);
+
+  // 가게 타입 필터를 누를때마다 실행되는 함수
+  useEffect(() => {
+    setOperateFilter((prevFilter) => ({
+      ...prevFilter,
+      category: contentFilter,
+    }));
+  }, [contentFilter]);
+
+  // 필터가 바뀔때마다 실행되는 함수
+  useEffect(() => {
+    const filterData = getStoreWithFilter({
+      isPicked: operateFilter.isPicked,
+      name: operateFilter.name,
+      category: operateFilter.category,
+      pageNumber: operateFilter.pageNumber,
+    });
+    filterData.then((res) => {
+      if (res !== null) {
+        setData(res.stores || []);
+        console.log("operateF", res.stores);
+      }
+    });
+  }, [operateFilter]);
 
   const typeIcon49 = SizeTypeImg49();
 
   const handleOnClickCloseBtn = () => {
     setIsSearchOpen(false);
+  };
+  const handleInputChange = (event: any) => {
+    setInput(event.target.value);
   };
 
   return (
@@ -30,75 +99,49 @@ const SearchModal = ({ setIsSearchOpen }: SMProps) => {
           </styles.ModalCloseBox>
         </div>
         <styles.ModalSearchBox>
-          <styles.SearchInput placeholder="제휴하려는 가게를 찾아보세요!" />
-          <styles.SearchIconBox>
+          <styles.SearchInput
+            value={input}
+            placeholder="제휴하려는 가게를 찾아보세요!"
+            onChange={handleInputChange}
+          />
+          <styles.SearchIconBox
+            onClick={() => {
+              setOperateFilter((prev: any) => ({
+                ...prev,
+                name: input,
+              }));
+            }}
+          >
             <SearchIcon alt="search icon" />
           </styles.SearchIconBox>
         </styles.ModalSearchBox>
         <styles.ModalFilterBox>
-          <Filter AllCount={43} setContentFilter={setContentFilter} />
+          <Filter setContentFilter={setContentFilter} />
         </styles.ModalFilterBox>
         <styles.ModalListsBox>
-          <styles.ModalStoreList>
-            <styles.ModalStoreIconBox>
-              {typeIcon49["음식점"].value}
-            </styles.ModalStoreIconBox>
-            <styles.ModalStoreInfoBox>
-              <styles.ModalStoreTopBox>
-                <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                <styles.ModalStoreType>음식점</styles.ModalStoreType>
-              </styles.ModalStoreTopBox>
-              <styles.ModalStoreBottomBox>
-                서울특별시
-              </styles.ModalStoreBottomBox>
-            </styles.ModalStoreInfoBox>
-            <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-          </styles.ModalStoreList>
-          <styles.ModalStoreList>
-            <styles.ModalStoreIconBox>
-              {typeIcon49["음식점"].value}
-            </styles.ModalStoreIconBox>
-            <styles.ModalStoreInfoBox>
-              <styles.ModalStoreTopBox>
-                <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                <styles.ModalStoreType>음식점</styles.ModalStoreType>
-              </styles.ModalStoreTopBox>
-              <styles.ModalStoreBottomBox>
-                서울특별시
-              </styles.ModalStoreBottomBox>
-            </styles.ModalStoreInfoBox>
-            <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-          </styles.ModalStoreList>
-          <styles.ModalStoreList>
-            <styles.ModalStoreIconBox>
-              {typeIcon49["음식점"].value}
-            </styles.ModalStoreIconBox>
-            <styles.ModalStoreInfoBox>
-              <styles.ModalStoreTopBox>
-                <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                <styles.ModalStoreType>음식점</styles.ModalStoreType>
-              </styles.ModalStoreTopBox>
-              <styles.ModalStoreBottomBox>
-                서울특별시
-              </styles.ModalStoreBottomBox>
-            </styles.ModalStoreInfoBox>
-            <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-          </styles.ModalStoreList>
-          <styles.ModalStoreList>
-            <styles.ModalStoreIconBox>
-              {typeIcon49["카페"].value}
-            </styles.ModalStoreIconBox>
-            <styles.ModalStoreInfoBox>
-              <styles.ModalStoreTopBox>
-                <styles.ModalStoreName>릴즈</styles.ModalStoreName>
-                <styles.ModalStoreType>음식점</styles.ModalStoreType>
-              </styles.ModalStoreTopBox>
-              <styles.ModalStoreBottomBox>
-                서울특별시
-              </styles.ModalStoreBottomBox>
-            </styles.ModalStoreInfoBox>
-            <styles.ModalCheckBox>확인</styles.ModalCheckBox>
-          </styles.ModalStoreList>
+          {data?.map((el, idx) => {
+            return (
+              <styles.ModalStoreList key={el.storeId}>
+                <styles.ModalStoreIconBox>
+                  {typeIcon49[typeEngtoKor(el.category)].value}
+                </styles.ModalStoreIconBox>
+                <styles.ModalStoreInfoBox>
+                  <styles.ModalStoreTopBox>
+                    <styles.ModalStoreName>
+                      {el.storeName}
+                    </styles.ModalStoreName>
+                    <styles.ModalStoreType>
+                      {typeEngtoKor(el.category)}
+                    </styles.ModalStoreType>
+                  </styles.ModalStoreTopBox>
+                  <styles.ModalStoreBottomBox>
+                    {el.address}
+                  </styles.ModalStoreBottomBox>
+                </styles.ModalStoreInfoBox>
+                <styles.ModalCheckBox>확인</styles.ModalCheckBox>
+              </styles.ModalStoreList>
+            );
+          })}
         </styles.ModalListsBox>
       </styles.ModalContainer>
     </Modal>
