@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as styles from "@/components/styles/popup/style";
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
@@ -7,6 +7,7 @@ import Link from "next/link";
 import EmptyComponent from "@/components/atoms/EmptyComponent";
 import { Checkbox } from "@mui/material";
 import { deleteCoupons } from "@/pages/api/coupon";
+import { useStores } from "@/components/hooks/useStores";
 
 const CouponAdminPage: React.FC = () => {
   const router = useRouter();
@@ -18,16 +19,21 @@ const CouponAdminPage: React.FC = () => {
   const handleCheckboxChange = (couponId: number, isChecked: boolean) => {
     setDeleteList((prevList) => {
       if (isChecked) {
-        // 체크된 경우: ID 추가
         return [...prevList, couponId];
       } else {
-        // 체크 해제된 경우: ID 제거
         return prevList.filter((id) => id !== couponId);
       }
     });
   };
 
-  console.log(deleteList);
+  const data = useStores({
+    isPicked: false,
+    name: "나",
+    category: "FOOD",
+    pageSize: 40,
+    pageNumber: 0,
+  });
+
   return (
     <styles.Container>
       <styles.TitleBox>
@@ -102,6 +108,7 @@ const CouponAdminPage: React.FC = () => {
               const result = await deleteCoupons({ items: deleteList });
             };
             deleteCoupon();
+            router.reload();
           }}
         >
           삭제하기

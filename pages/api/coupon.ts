@@ -1,23 +1,6 @@
 import axios from "axios";
 import { axiosInstance } from "./axiosInstance";
 
-const apiBase = () => {
-  const userSession = sessionStorage.getItem("userSession");
-  let token: string = "";
-  if (userSession) {
-    const parsedSession = JSON.parse(userSession);
-    token = parsedSession.user?.token || "";
-  } else {
-    console.log("유저세션 없음");
-  }
-
-  return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_API_URL,
-    timeout: 3000,
-    headers: { Authorization: `Bearer ${token}` },
-  });
-};
-
 interface CouponProps {
   type: "COUPON";
   pageSize?: number;
@@ -31,7 +14,7 @@ export const getCoupons = async ({
 }: CouponProps) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_GET_COUPONS}?type=${type}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
-    const response = await apiBase().get(url);
+    const response = await axiosInstance().get(url);
     return response.data;
   } catch (e) {
     console.error(`Error 코드 : ${e}`);
@@ -60,7 +43,7 @@ export const createCoupon = async ({
 }: EventProps) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_POST_COUPON}`;
-    const response = await apiBase().post(url, {
+    const response = await axiosInstance().post(url, {
       storeId,
       type,
       name,

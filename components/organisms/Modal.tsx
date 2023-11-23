@@ -27,6 +27,7 @@ const LoginModal: React.FC<ModalProps> = () => {
       const result = await login({ email: email, password: password });
       setLoginedUserState((prev) => ({
         ...prev,
+        logined: true,
         token: result.accessToken,
       }));
       return result.data;
@@ -34,10 +35,6 @@ const LoginModal: React.FC<ModalProps> = () => {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    console.log(`${email} + ${password}`);
-  }, []);
 
   if (!isOpen) return null;
   return (
