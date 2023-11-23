@@ -6,22 +6,16 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import Logo from "@/components/atoms/Logo.svg";
 import { useRouter } from "next/router";
 import { useModal } from "../hooks/useModal";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { initialState } from "@/state/user/user";
 
 import { Logout } from "@/pages/api/login";
-
-/*
-TODO:
-1. 로그인 - 세션스토리지 안에 로그인 여부에 따라서 다르게
-*/
 
 const Header = () => {
   const router = useRouter();
   const { openModal } = useModal();
   const [userSessionData, setUserSessionData] = useState<string | null>(null);
-
-  const setLogout = useSetRecoilState(initialState);
+  const [logData, setLogData] = useRecoilState(initialState);
 
   useEffect(() => {
     setUserSessionData(window.sessionStorage?.getItem("userSession"));
@@ -32,11 +26,11 @@ const Header = () => {
   }, [userSessionData]);
 
   const logoutHandler = async () => {
-    console.log("logout");
-    const response = await Logout();
-    console.log(response);
+    console.log("logout합니다");
+    const result = await Logout();
+    console.log(result);
 
-    setLogout({
+    setLogData({
       logined: false,
       email: "",
       type: "",
@@ -60,14 +54,14 @@ const Header = () => {
         <ul>
           <UpperMenuItem
             onClick={() => {
-              if (userSessionData) {
+              if (logData.logined) {
                 logoutHandler();
               } else {
                 openModal();
               }
             }}
           >
-            {userSessionData ? "로그아웃" : "로그인"}
+            {logData.logined ? "로그아웃" : "로그인"}
           </UpperMenuItem>
 
           <UpperMenuItem>
