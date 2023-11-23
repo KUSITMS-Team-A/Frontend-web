@@ -83,8 +83,10 @@ const UserPage: React.FC<UserProps> = () => {
           <styles.AgreementInnerBox>
             <styles.Checks style={{ borderBottom: "1px solid #D0D0D0" }}>
               <Checkbox
+
                 icon={<CircleIcon />}
                 checkedIcon={<CheckCircleIcon />}
+
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   const { checked } = e.target;
                   checked

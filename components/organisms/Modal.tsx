@@ -18,7 +18,9 @@ const LoginModal: React.FC<ModalProps> = () => {
   const [isOpen, setIsOpen] = useRecoilState(modalState);
 
   const { closeModal } = useModal();
+
   const router = useRouter();
+
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const setLoginedUserState = useSetRecoilState(initialState);

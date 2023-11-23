@@ -1,5 +1,6 @@
 import { axiosInstance } from "./axiosInstance";
 
+
 interface CouponProps {
   isPicked: boolean;
   name: string;
@@ -25,7 +26,7 @@ export const getFoods = async ({
   }
 };
 
-// 대학 조회
+
 export const getUnivs = async () => {
   try {
     const response = await axiosInstance().get(

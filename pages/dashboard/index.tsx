@@ -60,6 +60,7 @@ const DashBoardPage: React.FC = () => {
         </styles.TitleContainer>
 
         <styles.OptionContainer>
+
           <Filter setContentFilter={setContentFilter} />
           <styles.ButtonWrapper>
             <styles.IndexButton>최근 7일</styles.IndexButton>

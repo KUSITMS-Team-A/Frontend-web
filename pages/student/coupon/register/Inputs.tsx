@@ -1,3 +1,4 @@
+
 import React, { useEffect, useMemo, useState } from "react";
 import * as styles from "../../../../components/styles/CInputs.style";
 import { css } from "@emotion/css";
@@ -10,11 +11,13 @@ import {
   List,
   ListItem,
   ListItemText,
+
 } from "@mui/material";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
 import { createCoupon } from "@/pages/api/coupon";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircleIcon from "@mui/icons-material/Circle";
+
 import { getFoods } from "@/pages/api/others";
 import { useCouponData } from "@/components/hooks/useCouponData";
 import { useStores } from "@/components/hooks/useStores";
@@ -40,6 +43,7 @@ const Inputs: React.FC = () => {
     []
   );
 
+
   const [stores, setStores] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -52,6 +56,7 @@ const Inputs: React.FC = () => {
   }, []);
 
   console.log(stores);
+
 
   const [formData, setFormData] = useState<EventProps>({
     storeId: 2,
@@ -123,9 +128,11 @@ const Inputs: React.FC = () => {
               className={css`
                 width: 50%;
               `}
+
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
+
               placeholder={placeHolders[1]}
               endAdornment={
                 <InputAdornment position="end">
@@ -155,7 +162,9 @@ const Inputs: React.FC = () => {
               placeholder={placeHolders[3]}
               name="condition"
               onChange={(e) => {
+
                 let result: any = [];
+
                 result.push(e.target.value);
 
                 setFormData((prev) => ({ ...prev, conditions: result }));
@@ -206,6 +215,7 @@ const Inputs: React.FC = () => {
           </styles.SubmitButton>
         </styles.InputBox>
       </form>
+
     </styles.Container>
   );
 };

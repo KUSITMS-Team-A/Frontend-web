@@ -1,5 +1,7 @@
 import axios from "axios";
+
 import { axiosInstance } from "./axiosInstance";
+
 
 interface CouponProps {
   type: "COUPON";
@@ -14,7 +16,9 @@ export const getCoupons = async ({
 }: CouponProps) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_GET_COUPONS}?type=${type}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
+
     const response = await axiosInstance().get(url);
+
     return response.data;
   } catch (e) {
     console.error(`Error 코드 : ${e}`);
@@ -43,7 +47,9 @@ export const createCoupon = async ({
 }: EventProps) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_POST_COUPON}`;
+
     const response = await axiosInstance().post(url, {
+
       storeId,
       type,
       name,
@@ -56,6 +62,7 @@ export const createCoupon = async ({
     console.error(`Error 코드 : ${e}`);
   }
 };
+
 
 interface DeleteProps {
   items: number[];
@@ -70,3 +77,4 @@ export const deleteCoupons = async ({ items }: DeleteProps) => {
     console.error(`Error 코드 : ${e}`);
   }
 };
+
