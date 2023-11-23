@@ -1,6 +1,7 @@
 import { axiosInstance } from "./axiosInstance";
 
 
+
 interface CouponProps {
   isPicked: boolean;
   name: string;
@@ -25,6 +26,7 @@ export const getFoods = async ({
     console.error(`Error 코드 : ${e}`);
   }
 };
+
 
 
 export const getUnivs = async () => {

@@ -91,6 +91,7 @@ export const CreateImage = async (file: File) => {
 // 로그아웃
 export const Logout = async () => {
 
+
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_LOGOUT_ENDPOINT}`;
     const response = await axiosInstance().post(url);

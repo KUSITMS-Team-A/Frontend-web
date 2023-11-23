@@ -24,6 +24,7 @@ export const getContractBase = async ({
 export const getContractInfo = async (id: number) => {
   try {
     const response = await axiosInstance().get(`/contract/details/${id}`);
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -56,6 +57,7 @@ export const postContract = async (
       startDate: startDate,
       endDate: endDate,
     });
+
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {

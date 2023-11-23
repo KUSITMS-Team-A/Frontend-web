@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 import { axiosInstance } from "./axiosInstance";
 
 
@@ -17,7 +18,9 @@ export const getCoupons = async ({
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}${process.env.NEXT_PUBLIC_GET_COUPONS}?type=${type}&pageSize=${pageSize}&pageNumber=${pageNumber}`;
 
+
     const response = await axiosInstance().get(url);
+
 
     return response.data;
   } catch (e) {
@@ -50,6 +53,7 @@ export const createCoupon = async ({
 
     const response = await axiosInstance().post(url, {
 
+
       storeId,
       type,
       name,
@@ -77,4 +81,5 @@ export const deleteCoupons = async ({ items }: DeleteProps) => {
     console.error(`Error 코드 : ${e}`);
   }
 };
+
 
