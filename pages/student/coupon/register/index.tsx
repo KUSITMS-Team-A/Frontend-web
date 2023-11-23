@@ -12,7 +12,7 @@ const CouponRegisterPage: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [couponContent, setCouponContent] = useState({
     type: "COUPON 미리보기",
-    conditions: "쿠폰 사용조건",
+    conditions: ["쿠폰 사용조건"],
     name: "쿠폰 정보",
   });
 
@@ -44,7 +44,7 @@ const CouponRegisterPage: React.FC = () => {
             <LeftContainer>
               <LeftTitle>{couponContent.type}</LeftTitle>
               <LeftContent>{couponContent.name}</LeftContent>
-              <LeftContent>{couponContent.conditions}</LeftContent>
+              <LeftContent>{couponContent.conditions[0]}</LeftContent>
             </LeftContainer>
             <RightContainer>
               <RightTitle>사용하기</RightTitle>

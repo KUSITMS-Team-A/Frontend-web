@@ -29,7 +29,8 @@ interface EventProps {
   quantity: number;
 }
 
-const Inputs = ({ setCouponContent }) => {
+const Inputs = (props: any) => {
+  const setCouponContent = props.setCouponContent;
   const placeHolders = useMemo(
     () => [
       'ex- “제대로 사용자 한정, 한 번 더 카페 1900원 할인쿠폰"',
