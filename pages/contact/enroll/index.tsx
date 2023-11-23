@@ -8,15 +8,40 @@ import { useState } from "react";
 import SearchModal from "@/components/organisms/Modal/\bSearchModal";
 import { useRecoilState } from "recoil";
 import { NewEnrollStore } from "@/states/Enroll";
-import Button from "@/components/organisms/Button";
+import { postContract } from "@/pages/api/ContractAPI";
+import { COLORS } from "@/styles/colors";
+import Link from "next/link";
 
 const ContractEnroll = () => {
   const [enrollInfo, setEnrollInfo] = useRecoilState(NewEnrollStore);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
-  const [benefit, setBenefit] = useState<string>("");
+  const [condition, setCondition] = useState<string>("");
+  const [amount, setAmount] = useState<number>(0);
   const [date, setDate] = useState<string>("");
   const handleOnClickSearchOpen = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  const handleConditionChange = (event: any) => {
+    setCondition(event.target.value);
+  };
+  const handleAmountChange = (event: any) => {
+    setAmount(event.target.value);
+  };
+  const handleDateChange = (event: any) => {
+    setDate(event.target.value);
+  };
+
+  const handleEnroll = () => {
+    postContract(
+      enrollInfo.storeId,
+      "FIX",
+      amount,
+      condition,
+      enrollInfo.description,
+      date.slice(0, 10),
+      date.slice(11, 21)
+    );
   };
 
   return (
@@ -66,7 +91,25 @@ const ContractEnroll = () => {
           </NumberBox>
           <NumberBox>
             <ConditionBox>
-              <ConditionInput value={benefit} placeholder="ex) 2500원 할인" />
+              <ConditionInput
+                value={condition}
+                onChange={handleConditionChange}
+                placeholder="ex) 메인메뉴 구입시"
+              />
+              <ConditionIcon>
+                <Checkbox
+                  icon={<CircleIcon />}
+                  checkedIcon={<CheckCircleIcon />}
+                />
+              </ConditionIcon>
+            </ConditionBox>
+            <ConditionBox style={{ marginLeft: "10px" }}>
+              <ConditionInput
+                type="number"
+                value={amount}
+                onChange={handleAmountChange}
+                placeholder="ex) 2500원 할인"
+              />
               <ConditionIcon>
                 <Checkbox
                   icon={<CircleIcon />}
@@ -82,6 +125,7 @@ const ContractEnroll = () => {
             <ConditionBox>
               <ConditionInput
                 value={date}
+                onChange={handleDateChange}
                 placeholder="2023-11-25~2024-11-25"
               />
               <ConditionIcon>
@@ -93,7 +137,9 @@ const ContractEnroll = () => {
             </ConditionBox>
           </NumberBox>
         </MainBox>
-        <Button title="등록하기" width={193} />
+        <Link href={"/contact"}>
+          <ButtonBox onClick={handleEnroll}>등록하기</ButtonBox>
+        </Link>
       </Container>
       {isSearchOpen && <SearchModal setIsSearchOpen={setIsSearchOpen} />}
     </>
@@ -203,6 +249,23 @@ const SearchIconBox = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
+`;
+
+const ButtonBox = styled.div<{}>`
+  width: 193px;
+  padding: 13px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background: ${COLORS.blue};
+  color: ${COLORS.yellow};
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 22px; /* 157.143% */
+  margin: 33px auto 40px;
   cursor: pointer;
 `;
 
