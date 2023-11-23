@@ -1,18 +1,27 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import * as styles from "../../../../components/styles/CInputs.style";
-
 import { css } from "@emotion/css";
 import {
   Checkbox,
+  Dialog,
   FilledInput,
   IconButton,
   InputAdornment,
+  List,
+  ListItem,
+  ListItemText,
+
 } from "@mui/material";
 import SearchTwoToneIcon from "@mui/icons-material/SearchTwoTone";
 import { createCoupon } from "@/pages/api/coupon";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CircleIcon from "@mui/icons-material/Circle";
+
+import { getFoods } from "@/pages/api/others";
+import { useCouponData } from "@/components/hooks/useCouponData";
+import { useStores } from "@/components/hooks/useStores";
+
 interface EventProps {
   storeId: number;
   type: "COUPON";
@@ -33,6 +42,20 @@ const Inputs: React.FC = () => {
     ],
     []
   );
+
+
+  const [stores, setStores] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSelectedStore = (store: any) => {
+    setFormData({ ...formData, storeId: store.storeId });
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, []);
+
+  console.log(stores);
 
 
   const [formData, setFormData] = useState<EventProps>({
@@ -105,6 +128,11 @@ const Inputs: React.FC = () => {
               className={css`
                 width: 50%;
               `}
+
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+
               placeholder={placeHolders[1]}
               endAdornment={
                 <InputAdornment position="end">

@@ -1,12 +1,15 @@
 import { useRouter } from "next/router";
-import React from "react";
 
+import React, { useEffect, useState } from "react";
 import * as styles from "@/components/styles/popup/style";
 
 import { css } from "@emotion/css";
 import { useCouponData } from "@/components/hooks/useCouponData";
 import Link from "next/link";
 import EmptyComponent from "@/components/atoms/EmptyComponent";
+import { Checkbox } from "@mui/material";
+import { deleteCoupons } from "@/pages/api/coupon";
+import { useStores } from "@/components/hooks/useStores";
 
 import { usePopupData } from "@/components/hooks/usePopupData";
 import { Checkbox } from "@mui/material";
@@ -17,9 +20,28 @@ const CouponAdminPage: React.FC = () => {
 
   const { coupons } = useCouponData();
 
-  const data = useUniv();
 
-  console.log(coupons);
+  const [deleteList, setDeleteList] = useState<Array<number>>([]);
+
+  const handleCheckboxChange = (couponId: number, isChecked: boolean) => {
+    setDeleteList((prevList) => {
+      if (isChecked) {
+        return [...prevList, couponId];
+      } else {
+        return prevList.filter((id) => id !== couponId);
+      }
+    });
+  };
+
+  const data = useStores({
+    isPicked: false,
+    name: "나",
+    category: "FOOD",
+    pageSize: 40,
+    pageNumber: 0,
+  });
+
+
   return (
     <styles.Container>
       <styles.TitleBox>
@@ -41,20 +63,26 @@ const CouponAdminPage: React.FC = () => {
         </styles.LabelBox>
         <styles.ListBox>
           {coupons.length !== 0 ? (
-            coupons.map((element, index) => (
-              <styles.ListElement key={index}>
-                <styles.ListIndex>{index + 1}</styles.ListIndex>
-                <styles.ListContent>{element.couponName}</styles.ListContent>
+            coupons.map((element, index) => {
+              return (
+                <styles.ListElement key={index}>
+                  <styles.ListIndex>{index + 1}</styles.ListIndex>
+                  <styles.ListContent>{element.couponName}</styles.ListContent>
 
-                <styles.ListStore>
-                  <styles.InfoBox>{element.couponStore}</styles.InfoBox>
-                </styles.ListStore>
-                <styles.DeleteElement>
-                  <Checkbox />
-                </styles.DeleteElement>
+                  <styles.ListStore>
+                    <styles.InfoBox>{element.couponStore}</styles.InfoBox>
+                  </styles.ListStore>
+                  <styles.DeleteElement>
+                    <Checkbox
+                      onChange={(e) =>
+                        handleCheckboxChange(element.couponId, e.target.checked)
+                      }
+                    />
+                  </styles.DeleteElement>
+                </styles.ListElement>
+              );
+            })
 
-              </styles.ListElement>
-            ))
           ) : (
             <div
               className={css`
@@ -83,7 +111,18 @@ const CouponAdminPage: React.FC = () => {
         <styles.CustomButton primary={true}>
           <Link href="/student/coupon/register">등록하기</Link>
         </styles.CustomButton>
-        <styles.CustomButton primary={false}>삭제하기</styles.CustomButton>
+        <styles.CustomButton
+          primary={false}
+          onClick={() => {
+            const deleteCoupon = async () => {
+              const result = await deleteCoupons({ items: deleteList });
+            };
+            deleteCoupon();
+            router.reload();
+          }}
+        >
+          삭제하기
+        </styles.CustomButton>
       </div>
     </styles.Container>
   );
