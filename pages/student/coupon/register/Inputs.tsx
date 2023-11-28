@@ -41,7 +41,7 @@ const Inputs = (props: any) => {
     ],
     []
   );
-
+  
   const [stores, setStores] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 

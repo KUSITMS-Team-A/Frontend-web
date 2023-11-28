@@ -15,7 +15,6 @@ const CouponRegisterPage: React.FC = () => {
     conditions: ["쿠폰 사용조건"],
     name: "쿠폰 정보",
   });
-
   const handleOpen = () => {
     setModalOpen(true);
   };
