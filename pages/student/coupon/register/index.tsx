@@ -16,7 +16,6 @@ const CouponRegisterPage: React.FC = () => {
     name: "쿠폰 정보",
   });
 
-  console.log(couponContent);
   const handleOpen = () => {
     setModalOpen(true);
   };
