@@ -41,6 +41,7 @@ const DashBoardPage: React.FC = () => {
     calculateDateRange(1, "month");
   }, [dateFilter]);
 
+  console.log(menu);
   return (
     <>
       <Head>

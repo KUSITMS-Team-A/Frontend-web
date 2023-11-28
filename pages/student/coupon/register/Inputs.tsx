@@ -147,9 +147,7 @@ const Inputs = (props: any) => {
               name="condition"
               onChange={(e) => {
                 let result: any = [];
-
                 result.push(e.target.value);
-
                 setFormData((prev) => ({ ...prev, conditions: result }));
               }}
             />
